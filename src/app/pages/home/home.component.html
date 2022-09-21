@@ -1,0 +1,9 @@
+<p>home works!</p>
+<mat-list>
+  <mat-list-item *ngFor="let produto of produtos">
+    <mat-list-item>{{ produto.id }}</mat-list-item>
+    <mat-list-item>{{ produto.nome }}</mat-list-item>
+    <mat-list-item>{{ produto.preco }}</mat-list-item>
+  </mat-list-item>
+ </mat-list>
+<button mat-button color="primary" (click)="irParaCadastro()">Cadastro</button>

@@ -1,0 +1,43 @@
+<form [formGroup]="ProdFormCad" (ngSubmit)="onSubmit()">
+  <div>
+    <mat-label for="nome">Nome</mat-label>
+    <input id="nome" type="text" formControlName="nome">
+  </div>
+
+  <div>
+    <mat-label for="descricao">Descrição</mat-label>
+    <input id="descricao" type="text" formControlName="descricao">
+  </div>
+
+  <div>
+    <mat-label for="categoria">Categoria</mat-label>
+    <input id="categoria" type="text" formControlName="categoria">
+  </div>
+
+  <div>
+    <mat-label for="tamanho">Tamanho</mat-label>
+    <input id="tamanho" type="number" formControlName="tamanho">
+  </div>
+
+  <div>
+    <mat-label for="medida">Medida</mat-label>
+    <input id="medida" type="number" formControlName="medida">
+  </div>
+
+  <div>
+    <mat-label for="adicionais">Adicionais</mat-label>
+    <input id="adicionais" type="text" formControlName="adicionais">
+  </div>
+
+  <div>
+    <mat-label for="foto">Foto</mat-label>
+    <input id="foto" type="text" formControlName="foto">
+  </div>
+
+  <div>
+    <mat-label for="preco">Preço</mat-label>
+    <input id="preco" type="number" formControlName="preco">
+  </div>
+
+  <button mat-button color="primary" type="submit">Cadastrar produto</button>
+</form>
