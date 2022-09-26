@@ -15,13 +15,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
+import { DetalhesProdutoComponent } from './pages/detalhes-produto/detalhes-produto.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CadastroProdutoComponent
+    CadastroProdutoComponent,
+    DetalhesProdutoComponent
   ],
   imports: [
     BrowserModule,

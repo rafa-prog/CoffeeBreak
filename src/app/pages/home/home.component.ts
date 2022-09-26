@@ -28,9 +28,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/cadastro-produto'])
   }
 
-  irParaDetalhar(produto: Produto) {
-    this.router.navigateByUrl('/detalhar',
-    {state: {objeto:produto}})
+  irParaDetalhar() {
+    this.router.navigateByUrl('/detalhes-produto')
   }
 
 }
