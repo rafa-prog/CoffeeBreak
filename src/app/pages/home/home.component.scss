@@ -1,0 +1,93 @@
+mat-sidenav{
+    margin: 16px;
+    width: 200px;
+    border-right: none;
+    background: #002b5c;
+    color: white;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    
+}
+#logo-title{
+    color:peru;
+}
+#conteudo{
+    
+    height: 90%;
+    border-radius: 10px;
+    
+    overflow-y: scroll;
+
+    margin-top: 0.5em;
+    margin-left: 1em;
+    margin-right: 1em;
+    
+    
+
+    display: flex;
+
+
+    font-size: 2rem;
+    color: black;
+    background-color: lightblue;
+    border-width: 10px;
+    border-color: red;
+}
+mat-sidenav-container{
+    height: 100%;
+    
+}
+
+.content {
+    padding: 16px;
+}
+
+.content > mat-card {
+    width: 200px;
+}
+button.botao-classe {
+    
+
+    margin-top: 2em;
+    height: 5em;
+    width: 12em;
+    border-radius: 0.5em;
+    background-color: #D2B590;
+    transition: all 0.75s;
+    z-index: 1;
+    overflow: hidden;
+  }
+  button.botao-classe:hover {
+    animation-fill-mode: forwards;
+    color: #3498db;
+    background-color: brown;
+  }
+
+#search{
+    background-color: lightgreen;
+    color: black;
+    height: 4%;
+    margin-top: 1em;
+    margin-right: 1em;
+    margin-left: 2em;
+    border-radius: 18em;
+    padding-left: 1 em;
+    
+input[type=text] {
+    margin: 0.3em;
+    width: 90em;
+    border-radius: 18em;
+    }
+   
+
+}
+#ca{
+    border-radius: 18em;
+}
+
+#btn-card{
+    margin-left: 8.5em;
+}
+//<button mat-button color="primary" (click)="irParaCadastro()">Cadastro</button>
+//<button mat-button color="primary" (click)="irParaDetalhar()">Detalhes</button>
