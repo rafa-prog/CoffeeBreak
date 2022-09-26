@@ -50,10 +50,10 @@
         <div id="conteudo">
               <div class="content">
                     <div fxLayout="row wrap" fxLayoutGap="16px grid">
-                      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1,2,3,4,5,6,7,8,9,10,11,12]">
+                      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let produto of produtos">
                         <mat-card class="mat-elevation-z4" >
                           <mat-card-header>
-                            <mat-card-title>Bebida Quente {{num}}</mat-card-title>
+                            <mat-card-title>Bebida Quente {{produto.nome}}</mat-card-title>
                           </mat-card-header>
                           
                           <mat-card-content>
@@ -61,8 +61,7 @@
                                 Descrição:
                             </h4>
                             <h5>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci vel nobis a officia optio dolor nemo, sequi impedit quo inventore ipsum voluptatibus ducimus obcaecati aut! Fugit, ad ipsum. Vero, ea?
-                                lore
+                              {{produto.descricao}}
                             </h5>
                           </mat-card-content>
                           <mat-card-actions>
