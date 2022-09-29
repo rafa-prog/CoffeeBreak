@@ -2,42 +2,33 @@ mat-sidenav{
     width:  25.806451612903224vh;
     height: 100%;
     border-right: none;
-    background: #002b5c;
+    background: #bb8e5d;///#9b6b43;
     color: white;
 
     padding: 2.064516129032258vh;
     text-align: center;
     
 }
+mat-card{
+    background:#744c24 ;
+}
 #logo-title{
-    color:peru;
+    color:  #463623;
 }
 #conteudo{
     
     height: 100%;
     border-radius: 1.2903225806451613vh;
-
-   
-
     margin-top: 0.2064516129032258vh;
-
     margin-right: 0.2064516129032258vh;
- 
-    
-    
-
     display: flex;
-
-
     font-size: 4.129032258064516vh;
     color: black;
-
     border-width: 1.2903225806451613vh;
-    border-color: red;
 }
 mat-sidenav-container{
     height: 100%;
-    background-color: green;
+    background-color: #E2D1BB;
 }
 
 .content {
@@ -48,12 +39,10 @@ mat-sidenav-container{
     width: 25.806451612903224vh;
 }
 button.botao-classe {
-    
-
     margin-top: 4.129032258064516vh;
     height:8.258064516129032vh ;
     width: 20.64516129032258vh;
-    border-radius:0.06451612903225806vh;
+    border-radius:1.2903225806451613vh;
     background-color: #D2B590;
     transition: all 0.75s;
     z-index: 1;
@@ -62,11 +51,11 @@ button.botao-classe {
   button.botao-classe:hover {
     animation-fill-mode: forwards;
     color: #3498db;
-    background-color: brown;
+    background-color: #E2D1BB;
   }
 
 #search{
-    background-color: black;
+    background-color: #D2B590;
     color: black;
     height: 4%;
     margin-top: 2.064516129032258vh;
