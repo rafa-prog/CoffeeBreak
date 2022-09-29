@@ -1,10 +1,11 @@
 mat-sidenav{
-    margin: 16px;
+    margin: 0px;
     width: 200px;
+    height: 100%;
     border-right: none;
     background: #002b5c;
     color: white;
-    border-radius: 10px;
+
     padding: 16px;
     text-align: center;
     
@@ -14,14 +15,15 @@ mat-sidenav{
 }
 #conteudo{
     
-    height: 90%;
+    height: 100%;
     border-radius: 10px;
-    
-    overflow-y: scroll;
 
-    margin-top: 0.5em;
-    margin-left: 1em;
-    margin-right: 1em;
+   
+
+    margin-top: 0.1em;
+
+    margin-right: 0.1em;
+ 
     
     
 
@@ -30,13 +32,13 @@ mat-sidenav{
 
     font-size: 2rem;
     color: black;
-    background-color: lightblue;
+
     border-width: 10px;
     border-color: red;
 }
 mat-sidenav-container{
     height: 100%;
-    
+    background-color: green;
 }
 
 .content {
@@ -50,7 +52,7 @@ button.botao-classe {
     
 
     margin-top: 2em;
-    height: 5em;
+    height: 4em;
     width: 12em;
     border-radius: 0.5em;
     background-color: #D2B590;
@@ -65,18 +67,18 @@ button.botao-classe {
   }
 
 #search{
-    background-color: lightgreen;
+    background-color: black;
     color: black;
     height: 4%;
     margin-top: 1em;
     margin-right: 1em;
-    margin-left: 2em;
+    margin-left: 0.1em;
     border-radius: 18em;
     padding-left: 1 em;
     
 input[type=text] {
     margin: 0.3em;
-    width: 90em;
+    width: 92em;
     border-radius: 18em;
     }
    
