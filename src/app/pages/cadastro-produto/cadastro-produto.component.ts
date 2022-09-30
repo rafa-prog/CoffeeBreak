@@ -13,6 +13,7 @@ import { ProdutoFirebaseService } from 'src/app/services/produto.firebase.servic
 export class CadastroProdutoComponent implements OnInit {
   ProdFormCad: FormGroup = this.formBuilder.group({})
   isSubmitted: boolean = false
+  image:any;
 
   constructor(private router: Router,
     private formBuilder: FormBuilder,
@@ -27,7 +28,7 @@ export class CadastroProdutoComponent implements OnInit {
       medida: ['', Validators.required],
       adicionais: ['', Validators.required],
       foto: ['', Validators.required],
-      preco: ['', Validators.required],
+      preco: ['', [Validators.required, Validators.min(0)]],
     })
   }
 
@@ -56,6 +57,9 @@ export class CadastroProdutoComponent implements OnInit {
       alert("Erro no cadastro!")
       console.log(err)
     })
+  }
+  uploadFile(image:any){
+    this.image = image.files;
   }
 
 }
