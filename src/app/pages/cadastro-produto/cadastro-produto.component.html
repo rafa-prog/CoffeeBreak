@@ -8,15 +8,7 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="descricao" id="descricao" type="text" formControlName="descricao">
-      </mat-form-field>
-
-      <mat-form-field>
         <input matInput placeholder="categoria" id="categoria" type="text" formControlName="categoria">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="tamanho" id="tamanho" type="number" formControlName="tamanho">
       </mat-form-field>
 
       <mat-form-field>
@@ -30,7 +22,16 @@
      </mat-form-field>
 
       <mat-form-field>
+        <input matInput placeholder="tamanho" id="tamanho" type="number" formControlName="tamanho">
+      </mat-form-field>
+
+      <mat-form-field>
         <input matInput placeholder="adicionais" id="adicionais" type="text" formControlName="adicionais">
+      </mat-form-field>
+
+      
+      <mat-form-field>
+        <input matInput placeholder="descricao" id="descricao" type="text" formControlName="descricao">
       </mat-form-field>
 
       <mat-form-field>
@@ -39,8 +40,8 @@
 
       <mat-form-field>
         <mat-label>Preço</mat-label>
-        <input matInput type="number" class="example-right-align" placeholder="0.00">
-        <span matPrefix>$&nbsp;</span>
+        <input matInput type="number" class="example-right-align" placeholder="0.00" id="preco" type="number" formControlName="preco">
+        <span matPrefix>R$&nbsp;</span>
       </mat-form-field>
       <!--<div>
         <mat-label for="nome">Nome</mat-label>
@@ -82,7 +83,7 @@
         <input id="preco" type="number" formControlName="preco">
       </div>-->
     
-      <button mat-button color="primary" type="submit">Cadastrar produto</button>
+      <button id="btn-card" mat-button type="submit">Cadastrar produto</button>
     </form>
   </mat-card>
 </div>
