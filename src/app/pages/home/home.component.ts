@@ -24,6 +24,10 @@ export class HomeComponent implements OnInit {
     this.produtoFs.readProdutos().subscribe((data: Produto[]) => {this.produtos = data})
   }
 
+  irParaLogin() {
+    this.router.navigate(['/login'])
+  }
+
   irParaCadastro() {
     this.router.navigate(['/cadastro-produto'])
   }

@@ -58,11 +58,6 @@ export class CadastroProdutoComponent implements OnInit {
     return this.ProdFormCad.controls
   }
 
-  updateCat() {
-    console.log('teste')
-    this.teste = this.ProdFormCad.controls['categoria'].value
-  }
-
   private cadastrar() {
     this.produtoFs.createProduto(this.ProdFormCad.value)
     .then(() => {
