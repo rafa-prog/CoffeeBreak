@@ -24,13 +24,16 @@ export class HomeComponent implements OnInit {
     this.produtoFs.readProdutos().subscribe((data: Produto[]) => {this.produtos = data})
   }
 
+  irParaLogin() {
+    this.router.navigate(['/login'])
+  }
+
   irParaCadastro() {
     this.router.navigate(['/cadastro-produto'])
   }
 
-  irParaDetalhar(produto: Produto) {
-    this.router.navigateByUrl('/detalhar',
-    {state: {objeto:produto}})
+  irParaDetalhar() {
+    this.router.navigateByUrl('/detalhes-produto')
   }
 
 }
