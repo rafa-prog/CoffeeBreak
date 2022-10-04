@@ -28,8 +28,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-
-
+import { LoginComponent } from './pages/login/login.component';
 
 
 
@@ -38,7 +37,8 @@ import { MatInputModule } from '@angular/material/input';
     AppComponent,
     HomeComponent,
     CadastroProdutoComponent,
-    DetalhesProdutoComponent
+    DetalhesProdutoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
