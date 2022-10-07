@@ -13,10 +13,7 @@ export class CadastroFuncionarioComponent implements OnInit {
   private router: Router,
   private authFireService: AuthFirebaseService) { }
 
-  ngOnInit(): void {
-    this.authFireService.authentication()
-
-  }
+  ngOnInit(): void {}
 
   criarConta() {
     let conta = {email: 'teste@gmail.com', senha: '12345'}

@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
   }
 
   private login() {
-    this.authFireService.authentication()
     this.authFireService.signIn(this.FormLogin.value)
     .then((userCredential) => {
       const user = userCredential.user;

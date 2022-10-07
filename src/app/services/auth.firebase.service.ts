@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { FirebaseApp } from '@angular/fire/app';
-import { Router } from '@angular/router';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 @Injectable({
@@ -8,35 +7,29 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 })
 export class AuthFirebaseService {
   private auth: any
-  constructor(
-  private FirebaseApp: FirebaseApp,
-  private router: Router) {}
+  constructor(private FirebaseApp: FirebaseApp) {}
 
   authentication() {
     this.auth = getAuth()
   }
 
   createUser(conta: any) {
+    this.authentication()
     return createUserWithEmailAndPassword(this.auth, conta.email, conta.senha)
   }
 
   signIn(conta: any) {
+    this.authentication()
     return signInWithEmailAndPassword(this.auth, conta.email, conta.senha)
   }
 
   signOut() {
+    this.authentication()
     return signOut(this.auth)
   }
 
   usuarioLogado() {
+    this.authentication()
     return this.auth.currentUser
-  }
-
-  irParaHome() {
-    this.router.navigate(['/#'])
-  }
-
-  voltaParaLogin() {
-    this.router.navigate(['/'])
   }
 }

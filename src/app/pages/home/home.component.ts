@@ -18,14 +18,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.carregarProdutos()
-    this.authFireService.authentication()
     let user = this.authFireService.usuarioLogado()
-    if(user === null) {
-      this.irParaLogin()
-    }else {
+    if(user !== null) {
       user.providerData.forEach((profile: any) => {
         alert(profile.email)
       })
+    }else {
+      this.irParaLogin()
     }
   }
 
@@ -34,7 +33,6 @@ export class HomeComponent implements OnInit {
   }
 
   sairSessao() {
-    this.authFireService.authentication()
     this.authFireService.signOut()
     .then(() => {
       alert("usuário desconectado!")
