@@ -28,9 +28,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 
 
+
+import { LoginComponent } from './pages/login/login.component';
+import { CadastroFuncionarioComponent } from './pages/cadastro-funcionario/cadastro-funcionario.component';
 
 
 
@@ -40,7 +44,11 @@ import { CadastroComponent } from './pages/cadastro/cadastro.component';
     HomeComponent,
     CadastroProdutoComponent,
     DetalhesProdutoComponent,
+
     CadastroComponent,
+
+    LoginComponent,
+    CadastroFuncionarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,8 +62,6 @@ import { CadastroComponent } from './pages/cadastro/cadastro.component';
     FlexLayoutModule,
     MatSelectModule,
     MatInputModule,
-
-
 
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),

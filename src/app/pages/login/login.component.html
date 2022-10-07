@@ -1,0 +1,13 @@
+<form [formGroup]="FormLogin" (ngSubmit)="onSubmit()">
+  <mat-toolbar color="primary">Login</mat-toolbar>
+  <mat-form-field>
+    <input matInput placeholder="email" id="email" type="text" formControlName="email">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="senha" id="senha" type="text" formControlName="senha">
+  </mat-form-field>
+
+  <button id="btn-card" mat-button type="submit">Login</button>
+  <a [routerLink]="'/cadastro-funcionario'">Não tem conta? Cadastre-se!</a>
+</form>

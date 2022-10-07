@@ -8,16 +8,16 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Categoria" id="categoria" type="text" formControlName="categoria">
+
+        <mat-select placeholder="Categoria" id="categoria" formControlName="categoria">
+          <mat-option *ngFor="let categoria of categorias" value="{{ categoria }}">{{ categoria }}</mat-option>
+        </mat-select>
       </mat-form-field>
 
+
       <mat-form-field>
-  
         <mat-select placeholder="Medida" id="medida" formControlName="medida">
-          <mat-option value="ml">mL</mat-option>
-          <mat-option value="l">L</mat-option>
-          <mat-option value="g">g</mat-option>
-          <mat-option value="un">un</mat-option>
+          <mat-option *ngFor="let medida of medidas" value="{{ medida }}">{{ medida }}</mat-option>
         </mat-select>
      </mat-form-field>
 
@@ -29,7 +29,7 @@
         <input matInput placeholder="Adicionais" id="adicionais" type="text" formControlName="adicionais">
       </mat-form-field>
 
-      
+
       <mat-form-field>
         <input matInput placeholder="Descricao" id="descricao" type="text" formControlName="descricao">
       </mat-form-field>
@@ -47,42 +47,42 @@
         <mat-label for="nome">Nome</mat-label>
         <input id="nome" type="text" formControlName="nome">
       </div>
-    
+
       <div>
         <mat-label for="descricao">Descrição</mat-label>
         <input id="descricao" type="text" formControlName="descricao">
       </div>
-    
+
       <div>
         <mat-label for="categoria">Categoria</mat-label>
         <input id="categoria" type="text" formControlName="categoria">
       </div>
-    
+
       <div>
         <mat-label for="tamanho">Tamanho</mat-label>
         <input id="tamanho" type="number" formControlName="tamanho">
       </div>
-    
+
       <div>
         <mat-label for="medida">Medida</mat-label>
         <input id="medida" type="number" formControlName="medida">
       </div>
-    
+
       <div>
         <mat-label for="adicionais">Adicionais</mat-label>
         <input id="adicionais" type="text" formControlName="adicionais">
       </div>
-    
+
       <div>
         <mat-label for="foto">Foto</mat-label>
         <input id="foto" type="text" formControlName="foto">
       </div>
-    
+
       <div>
         <mat-label for="preco">Preço</mat-label>
         <input id="preco" type="number" formControlName="preco">
       </div>-->
-    
+
       <button id="btn-card" mat-button type="submit">Cadastrar produto</button>
     </form>
   </mat-card>
