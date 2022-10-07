@@ -20,14 +20,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.carregarProdutos()
-    let user = this.authFireService.usuarioLogado()
+    /*let user = this.authFireService.usuarioLogado()
     if(user !== null) {
       user.providerData.forEach((profile: any) => {
         alert(profile.email)
       })
     }else {
       this.irParaLogin()
-    }
+    }*/
   }
 
   carregarProdutos() {
