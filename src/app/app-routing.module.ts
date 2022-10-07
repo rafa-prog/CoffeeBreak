@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CadastroFuncionarioComponent } from './pages/cadastro-funcionario/cadastro-funcionario.component';
 import { CadastroProdutoComponent } from './pages/cadastro-produto/cadastro-produto.component';
 import { DetalhesProdutoComponent } from './pages/detalhes-produto/detalhes-produto.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -9,6 +10,10 @@ import { LoginComponent } from './pages/login/login.component';
 const routes: Routes = [
   {
     path: '',
+    component: LoginComponent,
+  },
+  {
+    path: '#',
     component: HomeComponent,
   },
   {
@@ -20,9 +25,9 @@ const routes: Routes = [
     component: DetalhesProdutoComponent,
   },
   {
-    path: 'login',
-    component: LoginComponent,
-  }
+    path: 'cadastro-funcionario',
+    component: CadastroFuncionarioComponent,
+  },
 ];
 
 @NgModule({

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Firestore } from '@angular/fire/firestore/firebase';
 import { Router } from '@angular/router';
-import { collection } from '@firebase/firestore';
 import { Produto } from 'src/app/models/produto';
+import { AuthFirebaseService } from 'src/app/services/auth.firebase.service';
 import { ProdutoFirebaseService } from 'src/app/services/produto.firebase.service';
 
 @Component({
@@ -14,18 +13,39 @@ export class HomeComponent implements OnInit {
   produtos: Produto[] = [];
 
   constructor(private router: Router,
+    private authFireService: AuthFirebaseService,
     private produtoFs: ProdutoFirebaseService) { }
 
   ngOnInit(): void {
     this.carregarProdutos()
+    this.authFireService.authentication()
+    let user = this.authFireService.usuarioLogado()
+    if(user === null) {
+      this.irParaLogin()
+    }else {
+      user.providerData.forEach((profile: any) => {
+        alert(profile.email)
+      })
+    }
   }
 
   carregarProdutos() {
     this.produtoFs.readProdutos().subscribe((data: Produto[]) => {this.produtos = data})
   }
 
+  sairSessao() {
+    this.authFireService.authentication()
+    this.authFireService.signOut()
+    .then(() => {
+      alert("usuário desconectado!")
+      this.irParaLogin()
+    }).catch((error) => {
+      alert(error)
+    });
+  }
+
   irParaLogin() {
-    this.router.navigate(['/login'])
+    this.router.navigate(['/'])
   }
 
   irParaCadastro() {

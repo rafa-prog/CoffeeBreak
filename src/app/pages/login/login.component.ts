@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth'
 import { Medida } from 'src/app/models/medida';
 import { Router } from '@angular/router';
-import { ProdutoFirebaseService } from 'src/app/services/produto.firebase.service';
 import { Categoria } from 'src/app/models/categoria';
+import { AuthFirebaseService } from 'src/app/services/auth.firebase.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
     private formBuilder: FormBuilder,
-    private produtoFs: ProdutoFirebaseService) { }
+    private authFireService: AuthFirebaseService) { }
 
   ngOnInit(): void {
     this.categorias = Object.values(Categoria)
@@ -52,7 +51,27 @@ export class LoginComponent implements OnInit {
   }
 
   private login() {
-    
+    this.authFireService.authentication()
+    this.authFireService.signIn(this.FormLogin.value)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user)
+      alert('Autenticado com sucesso!')
+      this.irParaHome()
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(error)
+    });
+  }
+
+  irParaHome() {
+    this.router.navigate(['/#'])
+  }
+
+  irParaCadastro() {
+    this.router.navigate(['/cadastro-funcionario'])
   }
 
 }

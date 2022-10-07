@@ -62,15 +62,20 @@ export class CadastroProdutoComponent implements OnInit {
     this.produtoFs.createProduto(this.ProdFormCad.value)
     .then(() => {
       alert("Contato cadastrado")
-      this.router.navigate(['/'])
+      this.irParaHome()
     })
     .catch((err) => {
       alert("Erro no cadastro!")
       console.log(err)
     })
   }
+
   uploadFile(image:any){
     this.image = image.files;
+  }
+
+  irParaHome() {
+    this.router.navigate(['/#'])
   }
 
 }
