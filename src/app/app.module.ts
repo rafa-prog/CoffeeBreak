@@ -28,6 +28,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { CadastroComponent } from './pages/cadastro/cadastro.component';
 
 
 
@@ -38,7 +39,8 @@ import { MatInputModule } from '@angular/material/input';
     AppComponent,
     HomeComponent,
     CadastroProdutoComponent,
-    DetalhesProdutoComponent
+    DetalhesProdutoComponent,
+    CadastroComponent,
   ],
   imports: [
     BrowserModule,

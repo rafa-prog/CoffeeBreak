@@ -2,13 +2,13 @@
   <mat-card >
     <form [formGroup]="ProdFormCad" (ngSubmit)="onSubmit()" fxLayout="column">
 
-      <mat-toolbar color="primary">Cadastro Produto</mat-toolbar>
+      <mat-toolbar color="primary" fxLayoutAlign="center center">Cadastro Produto</mat-toolbar>
       <mat-form-field>
-        <input matInput placeholder="nome" id="nome" type="text" formControlName="nome">
+        <input matInput placeholder="Nome" id="nome" type="text" formControlName="nome">
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="categoria" id="categoria" type="text" formControlName="categoria">
+        <input matInput placeholder="Categoria" id="categoria" type="text" formControlName="categoria">
       </mat-form-field>
 
       <mat-form-field>
@@ -22,20 +22,20 @@
      </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="tamanho" id="tamanho" type="number" formControlName="tamanho">
+        <input matInput placeholder="Tamanho" id="tamanho" type="number" formControlName="tamanho">
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="adicionais" id="adicionais" type="text" formControlName="adicionais">
+        <input matInput placeholder="Adicionais" id="adicionais" type="text" formControlName="adicionais">
       </mat-form-field>
 
       
       <mat-form-field>
-        <input matInput placeholder="descricao" id="descricao" type="text" formControlName="descricao">
+        <input matInput placeholder="Descricao" id="descricao" type="text" formControlName="descricao">
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="foto" id="foto" formControlName="foto" (change)="uploadFile($event.target)">
+        <input matInput placeholder="Foto" id="foto" formControlName="foto" (change)="uploadFile($event.target)">
       </mat-form-field>
 
       <mat-form-field>

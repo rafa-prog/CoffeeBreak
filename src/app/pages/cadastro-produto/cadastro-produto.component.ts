@@ -24,7 +24,7 @@ export class CadastroProdutoComponent implements OnInit {
       nome: ['', Validators.required],
       descricao: ['', Validators.required],
       categoria: ['', Validators.required],
-      tamanho: ['', Validators.required],
+      tamanho: ['', [Validators.required, Validators.min(0)]],
       medida: ['', Validators.required],
       adicionais: ['', Validators.required],
       foto: ['', Validators.required],
@@ -50,7 +50,7 @@ export class CadastroProdutoComponent implements OnInit {
   private cadastrar() {
     this.produtoFs.createProduto(this.ProdFormCad.value)
     .then(() => {
-      alert("Contato cadastrado")
+      alert("Produto cadastrado")
       this.router.navigate(['/'])
     })
     .catch((err) => {

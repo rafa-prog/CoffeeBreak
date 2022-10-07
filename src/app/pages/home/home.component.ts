@@ -12,6 +12,8 @@ import { ProdutoFirebaseService } from 'src/app/services/produto.firebase.servic
 })
 export class HomeComponent implements OnInit {
   produtos: Produto[] = [];
+  btnParam: string = '';
+  categoria: string = '';
 
   constructor(private router: Router,
     private produtoFs: ProdutoFirebaseService) { }
@@ -22,10 +24,23 @@ export class HomeComponent implements OnInit {
 
   carregarProdutos() {
     this.produtoFs.readProdutos().subscribe((data: Produto[]) => {this.produtos = data})
+/*
+    for(let p of this.produtos) [
+      this.categoria.push(p.categoria.toString())
+    ]*/
+  }
+
+  changeCat(param: string) {
+    this.categoria = 'Bebidas Quentes'
+    console.log('trocando para: ' + param)
+    this.btnParam = param
+    
+    console.log(this.btnParam)
+    console.log(this.categoria)
   }
 
   irParaCadastro() {
-    this.router.navigate(['/cadastro-produto'])
+    this.router.navigate(['/cadastro'])
   }
 
   irParaDetalhar() {
