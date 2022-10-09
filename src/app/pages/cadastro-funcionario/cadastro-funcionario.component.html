@@ -1,2 +1,7 @@
-<p>cadastro-funcionario works!</p>
-<button (click)="criarConta()">Criar conta</button>
+<div class="conteudo-de-fora" fxLayoutAlign="center center" fxFlexFill>
+    <mat-card  fxLayout="column">
+        <!-- depois adicionar [formGroup]="form-responsavel" (ngSubmit)="onSubmit()" -->
+        <button id="btn-card" mat-button type="submit" (click)="criarConta()">Criar conta</button>
+    </mat-card>
+</div>
+
