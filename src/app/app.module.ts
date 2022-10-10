@@ -38,7 +38,8 @@ import { CadastroFuncionarioComponent } from './pages/cadastro-funcionario/cadas
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ComandaComponent } from './pages/comanda/comanda.component';
 import { DetalheProdutoComponent } from './pages/detalhe-produto/detalhe-produto.component';
-import { EditarProdutoComponent } from './pages/editar-produto/editar-produto.component';
+
+import { DetalhesProdutoComponent } from './pages/detalhes-produto/detalhes-produto.component';
 
 
 
@@ -55,7 +56,8 @@ import { EditarProdutoComponent } from './pages/editar-produto/editar-produto.co
     CadastroFuncionarioComponent,
     ComandaComponent,
     DetalheProdutoComponent,
-    EditarProdutoComponent,
+
+    DetalhesProdutoComponent,
 
 
   ],
