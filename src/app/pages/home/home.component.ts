@@ -73,4 +73,8 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('/detalhes-produto')
   }
 
+  irParaComanda(){
+    this.router.navigateByUrl('/comanda')
+  }
+
 }

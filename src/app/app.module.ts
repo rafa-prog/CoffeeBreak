@@ -27,7 +27,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-import { EditarProdutoComponent } from './pages/editar-produto/editar-produto.component';
+
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -37,6 +37,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { CadastroFuncionarioComponent } from './pages/cadastro-funcionario/cadastro-funcionario.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ComandaComponent } from './pages/comanda/comanda.component';
+import { DetalheProdutoComponent } from './pages/detalhe-produto/detalhe-produto.component';
+import { EditarProdutoComponent } from './pages/editar-produto/editar-produto.component';
+
 
 
 @NgModule({
@@ -44,13 +47,16 @@ import { ComandaComponent } from './pages/comanda/comanda.component';
     AppComponent,
     HomeComponent,
     CadastroProdutoComponent,
-    EditarProdutoComponent,
+
 
     CadastroComponent,
 
     LoginComponent,
     CadastroFuncionarioComponent,
     ComandaComponent,
+    DetalheProdutoComponent,
+    EditarProdutoComponent,
+
 
   ],
   imports: [
