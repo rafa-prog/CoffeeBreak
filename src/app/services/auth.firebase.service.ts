@@ -7,7 +7,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 })
 export class AuthFirebaseService {
   private auth: any
-  constructor(private FirebaseApp: FirebaseApp) {}
+  constructor(private FirebaseApp: FirebaseApp) {} // Inicializa o Firebase
 
   authentication() {
     this.auth = getAuth()

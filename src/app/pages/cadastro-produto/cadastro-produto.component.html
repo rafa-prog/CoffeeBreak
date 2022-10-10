@@ -2,10 +2,10 @@
   <mat-card >
     <form [formGroup]="ProdFormCad" (ngSubmit)="onSubmit()" fxLayout="column">
 
-      <mat-toolbar color="primary" fxLayoutAlign="center center">Cadastro Produto</mat-toolbar>
+      <mat-toolbar color="primary" fxLayoutAlign="center center">Cadastrar Produto</mat-toolbar>
       <mat-form-field>
         <input matInput placeholder="Nome" id="nome" type="text" formControlName="nome">
-       
+
       </mat-form-field>
       <!-- <div *ngIf="ProdFormCad.controls['nome'].errors['required']">
         Password is required

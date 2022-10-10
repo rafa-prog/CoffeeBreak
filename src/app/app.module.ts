@@ -17,13 +17,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
 import { DetalhesProdutoComponent } from './pages/detalhes-produto/detalhes-produto.component';
 
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
-import {MatIconModule} from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import {MatDividerModule } from '@angular/material/divider';
 
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {MatSelectModule} from '@angular/material/select';
@@ -36,7 +36,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 import { LoginComponent } from './pages/login/login.component';
 import { CadastroFuncionarioComponent } from './pages/cadastro-funcionario/cadastro-funcionario.component';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -72,11 +72,13 @@ import { CadastroFuncionarioComponent } from './pages/cadastro-funcionario/cadas
     MatButtonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatInputModule,
     MatListModule,
+    MatCheckboxModule,
   ],
   providers: [
     MatDatepickerModule,
-    MatNativeDateModule  
+    MatNativeDateModule
   ],
   bootstrap: [AppComponent]
 })
