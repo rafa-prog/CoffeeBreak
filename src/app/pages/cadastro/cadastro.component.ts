@@ -27,8 +27,8 @@ export class CadastroComponent implements OnInit {
     this.router.navigate(['/cadastro-produto'])
   }
 
-  irParaDetalhar() {
-    this.router.navigateByUrl('/detalhes-produto')
+  irParaEditar() {
+    this.router.navigateByUrl('/editar-produto')
   }
   irParaCadastroFuncionario(){
     this.router.navigateByUrl('/cadastro-funcionario')
