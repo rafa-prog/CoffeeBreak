@@ -37,9 +37,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { CadastroFuncionarioComponent } from './pages/cadastro-funcionario/cadastro-funcionario.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ComandaComponent } from './pages/comanda/comanda.component';
-import { DetalheProdutoComponent } from './pages/detalhe-produto/detalhe-produto.component';
+
 
 import { DetalhesProdutoComponent } from './pages/detalhes-produto/detalhes-produto.component';
+import { MaisDetalhesComponent } from './pages/mais-detalhes/mais-detalhes.component';
 
 
 
@@ -55,9 +56,10 @@ import { DetalhesProdutoComponent } from './pages/detalhes-produto/detalhes-prod
     LoginComponent,
     CadastroFuncionarioComponent,
     ComandaComponent,
-    DetalheProdutoComponent,
+
 
     DetalhesProdutoComponent,
+        MaisDetalhesComponent,
 
 
   ],

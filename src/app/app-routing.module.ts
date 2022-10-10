@@ -7,6 +7,7 @@ import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ComandaComponent } from './pages/comanda/comanda.component';
+import { MaisDetalhesComponent } from './pages/mais-detalhes/mais-detalhes.component';
 
 
 
@@ -24,8 +25,10 @@ const routes: Routes = [
     path: 'cadastro-produto',
     component: CadastroProdutoComponent,
   },
-
-
+  {
+    path:'mais-detalhes',
+    component: MaisDetalhesComponent
+  },
   {
     path: 'comanda',
     component:ComandaComponent,
