@@ -28,9 +28,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+
+import { CadastroComponent } from './pages/cadastro/cadastro.component';
+
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 import { LoginComponent } from './pages/login/login.component';
 import { CadastroFuncionarioComponent } from './pages/cadastro-funcionario/cadastro-funcionario.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +45,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     HomeComponent,
     CadastroProdutoComponent,
     DetalhesProdutoComponent,
+
+    CadastroComponent,
+
     LoginComponent,
     CadastroFuncionarioComponent,
   ],
@@ -52,6 +62,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatCardModule,
     FlexLayoutModule,
     MatSelectModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
 
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
@@ -63,7 +76,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatListModule,
     MatCheckboxModule,
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

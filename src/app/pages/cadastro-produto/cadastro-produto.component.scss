@@ -1,7 +1,12 @@
 mat-card{
-   width: 50%;
+   width: 80%;
    background-color: #744c24;
 
+}
+button{
+   margin-left: 18em;
+   width: 60%;
+   height: 20%;
 }
 
 ::ng-deep .mat-focused .mat-form-field-label {
@@ -27,4 +32,7 @@ mat-toolbar.mat-primary{
 }
 #btn-card{
    background-color: #D2B590;
+}
+a{
+   color:lightblue
 }

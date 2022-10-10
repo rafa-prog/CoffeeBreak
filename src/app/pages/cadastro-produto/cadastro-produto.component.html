@@ -2,16 +2,19 @@
   <mat-card >
     <form [formGroup]="ProdFormCad" (ngSubmit)="onSubmit()" fxLayout="column">
 
-      <mat-toolbar color="primary">Cadastrar Produto</mat-toolbar>
+      <mat-toolbar color="primary" fxLayoutAlign="center center">Cadastrar Produto</mat-toolbar>
       <mat-form-field>
-        <input matInput placeholder="nome" id="nome" type="text" formControlName="nome">
+        <input matInput placeholder="Nome" id="nome" type="text" formControlName="nome">
+
       </mat-form-field>
+
 
       <mat-form-field>
         <mat-select placeholder="Categoria" id="categoria" formControlName="categoria">
           <mat-option *ngFor="let categoria of categorias" value="{{ categoria }}">{{ categoria }}</mat-option>
         </mat-select>
-     </mat-form-field>
+      </mat-form-field>
+
 
       <mat-form-field>
         <mat-select placeholder="Medida" id="medida" formControlName="medida">
@@ -20,20 +23,20 @@
      </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="tamanho" id="tamanho" type="number" formControlName="tamanho">
+        <input matInput placeholder="Tamanho" id="tamanho" type="number" formControlName="tamanho">
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="adicionais" id="adicionais" type="text" formControlName="adicionais">
+        <input matInput placeholder="Adicionais" id="adicionais" type="text" formControlName="adicionais">
       </mat-form-field>
 
 
       <mat-form-field>
-        <input matInput placeholder="descricao" id="descricao" type="text" formControlName="descricao">
+        <input matInput placeholder="Descricao" id="descricao" type="text" formControlName="descricao">
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="foto" id="foto" formControlName="foto" (change)="uploadFile($event.target)">
+        <input matInput placeholder="Foto" id="foto" formControlName="foto" (change)="uploadFile($event.target)">
       </mat-form-field>
 
       <mat-form-field>

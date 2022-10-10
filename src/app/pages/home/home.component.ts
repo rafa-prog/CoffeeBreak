@@ -11,6 +11,8 @@ import { ProdutoFirebaseService } from 'src/app/services/produto.firebase.servic
 })
 export class HomeComponent implements OnInit {
   produtos: Produto[] = [];
+  btnParam: string = '';
+  categoria: string = '';
 
   constructor(private router: Router,
     private authFireService: AuthFirebaseService,
@@ -18,18 +20,31 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.carregarProdutos()
-    let user = this.authFireService.usuarioLogado()
+    /*let user = this.authFireService.usuarioLogado()
     if(user !== null) {
       user.providerData.forEach((profile: any) => {
         alert(profile.email)
       })
     }else {
       this.irParaLogin()
-    }
+    }*/
   }
 
   carregarProdutos() {
     this.produtoFs.readProdutos().subscribe((data: Produto[]) => {this.produtos = data})
+/*
+    for(let p of this.produtos) [
+      this.categoria.push(p.categoria.toString())
+    ]*/
+  }
+
+  changeCat(param: string) {
+    this.categoria = 'Bebidas Quentes'
+    console.log('trocando para: ' + param)
+    this.btnParam = param
+    
+    console.log(this.btnParam)
+    console.log(this.categoria)
   }
 
   sairSessao() {
@@ -51,7 +66,7 @@ export class HomeComponent implements OnInit {
   }
 
   irParaCadastro() {
-    this.router.navigate(['/cadastro-produto'])
+    this.router.navigate(['/cadastro'])
   }
 
   irParaDetalhar() {

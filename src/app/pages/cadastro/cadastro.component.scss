@@ -31,6 +31,10 @@ mat-sidenav-container{
     background-color: #E2D1BB;
 }
 
+#botoes-side-bar{
+    margin-top: 25%;
+}
+
 .content {
     padding: 2.064516129032258vh;
 }
@@ -39,9 +43,9 @@ mat-sidenav-container{
     width: 25.806451612903224vh;
 }
 button.botao-classe {
-    margin-top: 2.929032258064516vh;
+    margin-top: 2.129032258064516vh;
     height:8.258064516129032vh ;
-    width: 19.64516129032258vh;
+    width: 20.64516129032258vh;
     border-radius:1.2903225806451613vh;
     background-color: #D2B590;
     transition: all 0.75s;
@@ -57,27 +61,50 @@ button.botao-classe {
 #search{
     background-color: #D2B590;
     color: black;
-    height: 4%;
-    margin-top: 2.064516129032258vh;
+    height: 5.5%;
+    margin-top: 1.064516129032258vh;
     margin-right: 2.064516129032258vh;
     margin-left: 0.2064516129032258vh;
     border-radius: 37.16129032258065vh;
- 
+}
+#search-text{
     
-input[type=text] {
-    margin:  0.6193548387096774vh;
-    width:  157.93548387096774vh;
-    border-radius: 37.16129032258065vh;
-    }
    
-
+    width:  157.93548387096774vh;
+    border-radius: 17.16129032258065vh;
+    height: 1.8em;
 }
-#ca{
+
+#btn-search{
+    margin:  0.6183548387096774vh;
     border-radius: 37.16129032258065vh;
+    height: 2.4em;
+    padding: 1px 9px;
 }
 
-#btn-card{
-    margin-left:    15.483870967741936vh;
+
+#btn-card{ 
+    margin-left: 20px;
+    width: 40%;
+    background-color: white;
+    color:black;
+}
+#funcionario-tag{
+    border-radius: 1em;
+    background-color: black;
+    width: 100%;
+}
+#produto-tag{
+    border-radius: 2em;
+    margin-top: 1em;
+    background-color: black;
+    width: 100%;
+}
+#row{
+    margin-top: 1em;
+    background-color: black;
+    width: 100%;
+    height: 0.1em;
 }
 //<button mat-button color="primary" (click)="irParaCadastro()">Cadastro</button>
 //<button mat-button color="primary" (click)="irParaDetalhar()">Detalhes</button>

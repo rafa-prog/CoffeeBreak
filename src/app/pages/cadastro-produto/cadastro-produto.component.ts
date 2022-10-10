@@ -65,6 +65,7 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   get errorControl() {
+
     return this.ProdFormCad.controls
   }
 
@@ -73,6 +74,7 @@ export class CadastroProdutoComponent implements OnInit {
     .then(() => {
       alert("Produto cadastrado")
       this.irParaHome()
+
     })
     .catch((err) => {
       alert("Erro no cadastro!")

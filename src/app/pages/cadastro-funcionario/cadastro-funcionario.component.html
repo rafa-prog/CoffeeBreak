@@ -1,2 +1,37 @@
-<p>cadastro-funcionario works!</p>
-<button (click)="criarConta()">Criar conta</button>
+<div class="conteudo-de-fora" fxLayoutAlign="center center" fxFlexFill>
+    <mat-card  fxLayout="column">
+        <form fxLayout="column">
+            <mat-toolbar color="primary" fxLayoutAlign="center center">Cadastro Funcionário</mat-toolbar>
+
+            <mat-form-field>
+                <input matInput placeholder="Nome" id="nome" type="text" [formControl]="nome" required>
+                <mat-error *ngIf="nome.invalid">{{getErrorMessageNome()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Email" [formControl]="email" required>
+                <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field >
+                <input matInput placeholder="Telefone"  required>
+            </mat-form-field>
+
+            
+            <mat-form-field class="example-full-width">
+                <input placeholder="Data de Nascimento" matInput [matDatepicker]="picker" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field >
+                <input matInput placeholder="Senha"  [formControl]="senha" required>
+                <mat-error *ngIf="senha.invalid">{{getErrorMessageSenha()}}</mat-error>
+            </mat-form-field>
+          
+        </form>
+        <!-- depois adicionar [formGroup]="form-responsavel" (ngSubmit)="onSubmit()" -->
+        <button id="btn-card" mat-button type="submit" (click)="criarConta()">Criar conta</button>
+    </mat-card>
+</div>
+

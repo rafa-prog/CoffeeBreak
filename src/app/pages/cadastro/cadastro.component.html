@@ -1,0 +1,80 @@
+<mat-sidenav-container>
+  
+    <mat-sidenav mode="side" opened>
+      <h1>Coffee <span id="logo-title"> Break</span></h1>
+      <div id="botoes-side-bar">
+        <div id="funcionario-tag">
+          Funcionário
+        </div>
+        <div>
+              <button class="botao-classe" (click)="irParaCadastroFuncionario()">
+                Incluir 
+              </button>
+              <button class="botao-classe">
+                Consultar 
+              </button>
+              
+        </div>
+        <div id="row">
+        </div>
+        <div id="produto-tag">
+          Produto
+        </div>
+          <div>
+            <button class="botao-classe" mat-button color="primary" (click)="irParaCadastro()">
+              Incluir 
+            </button>
+
+            <button class="botao-classe" mat-button color="primary" >
+              Consultar 
+            </button>
+         
+          </div>
+      </div>
+      
+       
+  </mat-sidenav>
+  
+    <mat-sidenav-content id="">
+          <div id="search">
+                <input id="search-text" type="text">
+                <button id="btn-search" >
+                  <mat-icon >search</mat-icon>
+                </button>
+          </div>
+          <div id="conteudo">
+                <div class="content">
+                      <div fxLayout="row wrap" fxLayoutGap="16px grid">
+                        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let produto of produtos">
+                          <mat-card class="mat-elevation-z4" >
+                            <mat-card-header>
+                              <mat-card-title> 
+                                {{produto.nome}}
+                              </mat-card-title>
+                              <mat-card-subtitle>
+                                {{produto.categoria}}
+                              </mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <img mat-card-image src="{{produto.foto}}">
+                              <h4>
+                                Descrição:
+                              </h4>
+                              <p>
+                                {{produto.descricao}}
+                              </p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                              <button mat-button id="btn-card" (click)="irParaDetalhar()"><mat-icon>edit</mat-icon></button> 
+                              <button mat-button id="btn-card"><mat-icon>delete</mat-icon></button>
+                            </mat-card-actions>
+                          </mat-card>
+                        </div>
+                      </div>
+                </div>
+  
+          </div>
+    </mat-sidenav-content>
+    
+    
+  </mat-sidenav-container>
