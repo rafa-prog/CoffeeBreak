@@ -15,7 +15,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
-import { DetalhesProdutoComponent } from './pages/editar-produto/editar-produto.component';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -28,7 +27,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-
+import { EditarProdutoComponent } from './pages/editar-produto/editar-produto.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -37,6 +36,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { LoginComponent } from './pages/login/login.component';
 import { CadastroFuncionarioComponent } from './pages/cadastro-funcionario/cadastro-funcionario.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ComandaComponent } from './pages/comanda/comanda.component';
 
 
 @NgModule({
@@ -44,12 +44,14 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     AppComponent,
     HomeComponent,
     CadastroProdutoComponent,
-    DetalhesProdutoComponent,
+    EditarProdutoComponent,
 
     CadastroComponent,
 
     LoginComponent,
     CadastroFuncionarioComponent,
+    ComandaComponent,
+
   ],
   imports: [
     BrowserModule,
