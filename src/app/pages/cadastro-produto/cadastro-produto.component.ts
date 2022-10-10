@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Categoria } from 'src/app/models/categoria';
 import { Medida } from 'src/app/models/medida';
+import { AuthFirebaseService } from 'src/app/services/auth.firebase.service';
 import { ProdutoFirebaseService } from 'src/app/services/produto.firebase.service';
 
 //Batata
@@ -22,9 +23,18 @@ export class CadastroProdutoComponent implements OnInit {
 
   constructor(private router: Router,
     private formBuilder: FormBuilder,
+    private authFireService: AuthFirebaseService,
     private produtoFs: ProdutoFirebaseService) { }
 
   ngOnInit(): void {
+    let user = this.authFireService.usuarioLogado()
+    if(user !== null) {
+      user.providerData.forEach((profile: any) => {
+        alert(profile.email)
+      })
+    }else {
+      this.irParaLogin()
+    }
     this.categorias = Object.values(Categoria)
     this.medidas = Object.keys(Medida).filter((res) => isNaN(Number(res)))
     this.formInit()
@@ -61,7 +71,7 @@ export class CadastroProdutoComponent implements OnInit {
   private cadastrar() {
     this.produtoFs.createProduto(this.ProdFormCad.value)
     .then(() => {
-      alert("Contato cadastrado")
+      alert("Produto cadastrado")
       this.irParaHome()
     })
     .catch((err) => {
@@ -74,8 +84,12 @@ export class CadastroProdutoComponent implements OnInit {
     this.image = image.files;
   }
 
+  irParaLogin() {
+    this.router.navigate(['/'])
+  }
+
   irParaHome() {
-    this.router.navigate(['/#'])
+    this.router.navigate(['/home'])
   }
 
 }

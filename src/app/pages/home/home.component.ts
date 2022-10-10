@@ -46,6 +46,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/'])
   }
 
+  irParaCadastroFuncionario() {
+    this.router.navigate(['/cadastro-funcionario'])
+  }
+
   irParaCadastro() {
     this.router.navigate(['/cadastro-produto'])
   }
