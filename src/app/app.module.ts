@@ -31,7 +31,8 @@ import { MatInputModule } from '@angular/material/input';
 
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { LoginComponent } from './pages/login/login.component';
 import { CadastroFuncionarioComponent } from './pages/cadastro-funcionario/cadastro-funcionario.component';
@@ -62,6 +63,8 @@ import { CadastroFuncionarioComponent } from './pages/cadastro-funcionario/cadas
     FlexLayoutModule,
     MatSelectModule,
     MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
 
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
@@ -71,7 +74,10 @@ import { CadastroFuncionarioComponent } from './pages/cadastro-funcionario/cadas
     MatFormFieldModule,
     MatListModule,
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule,
+    MatNativeDateModule  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

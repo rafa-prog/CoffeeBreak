@@ -32,7 +32,6 @@ export class CadastroProdutoComponent implements OnInit {
 
   formInit() {
     this.ProdFormCad = this.formBuilder.group({
-
       nome: ['', [Validators.required, Validators.minLength(3)]],
       descricao: ['', [Validators.required]],
       categoria: ['', [Validators.required]],
@@ -56,6 +55,7 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   get errorControl() {
+    
     return this.ProdFormCad.controls
   }
 

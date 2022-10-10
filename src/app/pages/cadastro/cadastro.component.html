@@ -7,8 +7,8 @@
           Funcionário
         </div>
         <div>
-              <button class="botao-classe">
-                Cadastrar 
+              <button class="botao-classe" (click)="irParaCadastroFuncionario()">
+                Incluir 
               </button>
               <button class="botao-classe">
                 Consultar 
@@ -22,10 +22,10 @@
         </div>
           <div>
             <button class="botao-classe" mat-button color="primary" (click)="irParaCadastro()">
-              Cadastrar 
+              Incluir 
             </button>
 
-            <button class="botao-classe" mat-button color="primary">
+            <button class="botao-classe" mat-button color="primary" >
               Consultar 
             </button>
          
@@ -65,7 +65,7 @@
                               </p>
                             </mat-card-content>
                             <mat-card-actions>
-                              <button mat-button id="btn-card"><mat-icon>edit</mat-icon></button> 
+                              <button mat-button id="btn-card" (click)="irParaDetalhar()"><mat-icon>edit</mat-icon></button> 
                               <button mat-button id="btn-card"><mat-icon>delete</mat-icon></button>
                             </mat-card-actions>
                           </mat-card>

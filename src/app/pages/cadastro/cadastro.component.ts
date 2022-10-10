@@ -30,4 +30,7 @@ export class CadastroComponent implements OnInit {
   irParaDetalhar() {
     this.router.navigateByUrl('/detalhes-produto')
   }
+  irParaCadastroFuncionario(){
+    this.router.navigateByUrl('/cadastro-funcionario')
+  }
 }

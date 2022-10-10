@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
   }
 
   irParaHome() {
-    this.router.navigate(['/#'])
+    this.router.navigate(['/home'])
   }
 
   irParaCadastro() {
