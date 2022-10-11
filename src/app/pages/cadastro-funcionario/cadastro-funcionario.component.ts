@@ -30,7 +30,7 @@ export class CadastroFuncionarioComponent implements OnInit {
       return 'Coloque uma nome válida!';
     }
       return this.nome.hasError('nome') ? 'não é um nome válido': '';
-  
+
   }
   getErrorMessageEmail() {
     if (this.email.hasError('required')) {
@@ -44,23 +44,24 @@ export class CadastroFuncionarioComponent implements OnInit {
     }
       return this.senha.hasError('senha') ? 'não é uma senha válida': '';
   }
+
   criarConta() {
-    let conta = {email: 'teste@gmail.com', senha: '12345'}
+    let conta = {nome: this.nome, email: this.email, senha: this.senha}
     this.authFireService.createUser(conta)
-    .then((userCredential) => {
+    .then((userCredential: any) => {
       const user = userCredential.user;
       this.irParaHome()
       console.log(user)
     })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert(error)
-    });
+    .catch(() => {alert("Ocorreu um erro durante o cadastro, tente novamente!")});
   }
 
   irParaHome() {
-    this.router.navigate(['/#'])
+    this.router.navigate(['/home'])
+  }
+
+  irParaLogin() {
+    this.router.navigate(['/'])
   }
 
 }
