@@ -3,9 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { CadastroFuncionarioComponent } from './pages/cadastro-funcionario/cadastro-funcionario.component';
 import { CadastroProdutoComponent } from './pages/cadastro-produto/cadastro-produto.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
-import { DetalhesProdutoComponent } from './pages/detalhes-produto/detalhes-produto.component';
+
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ComandaComponent } from './pages/comanda/comanda.component';
+import { MaisDetalhesComponent } from './pages/mais-detalhes/mais-detalhes.component';
+
 
 
 
@@ -23,8 +26,12 @@ const routes: Routes = [
     component: CadastroProdutoComponent,
   },
   {
-    path: 'detalhes-produto',
-    component: DetalhesProdutoComponent,
+    path:'mais-detalhes',
+    component: MaisDetalhesComponent
+  },
+  {
+    path: 'comanda',
+    component:ComandaComponent,
   },
   {
 

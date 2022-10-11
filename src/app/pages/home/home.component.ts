@@ -68,9 +68,10 @@ export class HomeComponent implements OnInit {
   irParaCadastro() {
     this.router.navigate(['/cadastro'])
   }
-
-  irParaDetalhar() {
-    this.router.navigateByUrl('/detalhes-produto')
+  irParaComanda(){
+    this.router.navigateByUrl('/comanda')
   }
-
+  irParaMaisDetalhes(){
+    this.router.navigateByUrl('/mais-detalhes')
+  }
 }

@@ -1,14 +1,22 @@
-mat-card{
-    width: 70%;
+#card-comanda{
+    width: 80%;
+    height: 90%;
     background-color: #744c24;
- 
+    overflow-x: auto;
  }
- button{
-    margin-left: 15em;
-    width: 60%;
-    height: 20%;
+ #card-itens{
+   width: 90%;
+   height: auto;
+  margin-top: 1em;
  }
- 
+#btn-voltar{
+   width: 1%;
+   height: 4%;
+   margin-top: -1rem;
+   margin-left: 69rem;
+   padding-bottom: 2rem;
+
+}
  ::ng-deep .mat-focused .mat-form-field-label {
     /*change color of label*/
     color: #E2D1BB !important;
@@ -25,11 +33,27 @@ mat-card{
   }
  
  mat-toolbar.mat-primary{
+   width: 97%;
     background-color: #D2B590;
  }
  .conteudo-de-fora{
     background-color: #E2D1BB;
+    width: 100%;
+    height: 100%; 
  }
- #btn-card{
+ .btn-card{
+   
     background-color: #D2B590;
+    width: auto;
+    height: auto;
+   
+ }
+ .btn-card-f{
+   margin-top: 1rem;
+   background-color: #D2B590;
+   width: 90%;
+   height: auto;
+ }
+ #botoes-card{
+    margin-left: 42rem;
  }

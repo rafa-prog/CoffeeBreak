@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Produto } from 'src/app/models/produto';
 
 @Component({
   selector: 'app-detalhes-produto',
@@ -8,12 +6,10 @@ import { Produto } from 'src/app/models/produto';
   styleUrls: ['./detalhes-produto.component.scss']
 })
 export class DetalhesProdutoComponent implements OnInit {
-  produto!: Produto
 
-  constructor(private formBuilder: FormBuilder,) { }
+  constructor() { }
 
   ngOnInit(): void {
-
   }
 
 }

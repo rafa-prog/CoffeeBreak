@@ -15,7 +15,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
-import { DetalhesProdutoComponent } from './pages/detalhes-produto/detalhes-produto.component';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -37,6 +36,12 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { LoginComponent } from './pages/login/login.component';
 import { CadastroFuncionarioComponent } from './pages/cadastro-funcionario/cadastro-funcionario.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ComandaComponent } from './pages/comanda/comanda.component';
+
+
+import { DetalhesProdutoComponent } from './pages/detalhes-produto/detalhes-produto.component';
+import { MaisDetalhesComponent } from './pages/mais-detalhes/mais-detalhes.component';
+
 
 
 @NgModule({
@@ -44,12 +49,19 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     AppComponent,
     HomeComponent,
     CadastroProdutoComponent,
-    DetalhesProdutoComponent,
+
 
     CadastroComponent,
 
     LoginComponent,
     CadastroFuncionarioComponent,
+    ComandaComponent,
+
+
+    DetalhesProdutoComponent,
+        MaisDetalhesComponent,
+
+
   ],
   imports: [
     BrowserModule,
