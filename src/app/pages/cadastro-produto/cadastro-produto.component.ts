@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Categoria } from 'src/app/models/categoria';
 import { Medida } from 'src/app/models/medida';
@@ -28,6 +28,7 @@ export class CadastroProdutoComponent implements OnInit {
   private authFireService: AuthFirebaseService) { }
 
   ngOnInit(): void {
+    /*
     let user = this.authFireService.userLogged()
     if(user !== null) {
       user.providerData.forEach((profile: any) => {
@@ -36,6 +37,7 @@ export class CadastroProdutoComponent implements OnInit {
     }else {
       this.irParaLogin()
     }
+    */
 
     this.categorias = Object.values(Categoria)
     this.medidas = Object.keys(Medida).filter((res) => isNaN(Number(res)))
@@ -50,13 +52,13 @@ export class CadastroProdutoComponent implements OnInit {
       tamanho: ['', [Validators.required, Validators.min(0.1)]],
       medida: ['', [Validators.required]],
       adicionais: ['', [Validators.required]],
-      foto: ['', [Validators.required]],
+      foto: [null, [Validators.required]],
       preco: ['', [Validators.required, Validators.min(0)]],
     })
   }
 
   getErrorControl(control: string, error: string): boolean {
-    return this.FormCadProd.controls[control].hasError(error)
+    return (this.FormCadProd.controls[control].touched && this.FormCadProd.controls[control].hasError(error))
   }
 
   onSubmit(): boolean {

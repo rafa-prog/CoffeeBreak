@@ -39,17 +39,18 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Foto" id="foto" formControlName="foto" (change)="uploadFile($event.target)">
-        <mat-error *ngIf="getErrorControl('foto', 'required')">foto obrigatória!</mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
         <mat-label>Preço</mat-label>
         <input matInput type="number" class="example-right-align" placeholder="0.00" id="preco" type="number" formControlName="preco">
         <span matPrefix>R$&nbsp;</span>
         <mat-error *ngIf="getErrorControl('preco', 'required')">preço obrigatório!</mat-error>
         <mat-error *ngIf="getErrorControl('preco', 'minlength')">preço inválido!</mat-error>
       </mat-form-field>
+
+      <div>
+        <input placeholder="Foto" id="upload-file-container" formControlName="foto" type="file">
+        <mat-error *ngIf="getErrorControl('foto', 'required')">foto obrigatória!</mat-error>
+      </div>
+
 
       <button id="btn-card" mat-button type="submit">Cadastrar produto</button>
 

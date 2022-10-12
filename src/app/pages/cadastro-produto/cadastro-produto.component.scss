@@ -9,16 +9,32 @@ button{
    height: 20%;
 }
 
+#upload-file-container {
+  width: 200px;
+  height: 50px;
+  position: relative;
+  border: dashed 1px black;
+  overflow: hidden;
+}
+
+#upload-file-container input[type="file"]
+{
+  margin: 0;
+  opacity: 0;
+  font-size: 100px;
+}
+
+
 ::ng-deep .mat-focused .mat-form-field-label {
    /*change color of label*/
    color: #E2D1BB !important;
   }
- 
+
   ::ng-deep.mat-form-field-underline {
    /*change color of underline*/
    background-color: #E2D1BB!important;
- } 
- 
+ }
+
  ::ng-deep.mat-form-field-ripple {
   /*change color of underline when focused*/
   background-color: #E2D1BB!important;
