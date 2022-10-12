@@ -6,28 +6,29 @@ import { Medida } from 'src/app/models/medida';
 import { AuthFirebaseService } from 'src/app/services/auth.firebase.service';
 import { ProdutoFirebaseService } from 'src/app/services/produto.firebase.service';
 
-//Batata
 
 @Component({
   selector: 'app-cadastro-produto',
   templateUrl: './cadastro-produto.component.html',
   styleUrls: ['./cadastro-produto.component.scss']
 })
+
 export class CadastroProdutoComponent implements OnInit {
-  ProdFormCad: FormGroup = this.formBuilder.group({})
+  FormCadProd: FormGroup = this.formBuilder.group({})
   isSubmitted: boolean = false
-  teste: string = ''
-  categorias: (Medida | string)[] = []
-  medidas: string[] = []
+
+  categorias!: string[]
+  medidas!: string[]
   image:any;
 
-  constructor(private router: Router,
-    private formBuilder: FormBuilder,
-    private authFireService: AuthFirebaseService,
-    private produtoFs: ProdutoFirebaseService) { }
+  constructor(
+  private router: Router,
+  private formBuilder: FormBuilder,
+  private produtoFs: ProdutoFirebaseService,
+  private authFireService: AuthFirebaseService) { }
 
   ngOnInit(): void {
-    let user = this.authFireService.usuarioLogado()
+    let user = this.authFireService.userLogged()
     if(user !== null) {
       user.providerData.forEach((profile: any) => {
         alert(profile.email)
@@ -35,13 +36,14 @@ export class CadastroProdutoComponent implements OnInit {
     }else {
       this.irParaLogin()
     }
+
     this.categorias = Object.values(Categoria)
     this.medidas = Object.keys(Medida).filter((res) => isNaN(Number(res)))
     this.formInit()
   }
 
   formInit() {
-    this.ProdFormCad = this.formBuilder.group({
+    this.FormCadProd = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3)]],
       descricao: ['', [Validators.required]],
       categoria: ['', [Validators.required]],
@@ -53,9 +55,13 @@ export class CadastroProdutoComponent implements OnInit {
     })
   }
 
+  getErrorControl(control: string, error: string): boolean {
+    return this.FormCadProd.controls[control].hasError(error)
+  }
+
   onSubmit(): boolean {
     this.isSubmitted = true
-    if(!this.ProdFormCad.valid) {
+    if(!this.FormCadProd.valid) {
       alert("Todos os campos são obrigatórios!")
       return false
     }
@@ -64,17 +70,11 @@ export class CadastroProdutoComponent implements OnInit {
     return true
   }
 
-  get errorControl() {
-
-    return this.ProdFormCad.controls
-  }
-
   private cadastrar() {
-    this.produtoFs.createProduto(this.ProdFormCad.value)
+    this.produtoFs.createProduto(this.FormCadProd.value)
     .then(() => {
       alert("Produto cadastrado")
       this.irParaHome()
-
     })
     .catch((err) => {
       alert("Erro no cadastro!")

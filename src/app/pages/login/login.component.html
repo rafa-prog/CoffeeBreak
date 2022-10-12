@@ -1,15 +1,21 @@
 <div class="conteudo-de-fora" fxLayoutAlign="center center" fxFlexFill>
   <mat-card>
     <form [formGroup]="FormLogin" (ngSubmit)="onSubmit()" fxLayout="column">
+
       <mat-toolbar color="primary">Login</mat-toolbar>
+
       <mat-form-field>
-        <input matInput placeholder="email" id="email" type="text" formControlName="email">
+        <input matInput placeholder="Email" id="email" type="text" formControlName="email">
+        <mat-error *ngIf="getErrorControl('email', 'required')">email obrigatório!</mat-error>
+        <mat-error *ngIf="getErrorControl('email', 'email')">email inválido!</mat-error>
       </mat-form-field>
-    
+
       <mat-form-field>
-        <input matInput placeholder="senha" id="senha" type="text" formControlName="senha">
+        <input matInput placeholder="Senha" id="senha" type="text" formControlName="senha">
+        <mat-error *ngIf="getErrorControl('senha', 'required')">senha obrigatória!</mat-error>
+        <mat-error *ngIf="getErrorControl('senha', 'minlength')">senha precisa ser maior!</mat-error>
       </mat-form-field>
-    
+
       <button id="btn-card" mat-button type="submit">Login</button>
 
     </form>

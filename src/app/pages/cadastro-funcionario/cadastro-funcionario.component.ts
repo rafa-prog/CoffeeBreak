@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Funcionario } from 'src/app/models/funcionario';
 import { AuthFirebaseService } from 'src/app/services/auth.firebase.service';
 
 @Component({
@@ -8,52 +9,64 @@ import { AuthFirebaseService } from 'src/app/services/auth.firebase.service';
   templateUrl: './cadastro-funcionario.component.html',
   styleUrls: ['./cadastro-funcionario.component.scss']
 })
+
 export class CadastroFuncionarioComponent implements OnInit {
-  nome = new FormControl('',[Validators.required, Validators.minLength(4)]);
-  email = new FormControl('', [Validators.required, Validators.email]);
-  senha = new FormControl('',[Validators.required, Validators.minLength(4)]);
-  minDate: Date;
-  maxDate: Date;
+  isAdmin!: boolean;
+  isSubmitted!: boolean;
+  FormCadFunc!: FormGroup;
 
   constructor(
   private router: Router,
-  private authFireService: AuthFirebaseService) {
-    const currentYear = new Date().getFullYear();
-    this.minDate = new Date(currentYear - 20, 0, 1);
-    this.maxDate = new Date(currentYear + 1, 11, 31);
-   }
+  private formBuilder: FormBuilder,
+  private authFireService: AuthFirebaseService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let user = this.authFireService.userLogged()
+    if(user !== null) {
+      user.providerData.forEach((profile: any) => {
+        alert(profile.email)
+      })
+    }else {
+      this.irParaLogin()
+    }
 
-  getErrorMessageNome(){
-    if(this.nome.hasError('required')){
-      return 'Coloque uma nome válida!';
-    }
-      return this.nome.hasError('nome') ? 'não é um nome válido': '';
-
-  }
-  getErrorMessageEmail() {
-    if (this.email.hasError('required')) {
-      return 'Coloque um email válido!';
-    }
-      return this.email.hasError('email') ? 'não é um email válido' : '';
-  }
-  getErrorMessageSenha(){
-    if(this.senha.hasError('required')){
-      return 'Coloque uma senha válida!';
-    }
-      return this.senha.hasError('senha') ? 'não é uma senha válida': '';
+    this.formInit();
   }
 
-  criarConta() {
-    let conta = {nome: this.nome, email: this.email, senha: this.senha}
-    this.authFireService.createUser(conta)
-    .then((userCredential: any) => {
-      const user = userCredential.user;
-      this.irParaHome()
-      console.log(user)
+  formInit() {
+    this.FormCadFunc = this.formBuilder.group({
+      nome: ['', [Validators.required, Validators.minLength(3)]],
+      telefone: ['', [Validators.required, Validators.minLength(10)]],
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required, Validators.minLength(6)]]
     })
-    .catch(() => {alert("Ocorreu um erro durante o cadastro, tente novamente!")});
+  }
+
+  changePermAdmin() {
+    this.isAdmin = !this.isAdmin;
+  }
+
+  getErrorControl(control: string, error: string): boolean {
+    return this.FormCadFunc.controls[control].hasError(error)
+  }
+
+  onSubmit(): boolean {
+    this.isSubmitted = true
+    if(!this.FormCadFunc.valid) {
+      alert("Todos os campos são obrigatórios!")
+      return false
+    }
+
+    this.createConta()
+    return true
+  }
+
+  private createConta() {
+    let conta: Funcionario = {id: '', nome: this.FormCadFunc.controls['nome'].value, telefone: this.FormCadFunc.controls['telefone'].value,
+    email: this.FormCadFunc.controls['email'].value, admin: this.isAdmin}
+
+    this.authFireService.createUser(conta, this.FormCadFunc.controls['senha'].value)
+    this.irParaHome()
   }
 
   irParaHome() {

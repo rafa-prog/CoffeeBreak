@@ -1,38 +1,38 @@
 <div class="conteudo-de-fora" fxLayoutAlign="center center" fxFlexFill>
-    
-    <mat-card  fxLayout="column">
-        <form fxLayout="column">
-            <mat-toolbar color="primary" fxLayoutAlign="center center">Cadastro Funcionário</mat-toolbar>
+  <mat-card  fxLayout="column">
+    <form fxLayout="column" [formGroup]="FormCadFunc">
 
-            <mat-form-field>
-                <input matInput placeholder="Nome" id="nome" type="text" [formControl]="nome" required>
-                <mat-error *ngIf="nome.invalid">{{getErrorMessageNome()}}</mat-error>
-            </mat-form-field>
+      <mat-toolbar color="primary" fxLayoutAlign="center center">Cadastrar Funcionário</mat-toolbar>
 
-            <mat-form-field>
-                <input matInput placeholder="Email" [formControl]="email" required>
-                <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
-            </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Nome" id="nome" type="text" formControlName="nome">
+          <mat-error *ngIf="getErrorControl('nome', 'required')">nome obrigatório!</mat-error>
+          <mat-error *ngIf="getErrorControl('nome', 'minlength')">nome inválido!</mat-error>
+        </mat-form-field>
 
-            <mat-form-field >
-                <input matInput placeholder="Telefone"  required>
-            </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email" id="email" type="text" formControlName="email">
+          <mat-error *ngIf="getErrorControl('email', 'required')">email obrigatório!</mat-error>
+          <mat-error *ngIf="getErrorControl('email', 'email')">email inválido!</mat-error>
+        </mat-form-field>
 
-            
-            <mat-form-field class="example-full-width">
-                <input placeholder="Data de Nascimento" matInput [matDatepicker]="picker" required>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Telefone" id="telefone" type="text" formControlName="telefone">
+          <mat-error *ngIf="getErrorControl('telefone', 'required')">telefone obrigatório!</mat-error>
+          <mat-error *ngIf="getErrorControl('telefone', 'minlength')">telefone inválido!</mat-error>
+        </mat-form-field>
 
-            <mat-form-field >
-                <input matInput placeholder="Senha"  [formControl]="senha" required>
-                <mat-error *ngIf="senha.invalid">{{getErrorMessageSenha()}}</mat-error>
-            </mat-form-field>
-          
+        <mat-form-field>
+          <input matInput placeholder="Senha" id="senha" type="text" formControlName="senha">
+          <mat-error *ngIf="getErrorControl('senha', 'required')">senha obrigatório!</mat-error>
+          <mat-error *ngIf="getErrorControl('senha', 'minlength')">senha inválido!</mat-error>
+        </mat-form-field>
+
+        <mat-checkbox class="" id="admin" (change)="changePermAdmin()">Funcionário com permissão de administrador (gerenciar produtos e funcionários) ?</mat-checkbox>
+
+        <button id="btn-card" mat-button type="submit" (click)="onSubmit()">Criar funcionário</button>
+
         </form>
-        <!-- depois adicionar [formGroup]="form-responsavel" (ngSubmit)="onSubmit()" -->
-        <button id="btn-card" mat-button type="submit" (click)="criarConta()">Criar conta</button>
     </mat-card>
 </div>
 

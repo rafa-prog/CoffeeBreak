@@ -3,11 +3,14 @@ import {
   addDoc,
   collection,
   collectionData,
+  Query,
   doc,
+  docData,
   updateDoc,
   deleteDoc,
   Firestore
 } from '@angular/fire/firestore'
+import { where } from '@firebase/firestore';
 import { Observable } from 'rxjs';
 import { Funcionario } from '../models/funcionario';
 
@@ -27,6 +30,11 @@ export class FuncionarioFirebaseService {
   readFuncionarios(): Observable<Funcionario[]> {
     let prodRef = collection(this.afs, this.PATH)
     return collectionData(prodRef, {idField: 'id'}) as Observable<Funcionario[]>
+  }
+
+  readFuncionario(id: string): Observable<Funcionario> {
+    let prodRef = doc(this.afs, this.PATH + '/' + id)
+    return docData(prodRef) as Observable<Funcionario>
   }
 
   updateFuncionario(funcionario: Funcionario, funcionarios: any) {

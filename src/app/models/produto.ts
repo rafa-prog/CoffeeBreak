@@ -10,6 +10,6 @@ export interface Produto {
     tamanho: number
     medida: Medida
     adicionais: Adicional[]
-    foto: any
+    foto: any 
     preco: number
 }

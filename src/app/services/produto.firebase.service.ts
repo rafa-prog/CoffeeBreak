@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { 
-  addDoc, 
-  collection, 
-  collectionData, 
-  doc, 
+import {
+  addDoc,
+  collection,
+  collectionData,
+  doc,
+  docData,
   updateDoc,
-  deleteDoc, 
-  Firestore 
+  deleteDoc,
+  Firestore
 } from '@angular/fire/firestore'
 import { Observable } from 'rxjs';
 import { Produto } from '../models/produto';
@@ -29,6 +30,11 @@ export class ProdutoFirebaseService {
   readProdutos(): Observable<Produto[]> {
     let prodRef = collection(this.afs, this.PATH)
     return collectionData(prodRef, {idField: 'id'}) as Observable<Produto[]>
+  }
+
+  readProduto(id: string): Observable<Produto> {
+    let prodRef = doc(this.afs, this.PATH + '/' + id)
+    return docData(prodRef) as Observable<Produto>
   }
 
   updateProduto(produto: Produto, produtos: any) {

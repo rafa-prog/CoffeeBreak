@@ -1,92 +1,58 @@
 <div class="conteudo-de-fora" fxLayoutAlign="center center" fxFlexFill>
   <mat-card >
-    <form [formGroup]="ProdFormCad" (ngSubmit)="onSubmit()" fxLayout="column">
+    <form [formGroup]="FormCadProd" (ngSubmit)="onSubmit()" fxLayout="column">
 
       <mat-toolbar color="primary" fxLayoutAlign="center center">Cadastrar Produto</mat-toolbar>
+
       <mat-form-field>
         <input matInput placeholder="Nome" id="nome" type="text" formControlName="nome">
-
+        <mat-error *ngIf="getErrorControl('nome', 'required')">nome obrigatório!</mat-error>
+        <mat-error *ngIf="getErrorControl('nome', 'minlength')">nome inválido!</mat-error>
       </mat-form-field>
-      <!-- <div *ngIf="ProdFormCad.controls['nome'].errors['required']">
-        Password is required
-      </div> -->
 
       <mat-form-field>
         <mat-select placeholder="Categoria" id="categoria" formControlName="categoria">
           <mat-option *ngFor="let categoria of categorias" value="{{ categoria }}">{{ categoria }}</mat-option>
         </mat-select>
+        <mat-error *ngIf="getErrorControl('categoria', 'required')">categoria obrigatória!</mat-error>
       </mat-form-field>
-
 
       <mat-form-field>
         <mat-select placeholder="Medida" id="medida" formControlName="medida">
           <mat-option *ngFor="let medida of medidas" value="{{ medida }}">{{ medida }}</mat-option>
         </mat-select>
+        <mat-error *ngIf="getErrorControl('medida', 'required')">medida obrigatória!</mat-error>
      </mat-form-field>
 
       <mat-form-field>
         <input matInput placeholder="Tamanho" id="tamanho" type="number" formControlName="tamanho">
+        <mat-error *ngIf="getErrorControl('tamanho', 'required')">tamanho obrigatório!</mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <input matInput placeholder="Adicionais" id="adicionais" type="text" formControlName="adicionais">
       </mat-form-field>
 
-
       <mat-form-field>
         <input matInput placeholder="Descricao" id="descricao" type="text" formControlName="descricao">
+        <mat-error *ngIf="getErrorControl('descricao', 'required')">descrição obrigatória!</mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <input matInput placeholder="Foto" id="foto" formControlName="foto" (change)="uploadFile($event.target)">
+        <mat-error *ngIf="getErrorControl('foto', 'required')">foto obrigatória!</mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Preço</mat-label>
         <input matInput type="number" class="example-right-align" placeholder="0.00" id="preco" type="number" formControlName="preco">
         <span matPrefix>R$&nbsp;</span>
+        <mat-error *ngIf="getErrorControl('preco', 'required')">preço obrigatório!</mat-error>
+        <mat-error *ngIf="getErrorControl('preco', 'minlength')">preço inválido!</mat-error>
       </mat-form-field>
-      <!--<div>
-        <mat-label for="nome">Nome</mat-label>
-        <input id="nome" type="text" formControlName="nome">
-      </div>
-
-      <div>
-        <mat-label for="descricao">Descrição</mat-label>
-        <input id="descricao" type="text" formControlName="descricao">
-      </div>
-
-      <div>
-        <mat-label for="categoria">Categoria</mat-label>
-        <input id="categoria" type="text" formControlName="categoria">
-      </div>
-
-      <div>
-        <mat-label for="tamanho">Tamanho</mat-label>
-        <input id="tamanho" type="number" formControlName="tamanho">
-      </div>
-
-      <div>
-        <mat-label for="medida">Medida</mat-label>
-        <input id="medida" type="number" formControlName="medida">
-      </div>
-
-      <div>
-        <mat-label for="adicionais">Adicionais</mat-label>
-        <input id="adicionais" type="text" formControlName="adicionais">
-      </div>
-
-      <div>
-        <mat-label for="foto">Foto</mat-label>
-        <input id="foto" type="text" formControlName="foto">
-      </div>
-
-      <div>
-        <mat-label for="preco">Preço</mat-label>
-        <input id="preco" type="number" formControlName="preco">
-      </div>-->
 
       <button id="btn-card" mat-button type="submit">Cadastrar produto</button>
+
     </form>
   </mat-card>
 </div>

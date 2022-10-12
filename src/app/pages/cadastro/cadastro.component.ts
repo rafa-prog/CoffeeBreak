@@ -12,8 +12,9 @@ export class CadastroComponent implements OnInit {
 
   produtos: Produto[] = [];
 
-  constructor(private router: Router,
-    private produtoFs: ProdutoFirebaseService) { }
+  constructor(
+  private router: Router,
+  private produtoFs: ProdutoFirebaseService) { }
 
   ngOnInit(): void {
     this.carregarProdutos()

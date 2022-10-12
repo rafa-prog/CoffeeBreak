@@ -1,6 +1,6 @@
 export enum Categoria {
-    BebidaQuente = 'Bebida quente',
-    BebidaGelada = 'Bebida gelada',
-    Salgado = 'Salgado',
-    Doce = 'Doce',
+    'Bebidas quentes' = 'Bebida quente',
+    'Bebidas geladas' = 'Bebida gelada',
+    'Salgados' = 'Salgado',
+    'Doces' = 'Doce',
 }
