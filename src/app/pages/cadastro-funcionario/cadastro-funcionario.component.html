@@ -28,7 +28,10 @@
           <mat-error *ngIf="getErrorControl('senha', 'minlength')">senha inválido!</mat-error>
         </mat-form-field>
 
-        <mat-checkbox class="" id="admin" (change)="changePermAdmin()">Funcionário com permissão de administrador (gerenciar produtos e funcionários) ?</mat-checkbox>
+        <mat-form-field>
+          <mat-checkbox class="" id="admin" (change)="changePermAdmin()">Funcionário com permissão de administrador (gerenciar produtos e funcionários) ?</mat-checkbox>
+          <input matInput [hidden]="true">
+        </mat-form-field>
 
         <button id="btn-card" mat-button type="submit" (click)="onSubmit()">Criar funcionário</button>
 

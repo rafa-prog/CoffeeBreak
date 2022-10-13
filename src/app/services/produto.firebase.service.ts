@@ -4,6 +4,9 @@ import {
   collection,
   collectionData,
   doc,
+  query,
+  where,
+  getDocs,
   docData,
   updateDoc,
   deleteDoc,
@@ -18,9 +21,7 @@ import { Produto } from '../models/produto';
 export class ProdutoFirebaseService {
   private PATH: string = 'produtos'
 
-  constructor(private afs: Firestore) {
-
-  }
+  constructor(private afs: Firestore) {}
 
   createProduto(produto: Produto) {
     produto.id = doc(collection(this.afs, 'id')).id
@@ -30,6 +31,27 @@ export class ProdutoFirebaseService {
   readProdutos(): Observable<Produto[]> {
     let prodRef = collection(this.afs, this.PATH)
     return collectionData(prodRef, {idField: 'id'}) as Observable<Produto[]>
+  }
+
+  async produtoQuery() {
+    const q = query(collection(this.afs, this.PATH), where('adicionais', '==', 'Nenhum'), where('nome', '==', 'Brownie'))
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc: any) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+    });
+  }
+
+  async produtoQueryByCategoria(categoria: string) {
+    const q = query(collection(this.afs, this.PATH), where('categoria', '==', categoria))
+    let produtos: any[] = []
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc: any) => {
+      produtos.push(doc.data() as Observable<Produto[]>)
+    });
+
+    return produtos as Produto[]
   }
 
   readProduto(id: string): Observable<Produto> {

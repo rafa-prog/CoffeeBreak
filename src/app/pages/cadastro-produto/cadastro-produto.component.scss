@@ -24,6 +24,11 @@ button{
   font-size: 100px;
 }
 
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
 
 ::ng-deep .mat-focused .mat-form-field-label {
    /*change color of label*/

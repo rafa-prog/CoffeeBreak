@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { Router } from '@angular/router';
+import { Adicional } from 'src/app/models/adicional';
 import { Categoria } from 'src/app/models/categoria';
 import { Medida } from 'src/app/models/medida';
 import { AuthFirebaseService } from 'src/app/services/auth.firebase.service';
@@ -17,8 +20,15 @@ export class CadastroProdutoComponent implements OnInit {
   FormCadProd: FormGroup = this.formBuilder.group({})
   isSubmitted: boolean = false
 
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  adicionais: Adicional[] = [];
+  addOnBlur = true;
+
   categorias!: string[]
+
+  medida: string = '';
   medidas!: string[]
+
   image:any;
 
   constructor(
@@ -51,7 +61,7 @@ export class CadastroProdutoComponent implements OnInit {
       categoria: ['', [Validators.required]],
       tamanho: ['', [Validators.required, Validators.min(0.1)]],
       medida: ['', [Validators.required]],
-      adicionais: ['', [Validators.required]],
+      adicionais: ['', []],
       foto: [null, [Validators.required]],
       preco: ['', [Validators.required, Validators.min(0)]],
     })
@@ -82,6 +92,31 @@ export class CadastroProdutoComponent implements OnInit {
       alert("Erro no cadastro!")
       console.log(err)
     })
+  }
+
+  salvaMedida(medida: string) {
+    this.medida = medida
+    console.log(medida)
+  }
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our fruit
+    if (value) {
+      this.adicionais.push({nome: value});
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  remove(adicional: Adicional): void {
+    const index = this.adicionais.indexOf(adicional);
+
+    if (index >= 0) {
+      this.adicionais.splice(index, 1);
+    }
   }
 
   uploadFile(image:any){

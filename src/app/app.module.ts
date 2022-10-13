@@ -20,17 +20,17 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { MatIconModule } from '@angular/material/icon';
-import {MatDividerModule } from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { LoginComponent } from './pages/login/login.component';
@@ -38,10 +38,10 @@ import { CadastroFuncionarioComponent } from './pages/cadastro-funcionario/cadas
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ComandaComponent } from './pages/comanda/comanda.component';
 
-
 import { DetalhesProdutoComponent } from './pages/detalhes-produto/detalhes-produto.component';
 import { MaisDetalhesComponent } from './pages/mais-detalhes/mais-detalhes.component';
-
+import { MatChipsModule } from '@angular/material/chips';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -49,19 +49,12 @@ import { MaisDetalhesComponent } from './pages/mais-detalhes/mais-detalhes.compo
     AppComponent,
     HomeComponent,
     CadastroProdutoComponent,
-
-
     CadastroComponent,
-
     LoginComponent,
     CadastroFuncionarioComponent,
     ComandaComponent,
-
-
     DetalhesProdutoComponent,
-        MaisDetalhesComponent,
-
-
+    MaisDetalhesComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +80,9 @@ import { MaisDetalhesComponent } from './pages/mais-detalhes/mais-detalhes.compo
     MatInputModule,
     MatListModule,
     MatCheckboxModule,
+    MatChipsModule,
+    MatExpansionModule,
+
   ],
   providers: [
     MatDatepickerModule,

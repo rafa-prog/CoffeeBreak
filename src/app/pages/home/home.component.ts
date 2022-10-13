@@ -7,6 +7,7 @@ import { Produto } from 'src/app/models/produto';
 import { AuthFirebaseService } from 'src/app/services/auth.firebase.service';
 import { FuncionarioFirebaseService } from 'src/app/services/funcionario.firebase.service';
 import { ProdutoFirebaseService } from 'src/app/services/produto.firebase.service';
+import { ENTER } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-home',
@@ -17,8 +18,13 @@ export class HomeComponent implements OnInit {
   produtos: Produto[] = [];
   categorias!: string[];
 
+  panelOpenState!: boolean[];
+
   isAdmin: boolean = false;
   userEmail!: string;
+
+  readonly separatorKeysCodes = [ENTER] as const
+  addOnBlur = true;
 
   categoria: string = '';
   busca: string = '';
@@ -49,6 +55,8 @@ export class HomeComponent implements OnInit {
       }
     })
 
+    this.produtoFs.produtoQuery()
+
     this.isAdmin = true // Remover DEPOS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
     this.categorias = Object.keys(Categoria).filter((res) => isNaN(Number(res)));
@@ -57,40 +65,61 @@ export class HomeComponent implements OnInit {
   }
 
   carregarProdutos() {
-    return this.produtoFs.readProdutos().subscribe((data: Produto[]) => {
-      this.route.queryParams
-      .subscribe((queryParams: any) => {
+    return this.produtoFs.readProdutos().subscribe((data: Produto[]) => {this.carregarParametros(data)})
+  }
 
-        if(queryParams['category'] && queryParams['search']) {
+  carregarParametros(data: any) {
+    if(this.busca) {
+      this.produtos = data.filter((produto: any) => produto.nome.toLowerCase().includes(this.busca.toLowerCase()))
+    }else {
+      this.produtos = data
+    }
+  }
 
-          this.categoria = queryParams['category']
-          this.busca = queryParams['search']
+  addCategory(param: string) {
+    if(this.categoria !== param){
+    this.categoria = param
+    }
+  }
 
-          this.produtos = data.filter(produto => produto.categoria === this.categoria &&
-          produto.nome.toLowerCase().includes(this.busca.toLowerCase()))
+  removeCategory(): void {
+    this.categoria = ''
+    this.carregarProdutos()
+  }
 
-        }else if(queryParams['search']) {
+  addSearch(param: string) {
+    if(this.busca !== param){
+      this.busca = param
+    }
+  }
 
-          this.busca = queryParams['search']
-          this.produtos = data.filter(produto => produto.nome.toLowerCase().includes(this.busca.toLowerCase()))
+  removeSearch(): void {
+    this.busca = ''
 
-        }else if(queryParams['category']) {
-
-          this.categoria = queryParams['category']
-          this.produtos = data.filter(produto => produto.categoria === this.categoria)
-        }else {
-          this.produtos = data
-        }
-      })
-    })
+    if(this.categoria) {
+      this.searchByCategory(this.categoria)
+    }else {
+      this.carregarProdutos()
+    }
   }
 
   searchByCategory(categoria: string) {
-    this.router.navigate(['/home'], { queryParams: {category: categoria}})
+    this.addCategory(categoria)
+
+    this.produtoFs.produtoQueryByCategoria(this.categoria).then(data => {
+      this.carregarParametros(data)
+    })
   }
 
-  searchByText(teste: string) {
-    this.router.navigate(['/home'], { queryParams: {category: this.categoria, search: teste}})
+  searchByText(busca: string) {
+    this.addSearch(busca)
+
+    if(this.categoria) {
+      this.searchByCategory(this.categoria)
+    }else {
+      this.carregarProdutos()
+    }
+    return ''
   }
 
   disconnect() {
@@ -111,11 +140,11 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/cadastro'])
   }
 
-  irParaComanda(){
-    this.router.navigateByUrl('/comanda')
+  irParaComanda() {
+    this.router.navigate(['/comanda'])
   }
 
-  irParaMaisDetalhes(){
-    this.router.navigateByUrl('/mais-detalhes')
+  irParaMaisDetalhes(produto: Produto) {
+    this.router.navigateByUrl('/mais-detalhes', { state: produto})
   }
 }

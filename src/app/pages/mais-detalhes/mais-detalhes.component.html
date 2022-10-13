@@ -1,14 +1,36 @@
 <div id="conteudo-de-fora" fxLayoutAlign="center center" fxFlexFill>
     <mat-card fxLayout="column" id="card-item">
-        <mat-toolbar color="primary">Nome do produto</mat-toolbar>
+        <mat-toolbar color="primary">{{ produto.nome }}</mat-toolbar>
+
         <mat-card-content>
-            <img mat-card-image>
+          <h2>{{ produto.categoria }}</h2>
+            <img mat-card-image src="{{produto.foto}}">
             <h4>
-                Descrição:
+              {{ produto.descricao }}
             </h4>
             <p>
         </mat-card-content>
-        
 
+        <mat-card-actions>
+          <form [formGroup]="FormComanda" (ngSubmit)="onSubmit()">
+
+            <mat-form-field>
+              <input matInput placeholder="Mesa" id="mesa" type="number" formControlName="mesa">
+              <mat-error *ngIf="getErrorControl('mesa', 'required')">mesa obrigatória!</mat-error>
+            </mat-form-field>
+
+            <button id="btn-card" mat-button type="submit">Adicionar para a comanda</button>
+
+          </form>
+
+          <button mat-button [disabled]="quantidadeProduto > 1 ? false : true" (click)="sub()">-</button>
+          <input [disabled]="true" type="number" [value]="quantidadeProduto">
+          <button mat-button (click)="add()">+</button>
+
+          <mat-label>Preço: {{ produto.preco * quantidadeProduto }}</mat-label>
+
+          <button (click)="irParaHome()">Voltar</button>
+
+        </mat-card-actions>
     </mat-card>
 </div>

@@ -3,14 +3,12 @@ import {
   addDoc,
   collection,
   collectionData,
-  Query,
   doc,
   docData,
   updateDoc,
   deleteDoc,
   Firestore
 } from '@angular/fire/firestore'
-import { where } from '@firebase/firestore';
 import { Observable } from 'rxjs';
 import { Funcionario } from '../models/funcionario';
 

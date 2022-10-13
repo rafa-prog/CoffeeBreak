@@ -21,6 +21,7 @@ export class CadastroFuncionarioComponent implements OnInit {
   private authFireService: AuthFirebaseService) {}
 
   ngOnInit(): void {
+    /*
     let user = this.authFireService.userLogged()
     if(user !== null) {
       user.providerData.forEach((profile: any) => {
@@ -29,7 +30,7 @@ export class CadastroFuncionarioComponent implements OnInit {
     }else {
       this.irParaLogin()
     }
-
+    */
     this.formInit();
   }
 

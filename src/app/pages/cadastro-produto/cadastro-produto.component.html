@@ -18,39 +18,68 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Medida" id="medida" formControlName="medida">
-          <mat-option *ngFor="let medida of medidas" value="{{ medida }}">{{ medida }}</mat-option>
+        <mat-label>Medida</mat-label>
+        <mat-select id="medida" formControlName="medida" (selectionChange)="salvaMedida($event.value)">
+        <mat-option *ngFor="let medida of medidas" [value]="medida">{{ medida }}</mat-option>
         </mat-select>
         <mat-error *ngIf="getErrorControl('medida', 'required')">medida obrigatória!</mat-error>
      </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Tamanho" id="tamanho" type="number" formControlName="tamanho">
+        <mat-label>Tamanho</mat-label>
+        <span matPrefix>{{ medida }}&nbsp;</span>
+        <input matInput placeholder="250" class="example-right-align" id="tamanho" type="number" formControlName="tamanho">
         <mat-error *ngIf="getErrorControl('tamanho', 'required')">tamanho obrigatório!</mat-error>
       </mat-form-field>
 
+      <!--
       <mat-form-field>
         <input matInput placeholder="Adicionais" id="adicionais" type="text" formControlName="adicionais">
       </mat-form-field>
+      -->
 
       <mat-form-field>
-        <input matInput placeholder="Descricao" id="descricao" type="text" formControlName="descricao">
+        <mat-label>Adicionais</mat-label>
+        
+      </mat-form-field>
+
+      <mat-form-field class="example-chip-list" appearance="fill">
+        <mat-label>Adicionais</mat-label>
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let adicional of adicionais" (removed)="remove(adicional)">
+            {{adicional.nome}}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <input matInput placeholder="Novo adicional (pressione 'ENTER' ou ',' para adicionar)..."
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Descrição</mat-label>
+        <input matInput placeholder="Ótimo acompanhamento..." id="descricao" type="text" formControlName="descricao">
         <mat-error *ngIf="getErrorControl('descricao', 'required')">descrição obrigatória!</mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Preço</mat-label>
-        <input matInput type="number" class="example-right-align" placeholder="0.00" id="preco" type="number" formControlName="preco">
         <span matPrefix>R$&nbsp;</span>
+        <input matInput type="number" class="example-right-align" placeholder="0.00" id="preco" type="number" formControlName="preco">
         <mat-error *ngIf="getErrorControl('preco', 'required')">preço obrigatório!</mat-error>
         <mat-error *ngIf="getErrorControl('preco', 'minlength')">preço inválido!</mat-error>
       </mat-form-field>
 
-      <div>
-        <input placeholder="Foto" id="upload-file-container" formControlName="foto" type="file">
-        <mat-error *ngIf="getErrorControl('foto', 'required')">foto obrigatória!</mat-error>
-      </div>
+      <mat-form-field>
 
+        <input placeholder="foto" id="upload-file-container" formControlName="foto" type="file">
+        <mat-error *ngIf="getErrorControl('foto', 'required')">foto obrigatória!</mat-error>
+        <input matInput [hidden]="true">
+      </mat-form-field>
 
       <button id="btn-card" mat-button type="submit">Cadastrar produto</button>
 
