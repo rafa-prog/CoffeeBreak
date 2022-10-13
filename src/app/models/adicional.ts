@@ -1,3 +1,4 @@
 export interface Adicional {
-    nome: string
+    nome: string;
+    preco: number;
 }

@@ -55,8 +55,6 @@ export class HomeComponent implements OnInit {
       }
     })
 
-    this.produtoFs.produtoQuery()
-
     this.isAdmin = true // Remover DEPOS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
     this.categorias = Object.keys(Categoria).filter((res) => isNaN(Number(res)));

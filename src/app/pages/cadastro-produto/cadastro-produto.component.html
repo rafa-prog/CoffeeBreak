@@ -32,34 +32,6 @@
         <mat-error *ngIf="getErrorControl('tamanho', 'required')">tamanho obrigatório!</mat-error>
       </mat-form-field>
 
-      <!--
-      <mat-form-field>
-        <input matInput placeholder="Adicionais" id="adicionais" type="text" formControlName="adicionais">
-      </mat-form-field>
-      -->
-
-      <mat-form-field>
-        <mat-label>Adicionais</mat-label>
-        
-      </mat-form-field>
-
-      <mat-form-field class="example-chip-list" appearance="fill">
-        <mat-label>Adicionais</mat-label>
-        <mat-chip-list #chipList>
-          <mat-chip *ngFor="let adicional of adicionais" (removed)="remove(adicional)">
-            {{adicional.nome}}
-            <button matChipRemove>
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </mat-chip>
-          <input matInput placeholder="Novo adicional (pressione 'ENTER' ou ',' para adicionar)..."
-            [matChipInputFor]="chipList"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-            [matChipInputAddOnBlur]="addOnBlur"
-            (matChipInputTokenEnd)="add($event)">
-        </mat-chip-list>
-      </mat-form-field>
-
       <mat-form-field>
         <mat-label>Descrição</mat-label>
         <input matInput placeholder="Ótimo acompanhamento..." id="descricao" type="text" formControlName="descricao">
@@ -79,6 +51,24 @@
         <input placeholder="foto" id="upload-file-container" formControlName="foto" type="file">
         <mat-error *ngIf="getErrorControl('foto', 'required')">foto obrigatória!</mat-error>
         <input matInput [hidden]="true">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Adicionais</mat-label>
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let adicional of adicionais" (removed)="remove(adicional)">
+            {{adicional.nome }}: {{ adicional.preco}}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <input matInput placeholder="Novo adicional (pressione 'ENTER' ou ',' para adicionar)..."
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+
       </mat-form-field>
 
       <button id="btn-card" mat-button type="submit">Cadastrar produto</button>

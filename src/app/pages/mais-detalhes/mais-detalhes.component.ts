@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Comanda } from 'src/app/models/comanda';
 import { Funcionario } from 'src/app/models/funcionario';
 import { Produto } from 'src/app/models/produto';
@@ -30,13 +30,12 @@ export class MaisDetalhesComponent implements OnInit {
 
   constructor(
   private router: Router,
-  private route: ActivatedRoute,
   private formBuilder: FormBuilder,
   private comandaFs: ComandaFirebaseService,
   private authFireService: AuthFirebaseService,
   private funcionarioFs: FuncionarioFirebaseService) {
     this.produto = this.router.getCurrentNavigation()!.extras.state as Produto;
-
+    console.log(this.produto)
     if(this.produto === undefined) {
       this.irParaHome()
     }

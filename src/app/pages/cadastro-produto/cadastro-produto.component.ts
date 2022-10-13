@@ -49,7 +49,7 @@ export class CadastroProdutoComponent implements OnInit {
     }
     */
 
-    this.categorias = Object.values(Categoria)
+    this.categorias = Object.keys(Categoria).filter((res) => isNaN(Number(res)));
     this.medidas = Object.keys(Medida).filter((res) => isNaN(Number(res)))
     this.formInit()
   }
@@ -61,7 +61,7 @@ export class CadastroProdutoComponent implements OnInit {
       categoria: ['', [Validators.required]],
       tamanho: ['', [Validators.required, Validators.min(0.1)]],
       medida: ['', [Validators.required]],
-      adicionais: ['', []],
+      adicionais: [null, []],
       foto: [null, [Validators.required]],
       preco: ['', [Validators.required, Validators.min(0)]],
     })
@@ -83,6 +83,7 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   private cadastrar() {
+    this.FormCadProd.controls['adicionais'].setValue(this.adicionais)
     this.produtoFs.createProduto(this.FormCadProd.value)
     .then(() => {
       alert("Produto cadastrado")
@@ -96,7 +97,6 @@ export class CadastroProdutoComponent implements OnInit {
 
   salvaMedida(medida: string) {
     this.medida = medida
-    console.log(medida)
   }
 
   add(event: MatChipInputEvent): void {
@@ -104,7 +104,7 @@ export class CadastroProdutoComponent implements OnInit {
 
     // Add our fruit
     if (value) {
-      this.adicionais.push({nome: value});
+      this.adicionais.push({nome: value, preco: 2});
     }
 
     // Clear the input value
