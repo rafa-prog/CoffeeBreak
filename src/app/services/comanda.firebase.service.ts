@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Comanda } from '../models/comanda';
+
 import {
-  addDoc,
-  collection,
-  collectionData,
   doc,
+  addDoc,
   docData,
   updateDoc,
   deleteDoc,
-  Firestore
+  Firestore,
+  collection,
+  collectionData,
 } from '@angular/fire/firestore'
-
-import { Observable } from 'rxjs';
-import { Comanda } from '../models/comanda';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ComandaFirebaseService {
   private PATH: string = 'comandas'
 

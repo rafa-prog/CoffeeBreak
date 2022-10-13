@@ -1,23 +1,25 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Produto } from '../models/produto';
+
 import {
-  addDoc,
-  collection,
-  collectionData,
   doc,
   query,
   where,
-  getDocs,
+  addDoc,
   docData,
+  getDocs,
   updateDoc,
   deleteDoc,
-  Firestore
+  Firestore,
+  collection,
+  collectionData
 } from '@angular/fire/firestore'
-import { Observable } from 'rxjs';
-import { Produto } from '../models/produto';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProdutoFirebaseService {
   private PATH: string = 'produtos'
 

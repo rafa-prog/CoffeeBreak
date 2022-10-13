@@ -7,12 +7,13 @@ import { FuncionarioFirebaseService } from './funcionario.firebase.service';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthFirebaseService {
   private auth: any
 
   constructor(
-  private fireApp: FirebaseApp,
-  private funcionarioFs: FuncionarioFirebaseService) {} // Inicializa o Firebase
+  private fireApp: FirebaseApp, // Inicializa o Firebase
+  private funcionarioFs: FuncionarioFirebaseService) {}
 
   authentication() {
     this.auth = getAuth()

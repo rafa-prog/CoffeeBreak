@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Funcionario } from '../models/funcionario';
+
 import {
-  addDoc,
-  collection,
-  collectionData,
   doc,
+  addDoc,
   docData,
   updateDoc,
   deleteDoc,
-  Firestore
+  Firestore,
+  collection,
+  collectionData
 } from '@angular/fire/firestore'
-import { Observable } from 'rxjs';
-import { Funcionario } from '../models/funcionario';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class FuncionarioFirebaseService {
   private PATH: string = 'funcionarios'
 
