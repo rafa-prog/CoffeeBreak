@@ -10,9 +10,19 @@ export class ComandaComponent implements OnInit {
   produtos!: Produto[]
   quantidade!: number[]
 
+  quantidadeProduto: number = 1
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  add(quantidade: number) {
+    quantidade += 1
+  }
+
+  sub(quantidade: number) {
+    quantidade -= 1
   }
 
 }

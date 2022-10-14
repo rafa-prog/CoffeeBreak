@@ -1,12 +1,12 @@
 #card-comanda{
-    width: 80%;
-    height: 90%;
+    width: 98%;
+    height: 96%;
     background-color: #744c24;
     overflow-x: auto;
  }
  #card-itens{
-   width: 90%;
-   height: auto;
+  width: 90%;
+  height: 90%;
   margin-top: 1em;
  }
 #btn-voltar{
@@ -21,17 +21,17 @@
     /*change color of label*/
     color: #E2D1BB !important;
    }
-  
+
    ::ng-deep.mat-form-field-underline {
     /*change color of underline*/
     background-color: #E2D1BB!important;
-  } 
-  
+  }
+
   ::ng-deep.mat-form-field-ripple {
    /*change color of underline when focused*/
    background-color: #E2D1BB!important;
   }
- 
+
  mat-toolbar.mat-primary{
    width: 97%;
     background-color: #D2B590;
@@ -39,14 +39,14 @@
  .conteudo-de-fora{
     background-color: #E2D1BB;
     width: 100%;
-    height: 100%; 
+    height: 100%;
  }
  .btn-card{
-   
+
     background-color: #D2B590;
     width: auto;
     height: auto;
-   
+
  }
  .btn-card-f{
    margin-top: 1rem;

@@ -1,5 +1,5 @@
 <div id="conteudo-de-fora" fxLayoutAlign="center center" fxFlexFill>
-    <mat-card fxLayout="column" id="card-item">
+    <mat-card fxLayout="column" id="card-detalhes">
         <mat-toolbar color="primary">{{ produto.nome }}</mat-toolbar>
 
         <mat-card-content>
@@ -12,24 +12,18 @@
         </mat-card-content>
 
         <mat-card-actions>
-          <form [formGroup]="FormComanda" (ngSubmit)="onSubmit()">
-
-            <mat-form-field>
-              <input matInput placeholder="Mesa" id="mesa" type="number" formControlName="mesa">
-              <mat-error *ngIf="getErrorControl('mesa', 'required')">mesa obrigatória!</mat-error>
-            </mat-form-field>
-
-            <button id="btn-card" mat-button type="submit">Adicionar para a comanda</button>
-
-          </form>
 
           <button mat-button [disabled]="quantidadeProduto > 1 ? false : true" (click)="sub()">-</button>
           <input [disabled]="true" type="number" [value]="quantidadeProduto">
           <button mat-button (click)="add()">+</button>
 
-          <mat-label>Preço: {{ produto.preco * quantidadeProduto }}</mat-label>
+          <mat-label>Preço: {{ precoTotal * quantidadeProduto }}</mat-label>
 
-          <button (click)="irParaHome()">Voltar</button>
+          <input #buscaMesa matInput type="number" value="">
+          <button id="btn-card" [disabled]="!(buscaMesa.value !== '' && buscaMesa.valueAsNumber > 0)"
+            mat-button (click)="checkComanda(buscaMesa.valueAsNumber)">Adicionar para comanda</button>
+
+          <button mat-button (click)="irParaHome()">Voltar</button>
 
         </mat-card-actions>
     </mat-card>

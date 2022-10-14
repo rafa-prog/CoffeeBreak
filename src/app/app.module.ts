@@ -42,6 +42,7 @@ import { DetalhesProdutoComponent } from './pages/detalhes-produto/detalhes-prod
 import { MaisDetalhesComponent } from './pages/mais-detalhes/mais-detalhes.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     ComandaComponent,
     DetalhesProdutoComponent,
     MaisDetalhesComponent,
+    PagamentoComponent,
   ],
   imports: [
     BrowserModule,

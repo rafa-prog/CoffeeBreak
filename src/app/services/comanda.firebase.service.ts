@@ -4,7 +4,10 @@ import { Comanda } from '../models/comanda';
 
 import {
   doc,
+  query,
+  where,
   addDoc,
+  getDocs,
   docData,
   updateDoc,
   deleteDoc,
@@ -38,8 +41,19 @@ export class ComandaFirebaseService {
     return docData(prodRef) as Observable<Comanda>
   }
 
+  async comandaQueryByMesa(mesa: number) {
+    const q = query(collection(this.afs, this.PATH), where('mesa', '==', mesa))
+    let comandas: any[] = []
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc: any) => {
+      comandas.push(doc.data() as Observable<Comanda[]>)
+    });
+
+    return comandas[0] as Comanda
+  }
+
   updateComanda(id: string, comanda: Comanda) {
-    let docRef = doc(this.afs, this.PATH + '/${comanda.id}')
+    let docRef = doc(this.afs, this.PATH + '/' + id)
     return updateDoc(docRef,
       {
         mesa: comanda.mesa,
