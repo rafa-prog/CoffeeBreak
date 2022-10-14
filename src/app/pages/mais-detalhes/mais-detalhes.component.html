@@ -13,11 +13,11 @@
         </mat-card-content>
 
         <mat-card-actions fxLayoutAlign="center center" fxLayout="column" >
-          <form [formGroup]="FormComanda" (ngSubmit)="onSubmit()">
+          <form [formGroup]="FormComanda" >
 
             <mat-form-field>
               <input matInput placeholder="Mesa" id="mesa" type="number" formControlName="mesa">
-              <mat-error *ngIf="getErrorControl('mesa', 'required')">mesa obrigatória!</mat-error>
+ 
             </mat-form-field>
           </form>
 
