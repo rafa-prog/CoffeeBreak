@@ -1,30 +1,36 @@
 <div id="conteudo-de-fora" fxLayoutAlign="center center" fxFlexFill>
-    <mat-card fxLayout="column" id="card-detalhes">
-        <mat-toolbar color="primary">{{ produto.nome }}</mat-toolbar>
+    <mat-card fxLayout="column" id="card-item">
+        <button mat-button id="btn-voltar"   (click)="irParaHome()">Voltar</button>
+        <mat-toolbar color="primary" color="primary" fxLayoutAlign="center center">{{ produto.nome }}</mat-toolbar>
 
         <mat-card-content>
-          <h2>{{ produto.categoria }}</h2>
-            <img mat-card-image src="{{produto.foto}}">
-            <h4>
+          <h2 fxLayoutAlign="center center">{{ produto.categoria }}</h2>
+            <img fxLayoutAlign="center center" mat-card-image src="{{produto.foto}}">
+            <h4 fxLayoutAlign="center center">
               {{ produto.descricao }}
             </h4>
             <p>
         </mat-card-content>
 
-        <mat-card-actions>
+        <mat-card-actions fxLayoutAlign="center center" fxLayout="column" >
+          <form [formGroup]="FormComanda" >
 
-          <button mat-button [disabled]="quantidadeProduto > 1 ? false : true" (click)="sub()">-</button>
-          <input [disabled]="true" type="number" [value]="quantidadeProduto">
-          <button mat-button (click)="add()">+</button>
+            <mat-form-field>
+              <input matInput placeholder="Mesa" id="mesa" type="number" formControlName="mesa">
+ 
+            </mat-form-field>
+          </form>
+
+          <div  fxLayoutAlign="center center" fxLayout="row">
+            <button  id="btn-decrementador" mat-button [disabled]="quantidadeProduto > 1 ? false : true" (click)="sub()">-</button>
+            <input id="input-valor" [disabled]="true" type="number" [value]="quantidadeProduto">
+            <button id="btn-incrementador" mat-button (click)="add()">+</button>
+          </div>
+
 
           <mat-label>Preço: {{ precoTotal * quantidadeProduto }}</mat-label>
 
-          <input #buscaMesa matInput type="number" value="">
-          <button id="btn-card" [disabled]="!(buscaMesa.value !== '' && buscaMesa.valueAsNumber > 0)"
-            mat-button (click)="checkComanda(buscaMesa.valueAsNumber)">Adicionar para comanda</button>
-
-          <button mat-button (click)="irParaHome()">Voltar</button>
-
+          <button id="btn-card" mat-button type="submit">Adicionar para a comanda</button>
         </mat-card-actions>
     </mat-card>
 </div>
