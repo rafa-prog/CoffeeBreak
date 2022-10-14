@@ -7,3 +7,36 @@
     width: 95%;
     height: 90%;
 }
+mat-card{
+    background:#744c24 ;
+}
+mat-toolbar.mat-primary{
+    background-color: #D2B590;
+ }
+ #btn-voltar{
+    width: 1%;
+    height: 4%;
+    margin-top: -1rem;
+    margin-left: 85rem;
+    padding-bottom: 2rem;
+ 
+ }
+ #input-valor{
+    text-align: center;
+ }
+ #btn-card{
+    background-color: #D2B590;
+ }
+ #btn-incrementador{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #D2B590;
+ }
+ #btn-decrementador{
+    margin-left: -2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #D2B590;
+ }
