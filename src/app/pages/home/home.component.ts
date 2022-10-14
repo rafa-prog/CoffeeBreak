@@ -138,6 +138,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/cadastro'])
   }
 
+  irParaPagamento() {
+    this.router.navigate(['/pagamento'])
+  }
+
   irParaComanda() {
     this.router.navigate(['/comanda'])
   }

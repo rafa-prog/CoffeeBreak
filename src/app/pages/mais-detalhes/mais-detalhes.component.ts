@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Adicional } from 'src/app/models/adicional';
 import { Comanda } from 'src/app/models/comanda';
 import { Funcionario } from 'src/app/models/funcionario';
 import { Produto } from 'src/app/models/produto';
@@ -17,16 +18,15 @@ export class MaisDetalhesComponent implements OnInit {
   FormComanda!: FormGroup
   isSubmitted: boolean = false;
 
-  produtos: Produto[] = []
-  produto!: Produto
+  comanda!: Comanda
 
-  comandas: Comanda[] = []
+  precoTotal: number
+
+  quantidadeProduto!: number;
+  produto!: Produto
 
   isAdmin: boolean = false;
   userEmail!: string;
-
-  quantidade: number[] = []
-  quantidadeProduto!: number;
 
   constructor(
   private router: Router,
@@ -35,10 +35,13 @@ export class MaisDetalhesComponent implements OnInit {
   private authFireService: AuthFirebaseService,
   private funcionarioFs: FuncionarioFirebaseService) {
     this.produto = this.router.getCurrentNavigation()!.extras.state as Produto;
+
     console.log(this.produto)
     if(this.produto === undefined) {
       this.irParaHome()
     }
+
+    this.precoTotal = this.produto.preco
   }
 
   ngOnInit(): void {
@@ -62,45 +65,28 @@ export class MaisDetalhesComponent implements OnInit {
 
     this.isAdmin = true // Remover DEPOS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     this.quantidadeProduto = 1
-    this.formInit()
   }
 
-  formInit() {
-    this.FormComanda = this.formBuilder.group({
-      mesa: ['', [Validators.required]]
-    })
-  }
+  async checkComanda(mesa: number) {
+    await this.comandaFs.comandaQueryByMesa(mesa).then((data: Comanda) => this.comanda = data)
 
-  getErrorControl(control: string, error: string): boolean {
-    return this.FormComanda.controls[control].hasError(error)
-  }
+    if(this.comanda) {
 
-  onSubmit(): boolean {
-    this.isSubmitted = true
-    if(!this.FormComanda.valid) {
-      alert("Todos os campos são obrigatórios!")
-      return false
-    }
+      this.comanda.produtos.push(this.produto)
+      this.comandaFs.updateComanda(this.comanda.id, this.comanda)
 
-    this.checkComanda()
-    return true
-  }
+    } else {
 
-  private checkComanda() {
-    this.comandaFs.readComandas()
-    .subscribe((data: Comanda[]) => {this.comandas = data.filter(comanda => comanda.mesa === this.FormComanda.value)})
+      let produtos: Produto[] = [this.produto];
+      let quantidade: number[] = [this.quantidadeProduto];
 
-    console.log(this.produto)
-    this.produtos.push(this.produto)
-    this.quantidade.push(this.quantidadeProduto)
+      let comanda = {id: '', mesa: mesa, produtos: produtos, quantidade: quantidade}
 
-    if(this.comandas.length > 0) {
-      this.comandaFs.updateComanda(this.comandas[0].id, this.comandas[0])
-      this.irParaComanda(this.comandas[0])
-    }else {
-      let comanda = {id: '', mesa: this.FormComanda.value, produtos: this.produtos, quantidade: this.quantidade}
       this.comandaFs.createComanda(comanda)
     }
+
+    this.irParaComanda(this.comanda)
+    return ''
   }
 
   add() {
