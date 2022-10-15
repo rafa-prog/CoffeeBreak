@@ -30,7 +30,6 @@ export class MaisDetalhesComponent implements OnInit {
 
   constructor(
   private router: Router,
-  private formBuilder: FormBuilder,
   private comandaFs: ComandaFirebaseService,
   private authFireService: AuthFirebaseService,
   private funcionarioFs: FuncionarioFirebaseService) {
