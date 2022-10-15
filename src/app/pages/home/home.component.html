@@ -1,7 +1,7 @@
 <mat-sidenav-container>
   <mat-sidenav mode="side" opened>
 
-    <h1>Cofee <span id="logo-title"> Break</span></h1>
+    <h1>Coffee <span id="logo-title"> Break</span></h1>
 
     <div *ngFor="let categoria of categorias">
       <button class="botao-classe" (click)="searchByCategory(categoria)">{{ categoria }}</button>
@@ -29,7 +29,7 @@
 
     <div id="search">
       <input #pesquisa id="search-text" type="text" placeholder="buscar produtos..." value=""> <!--Arrumar isso aq AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
-      <button (click)="pesquisa.value = searchByText(pesquisa.value)">buscar</button>
+      <button id="btn-search" (click)="pesquisa.value = searchByText(pesquisa.value)">buscar</button>
     </div>
 
     <div id="conteudo">
@@ -52,7 +52,7 @@
           </mat-chip-list>
         </div>
         <div fxLayout="row wrap" fxLayoutGap="16px grid">
-          <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let produto of produtos" (click)="irParaMaisDetalhes(produto)">
+          <div id="for-cards" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let produto of produtos" (click)="irParaMaisDetalhes(produto)">
             <mat-card class="mat-elevation-z4">
 
               <mat-card-header>

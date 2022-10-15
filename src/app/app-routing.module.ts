@@ -8,7 +8,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { ComandaComponent } from './pages/comanda/comanda.component';
 import { MaisDetalhesComponent } from './pages/mais-detalhes/mais-detalhes.component';
 import { PagamentoComponent } from './pages/pagamento/pagamento.component';
-
+import { EditarProdutoComponent } from './pages/editar-produto/editar-produto.component';
 
 
 
@@ -24,6 +24,10 @@ const routes: Routes = [
   {
     path: 'cadastro-produto',
     component: CadastroProdutoComponent,
+  },
+  {
+    path: 'editar-produto',
+    component: EditarProdutoComponent,
   },
   {
     path:'mais-detalhes',

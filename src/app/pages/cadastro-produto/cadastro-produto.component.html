@@ -1,6 +1,7 @@
 <div class="conteudo-de-fora" fxLayoutAlign="center center" fxFlexFill>
   <mat-card >
     <form [formGroup]="FormCadProd" (ngSubmit)="onSubmit()" fxLayout="column">
+      <button mat-button id="btn-voltar" (click)="irParaCadastro()">Voltar</button>
 
       <mat-toolbar color="primary" fxLayoutAlign="center center">Cadastrar Produto</mat-toolbar>
 

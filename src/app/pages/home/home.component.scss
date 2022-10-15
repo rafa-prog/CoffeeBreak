@@ -10,8 +10,13 @@ mat-sidenav{
 
 }
 
+
 mat-card{
+    margin-top: 0.5rem;
+    margin-right: 24rem;
     background:#744c24 ;
+    width: 245.43px;
+    height: 96px;
 }
 
 #logo-title{
@@ -55,7 +60,6 @@ button.botao-classe {
     color: #3498db;
     background-color: #E2D1BB;
   }
-
 #search{
     background-color: #D2B590;
     color: black;
@@ -74,7 +78,7 @@ input[type=text] {
 
 
 }
-#ca{
+#btn-search{
     border-radius: 37.16129032258065vh;
 }
 

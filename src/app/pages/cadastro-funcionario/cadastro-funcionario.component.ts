@@ -77,5 +77,7 @@ export class CadastroFuncionarioComponent implements OnInit {
   irParaLogin() {
     this.router.navigate(['/'])
   }
-
+  irParaCadastro(){
+    this.router.navigate(['/cadastro'])
+  }
 }

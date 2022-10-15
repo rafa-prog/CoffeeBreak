@@ -32,4 +32,10 @@ export class CadastroComponent implements OnInit {
   irParaCadastroFuncionario(){
     this.router.navigateByUrl('/cadastro-funcionario')
   }
+  irParaEditarProduto(){
+    this.router.navigateByUrl('/editar-produto')
+  }
+  irParaHome() {
+    this.router.navigate(['/home'])
+  }
 }

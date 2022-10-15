@@ -1,8 +1,8 @@
 <div class="conteudo-de-fora" fxLayoutAlign="center center" fxFlexFill>
   <mat-card  fxLayout="column">
     <form fxLayout="column" [formGroup]="FormCadFunc">
-
-      <mat-toolbar color="primary" fxLayoutAlign="center center">Cadastrar Funcionário</mat-toolbar>
+      <button mat-button id="btn-voltar" (click)="irParaCadastro()">Voltar</button>
+      <mat-toolbar color="primary" fxLayoutAlign="center center">Cadastrar Usuário</mat-toolbar>
 
         <mat-form-field>
           <input matInput placeholder="Nome" id="nome" type="text" formControlName="nome">
@@ -29,11 +29,11 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-checkbox class="" id="admin" (change)="changePermAdmin()">Funcionário com permissão de administrador (gerenciar produtos e funcionários) ?</mat-checkbox>
+          <mat-checkbox class="" id="admin" (change)="changePermAdmin()">Usuário é administrador (gerencia produtos e usuários) ?</mat-checkbox>
           <input matInput [hidden]="true">
         </mat-form-field>
 
-        <button id="btn-card" mat-button type="submit" (click)="onSubmit()">Criar funcionário</button>
+        <button id="btn-card" mat-button type="submit" (click)="onSubmit()">Criar usuário</button>
 
         </form>
     </mat-card>

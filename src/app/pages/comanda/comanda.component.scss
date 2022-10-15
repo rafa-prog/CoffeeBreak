@@ -1,19 +1,23 @@
 #card-comanda{
     width: 98%;
     height: 96%;
-    background-color: #744c24;
+   //  background-color: #744c24;
+   background: #bb8e5d;
     overflow-x: auto;
  }
  #card-itens{
+   background-color: #744c24;
+   // background-color: #D2B590;
   width: 90%;
   height: 90%;
   margin-top: 1em;
+
  }
 #btn-voltar{
    width: 1%;
    height: 4%;
    margin-top: -1rem;
-   margin-left: 69rem;
+   margin-left: 85rem;
    padding-bottom: 2rem;
 
 }
@@ -33,7 +37,8 @@
   }
 
  mat-toolbar.mat-primary{
-   width: 97%;
+   width: 90%;
+      margin-left: 4.6rem;
     background-color: #D2B590;
  }
  .conteudo-de-fora{
@@ -42,10 +47,10 @@
     height: 100%;
  }
  .btn-card{
-
+   
     background-color: #D2B590;
     width: auto;
-    height: auto;
+    height: 60%;
 
  }
  .btn-card-f{
@@ -55,5 +60,5 @@
    height: auto;
  }
  #botoes-card{
-    margin-left: 42rem;
+    margin-left: 56rem;
  }
