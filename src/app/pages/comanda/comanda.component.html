@@ -17,13 +17,9 @@
                       preço:
                   </h4>
 
-                  <button mat-button [disabled]="quantidadeProduto > 1 ? false : true" (click)="sub(1)">-</button>
-                  <input [disabled]="true" type="number" [value]="quantidadeProduto">
-                  <button mat-button (click)="add(1)">+</button>
 
                 </mat-card-content>
                 <mat-card-actions fxLayout="row" id="botoes-card">
-
                   <button mat-button class="btn-card">editar</button>
                   <button mat-button class="btn-card">excluir</button>
                 </mat-card-actions>
