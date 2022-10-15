@@ -11,6 +11,8 @@ mat-card{
     background:#744c24 ;
 }
 mat-toolbar.mat-primary{
+   font-size:30px;
+   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
     background-color: #D2B590;
  }
  #btn-voltar{
@@ -22,19 +24,22 @@ mat-toolbar.mat-primary{
  
  }
  #input-valor{
+   margin-top: 1em;
     text-align: center;
  }
  #btn-card{
+   margin-top: 1em;
     background-color: #D2B590;
  }
  #btn-incrementador{
+   margin-left: 1rem;
     width: 60px;
     height: 60px;
     border-radius: 50%;
     background-color: #D2B590;
  }
  #btn-decrementador{
-    margin-left: -2rem;
+    margin-right: 1rem;
     width: 60px;
     height: 60px;
     border-radius: 50%;

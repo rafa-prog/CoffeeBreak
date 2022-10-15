@@ -10,8 +10,14 @@ mat-sidenav{
 
 }
 
+for-cards{
+    margin: 8rem;
+}
 mat-card{
+    margin-right: 24rem;
     background:#744c24 ;
+    width: 245.43px;
+    height: 96px;
 }
 
 #logo-title{
@@ -74,7 +80,7 @@ input[type=text] {
 
 
 }
-#ca{
+#btn-search{
     border-radius: 37.16129032258065vh;
 }
 
