@@ -17,19 +17,22 @@ import { ProdutoFirebaseService } from 'src/app/services/produto.firebase.servic
 })
 
 export class CadastroProdutoComponent implements OnInit {
+  // Formulários
   FormCadProd: FormGroup = this.formBuilder.group({})
   isSubmitted: boolean = false
 
+  // Adicionais
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   adicionais: Adicional[] = [];
   addOnBlur = true;
 
+  // Enums + imagens
   categorias!: string[]
 
   medida: string = '';
   medidas!: string[]
 
-  image:any;
+  imagem: any;
 
   constructor(
   private router: Router,
@@ -84,7 +87,7 @@ export class CadastroProdutoComponent implements OnInit {
 
   private cadastrar() {
     this.FormCadProd.controls['adicionais'].setValue(this.adicionais)
-    this.produtoFs.createProduto(this.FormCadProd.value)
+    this.produtoFs.enviarImg(this.imagem, this.FormCadProd.value)
     .then(() => {
       alert("Produto cadastrado")
       this.irParaHome()
@@ -99,8 +102,8 @@ export class CadastroProdutoComponent implements OnInit {
     this.medida = medida
   }
 
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
+  add(evento: MatChipInputEvent): void {
+    const value = (evento.value || '').trim();
 
     // Add our fruit
     if (value) {
@@ -108,7 +111,7 @@ export class CadastroProdutoComponent implements OnInit {
     }
 
     // Clear the input value
-    event.chipInput!.clear();
+    evento.chipInput!.clear();
   }
 
   remove(adicional: Adicional): void {
@@ -119,8 +122,8 @@ export class CadastroProdutoComponent implements OnInit {
     }
   }
 
-  uploadFile(image:any){
-    this.image = image.files;
+  uploadFile(evento: any){
+    this.imagem = evento.target.files[0];
   }
 
   irParaLogin() {

@@ -38,29 +38,34 @@ import { CadastroFuncionarioComponent } from './pages/cadastro-funcionario/cadas
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ComandaComponent } from './pages/comanda/comanda.component';
 
-import { DetalhesProdutoComponent } from './pages/detalhes-produto/detalhes-produto.component';
 import { MaisDetalhesComponent } from './pages/mais-detalhes/mais-detalhes.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 import { EditarProdutoComponent } from './pages/editar-produto/editar-produto.component';
+import { EditarFuncionarioComponent } from './pages/editar-funcionario/editar-funcionario.component';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    CadastroProdutoComponent,
-    CadastroComponent,
     LoginComponent,
+    HomeComponent,
+    CadastroComponent,
+    CadastroProdutoComponent,
     CadastroFuncionarioComponent,
-    ComandaComponent,
-    DetalhesProdutoComponent,
-    MaisDetalhesComponent,
-    PagamentoComponent,
     EditarProdutoComponent,
+    EditarFuncionarioComponent,
+    MaisDetalhesComponent,
+    ComandaComponent,
+    PagamentoComponent,
   ],
   imports: [
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore()),
+    AngularFireStorageModule,
+
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -74,10 +79,6 @@ import { EditarProdutoComponent } from './pages/editar-produto/editar-produto.co
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideFirestore(() => getFirestore()),
-
     MatButtonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
@@ -86,7 +87,6 @@ import { EditarProdutoComponent } from './pages/editar-produto/editar-produto.co
     MatCheckboxModule,
     MatChipsModule,
     MatExpansionModule,
-
   ],
   providers: [
     MatDatepickerModule,

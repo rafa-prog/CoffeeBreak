@@ -48,8 +48,8 @@
       </mat-form-field>
 
       <mat-form-field>
-
-        <input placeholder="foto" id="upload-file-container" formControlName="foto" type="file">
+        <mat-label>Foto</mat-label>
+        <input id="upload-file-container" formControlName="foto" type="file" (change)="uploadFile($event)">
         <mat-error *ngIf="getErrorControl('foto', 'required')">foto obrigatória!</mat-error>
         <input matInput [hidden]="true">
       </mat-form-field>

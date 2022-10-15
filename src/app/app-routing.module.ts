@@ -9,6 +9,7 @@ import { ComandaComponent } from './pages/comanda/comanda.component';
 import { MaisDetalhesComponent } from './pages/mais-detalhes/mais-detalhes.component';
 import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 import { EditarProdutoComponent } from './pages/editar-produto/editar-produto.component';
+import { EditarFuncionarioComponent } from './pages/editar-funcionario/editar-funcionario.component';
 
 
 
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+  },
+  {
+    path: 'cadastro',
+    component: CadastroComponent,
   },
   {
     path: 'cadastro-produto',
@@ -42,12 +47,12 @@ const routes: Routes = [
     component: PagamentoComponent,
   },
   {
-    path: 'cadastro',
-    component: CadastroComponent,
+    path: 'cadastro-funcionario',
+    component: CadastroFuncionarioComponent,
   },
   {
-     path: 'cadastro-funcionario',
-    component: CadastroFuncionarioComponent,
+    path: 'editar-funcionario',
+    component: EditarFuncionarioComponent,
   }
 ];
 
