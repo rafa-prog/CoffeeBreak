@@ -9,14 +9,12 @@ import { Medida } from 'src/app/models/medida';
 import { AuthFirebaseService } from 'src/app/services/auth.firebase.service';
 import { ProdutoFirebaseService } from 'src/app/services/produto.firebase.service';
 
-
 @Component({
-  selector: 'app-cadastro-produto',
-  templateUrl: './cadastro-produto.component.html',
-  styleUrls: ['./cadastro-produto.component.scss']
+  selector: 'app-editar-produto',
+  templateUrl: './editar-produto.component.html',
+  styleUrls: ['./editar-produto.component.scss']
 })
-
-export class CadastroProdutoComponent implements OnInit {
+export class EditarProdutoComponent implements OnInit {
   FormCadProd: FormGroup = this.formBuilder.group({})
   isSubmitted: boolean = false
 
@@ -30,25 +28,14 @@ export class CadastroProdutoComponent implements OnInit {
   medidas!: string[]
 
   image:any;
-
   constructor(
   private router: Router,
   private formBuilder: FormBuilder,
   private produtoFs: ProdutoFirebaseService,
   private authFireService: AuthFirebaseService) { }
 
-  ngOnInit(): void {
-    /*
-    let user = this.authFireService.userLogged()
-    if(user !== null) {
-      user.providerData.forEach((profile: any) => {
-        alert(profile.email)
-      })
-    }else {
-      this.irParaLogin()
-    }
-    */
 
+  ngOnInit(): void {
     this.categorias = Object.keys(Categoria).filter((res) => isNaN(Number(res)));
     this.medidas = Object.keys(Medida).filter((res) => isNaN(Number(res)))
     this.formInit()
@@ -133,5 +120,6 @@ export class CadastroProdutoComponent implements OnInit {
   irParaCadastro(){
     this.router.navigate(['/cadastro'])
   }
+  }
 
-}
+

@@ -1,24 +1,45 @@
 mat-card{
-    width: 70%;
+    width: 80%;
     background-color: #744c24;
  
  }
  button{
-    margin-left: 15em;
+    margin-left: 18em;
     width: 60%;
     height: 20%;
  }
+ 
+ #upload-file-container {
+   width: 200px;
+   height: 50px;
+   position: relative;
+   border: dashed 1px black;
+   overflow: hidden;
+ }
+ 
+ #upload-file-container input[type="file"]
+ {
+   margin: 0;
+   opacity: 0;
+   font-size: 100px;
+ }
+ 
+ input.example-right-align::-webkit-outer-spin-button,
+ input.example-right-align::-webkit-inner-spin-button {
+   display: none;
+ }
+ 
  
  ::ng-deep .mat-focused .mat-form-field-label {
     /*change color of label*/
     color: #E2D1BB !important;
    }
-  
+ 
    ::ng-deep.mat-form-field-underline {
     /*change color of underline*/
     background-color: #E2D1BB!important;
-  } 
-  
+  }
+ 
   ::ng-deep.mat-form-field-ripple {
    /*change color of underline when focused*/
    background-color: #E2D1BB!important;
@@ -36,6 +57,8 @@ mat-card{
  #btn-voltar{
    width: 1%;
    height: 1%;
-   margin-left: 60rem;
+   margin-left: 70rem;
    margin-top: -9px;
 }
+
+ 

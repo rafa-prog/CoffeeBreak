@@ -1,7 +1,7 @@
 <mat-sidenav-container>
 
     <mat-sidenav mode="side" opened>
-      <div onclick="history.go(-1)">
+      <div (click)="irParaHome()">
         <h1>Coffee <span id="logo-title"> Break</span></h1>
       </div>
 
@@ -24,6 +24,10 @@
 
             <button class="botao-classe">Consultar</button>
 
+          </div>
+
+          <div id="botão-voltar-home">
+            <button class="botao-classe" (click)="irParaHome()">Home</button>
           </div>
       </div>
 
@@ -59,8 +63,8 @@
                                 {{produto.descricao}}
                               </p>
                             </mat-card-content>
-                            <mat-card-actions>
-                              <button mat-button id="btn-card" ><mat-icon>edit</mat-icon></button>
+                            <mat-card-actions id="btn-actions">
+                              <button mat-button id="btn-card" (click)="irParaEditarProduto()"><mat-icon>edit</mat-icon></button>
                               <button mat-button id="btn-card"><mat-icon>delete</mat-icon></button>
                             </mat-card-actions>
                           </mat-card>
