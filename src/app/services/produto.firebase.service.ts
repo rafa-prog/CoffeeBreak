@@ -35,16 +35,6 @@ export class ProdutoFirebaseService {
     return collectionData(prodRef, {idField: 'id'}) as Observable<Produto[]>
   }
 
-  async produtoQuery() {
-    const q = query(collection(this.afs, this.PATH), where('adicionais', '==', 'Nenhum'), where('nome', '==', 'Brownie'))
-
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc: any) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
-    });
-  }
-
   async produtoQueryByCategoria(categoria: string) {
     const q = query(collection(this.afs, this.PATH), where('categoria', '==', categoria))
     let produtos: any[] = []

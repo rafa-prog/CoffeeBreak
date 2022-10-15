@@ -4,7 +4,10 @@ import { Funcionario } from '../models/funcionario';
 
 import {
   doc,
+  query,
+  where,
   addDoc,
+  getDocs,
   docData,
   updateDoc,
   deleteDoc,
@@ -35,6 +38,17 @@ export class FuncionarioFirebaseService {
   readFuncionario(id: string): Observable<Funcionario> {
     let prodRef = doc(this.afs, this.PATH + '/' + id)
     return docData(prodRef) as Observable<Funcionario>
+  }
+
+  async produtoQueryByEmail(email: string) {
+    const q = query(collection(this.afs, this.PATH), where('email', '==', email))
+    let produtos: any[] = []
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc: any) => {
+      produtos.push(doc.data() as Observable<Funcionario[]>)
+    });
+
+    return produtos[0] as Funcionario
   }
 
   updateFuncionario(funcionario: Funcionario, funcionarios: any) {

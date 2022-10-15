@@ -37,24 +37,26 @@ export class HomeComponent implements OnInit {
   private funcionarioFs: FuncionarioFirebaseService) { }
 
   ngOnInit(): void {
-    /*let user = this.authFireService.userLogged() // Verifica login
+    /*
+    let user = this.authFireService.userLogged() // Verifica login
     if(user !== null) {
       user.providerData.forEach((profile: any) => {
         this.userEmail = profile.email
       })
     }else {
       this.irParaLogin()
-    }*/
+    }
 
-    this.funcionarioFs.readFuncionarios() // Verifica se o usuário logado é administrador
-    .subscribe((data: Funcionario[]) => {
-      let funcionarios = data.filter(funcionario => funcionario.email === this.userEmail)
-
-      if(funcionarios.length > 0) {
-        this.isAdmin = funcionarios[0].admin
-      }
-    })
-
+    if(this.userEmail) {
+      this.funcionarioFs.produtoQueryByEmail(this.userEmail).then(data => {
+        if(data){
+        this.isAdmin = data.admin
+        }else {
+          this.isAdmin = false
+        }
+      })
+    }
+  */
     this.isAdmin = true // Remover DEPOS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
     this.categorias = Object.keys(Categoria).filter((res) => isNaN(Number(res)));
