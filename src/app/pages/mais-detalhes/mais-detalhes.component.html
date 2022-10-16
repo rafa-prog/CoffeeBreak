@@ -7,7 +7,7 @@
         </button>
         <mat-toolbar color="primary" color="primary" fxLayoutAlign="center center">{{ produto.nome }} </mat-toolbar>
 
-        <mat-card-content>
+        <mat-card-content id="content">
           <h2 fxLayoutAlign="center center">{{ produto.categoria }}</h2>
             <div fxLayoutAlign="center center">
               <img  mat-card-image src="{{produto.foto}}">
@@ -19,11 +19,11 @@
             <p>
         </mat-card-content>
 
-        <mat-card-actions fxLayoutAlign="center center" fxLayout="column" >
+        <mat-card-actions id="conteudo" fxLayoutAlign="center center" fxLayout="column" >
           Informe a mesa
           <input #buscaMesa matInput type="number" value="">
           <button id="btn-card" [disabled]="!(buscaMesa.value !== '' && buscaMesa.valueAsNumber > 0)"
-            mat-button (click)="checkComanda(buscaMesa.valueAsNumber)">Buscar comanda</button>
+            mat-button (click)="checkComanda(buscaMesa.valueAsNumber)"></button>
 
 
           <div  fxLayoutAlign="center center" fxLayout="row">
