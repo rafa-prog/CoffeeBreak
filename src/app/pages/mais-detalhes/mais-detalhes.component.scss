@@ -5,7 +5,7 @@
 }
 #card-item{
     width: 95%;
-    height: 90%;
+    height: 99%;
 }
 mat-card{
     background:#744c24 ;
@@ -14,6 +14,10 @@ mat-toolbar.mat-primary{
    font-size:30px;
    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
     background-color: #D2B590;
+ }
+ img{
+   width: 35%;
+   height: 35%;
  }
  #adicionar{
    height: 30px;

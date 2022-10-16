@@ -9,16 +9,20 @@ mat-sidenav {
   text-align: center;
 }
 #btn-actions {
-  margin-top: 2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
 }
 mat-card{
   margin-top: 0.5rem;
-  margin-right: 24rem;
+  margin-right: 22rem;
   background:#744c24 ;
-  width: 335.43px;
+  width:245.43px;
   height: auto;
-  max-height: calc(200px + 66px);
+  max-height: calc(600px + 66px);
 
+}
+mat-card-content{
+  height: 300px;
 }
 
 .a{

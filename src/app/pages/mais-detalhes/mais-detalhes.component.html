@@ -9,7 +9,10 @@
 
         <mat-card-content>
           <h2 fxLayoutAlign="center center">{{ produto.categoria }}</h2>
-            <img fxLayoutAlign="center center" mat-card-image src="{{produto.foto}}">
+            <div fxLayoutAlign="center center">
+              <img  mat-card-image src="{{produto.foto}}">
+            </div>
+            
             <h4 fxLayoutAlign="center center">
               {{ produto.descricao }}
             </h4>
@@ -17,6 +20,7 @@
         </mat-card-content>
 
         <mat-card-actions fxLayoutAlign="center center" fxLayout="column" >
+          Informe a mesa
           <input #buscaMesa matInput type="number" value="">
           <button id="btn-card" [disabled]="!(buscaMesa.value !== '' && buscaMesa.valueAsNumber > 0)"
             mat-button (click)="checkComanda(buscaMesa.valueAsNumber)">Buscar comanda</button>
@@ -37,7 +41,7 @@
           </div>
 
 
-          <mat-label>Preço: {{ precoTotal * quantidadeProduto }}</mat-label>
+          <mat-label>Preço: R${{ precoTotal * quantidadeProduto }}</mat-label>
 
           <button id="btn-card" mat-button type="submit">
             <svg id="adicionar" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
