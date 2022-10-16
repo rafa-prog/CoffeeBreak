@@ -16,7 +16,7 @@
                   <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
                 </svg>
               </button>
-              <button class="botao-classe">
+              <button class="botao-classe" (click)="searchByCategory('Funcionários')">
                 <mat-icon>person</mat-icon>
               </button>
 
@@ -34,7 +34,7 @@
               </svg>
             </button>
 
-            <button class="botao-classe">
+            <button class="botao-classe" (click)="searchByCategory('Produtos')">
               <mat-icon> fastfood</mat-icon>
             </button>
 
@@ -55,21 +55,22 @@
 
     <mat-sidenav-content id="">
       <div id="search">
-        <input #pesquisa id="search-text" type="text" placeholder="buscar produtos..." value=""> <!--Arrumar isso aq AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
-        <button id="btn-search" (click)="pesquisa.value = searchByText(pesquisa.value)">
-          <svg id="buscar" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-          </svg>
-        </button>
+        <form [formGroup]="FormBusca" (ngSubmit)="searchByText(FormBusca.controls['busca'].value)">
+          <input formControlName="busca" id="search-text" type="text" placeholder="buscar produtos..." value=""> <!--Arrumar isso aq AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
+          <button id="btn-search" type="submit">
+            <svg id="buscar" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+          </button>
+        </form>
       </div>
-  
+
       <div id="conteudo">
         <div class="content">
           <div id="searchParams">
             <mat-chip-list #chipList>
-              <mat-chip *ngIf="categoria !== ''" (removed)="removeCategory()">
+              <mat-chip *ngIf="categoria !== ''">
                 {{ categoria }}
-                <button matChipRemove><mat-icon>cancel</mat-icon></button>
               </mat-chip>
               <mat-chip *ngIf="busca !== ''" (removed)="removeSearch()">
                 {{ busca }}
@@ -82,23 +83,50 @@
                   (matChipInputTokenEnd)="addCategory('')">
             </mat-chip-list>
           </div>
-          <div fxLayout="row wrap" fxLayoutGap="16px grid">
+
+          <div fxLayout="row wrap" fxLayoutGap="16px grid" *ngIf="produtos.length > 0">
             <div id="for-cards" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let produto of produtos">
               <mat-card class="mat-elevation-z4">
-  
+
                 <mat-card-header>
                   <mat-card-title>
                     {{produto.nome}}
                   </mat-card-title>
-  
+
                   <mat-card-subtitle>
                     {{produto.categoria}}
                   </mat-card-subtitle>
+
                 </mat-card-header>
+
                 <mat-card-content>
                   <img class="a" mat-card-image [src]="produto.foto">
                 </mat-card-content>
-                
+
+              </mat-card>
+            </div>
+          </div>
+
+          <div fxLayout="row wrap" fxLayoutGap="16px grid" *ngIf="funcionarios.length > 0">
+            <div id="for-cards" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let funcionario of funcionarios">
+              <mat-card class="mat-elevation-z4">
+
+                <mat-card-header>
+                  <mat-card-title>
+                    {{funcionario.nome}}
+                  </mat-card-title>
+
+                  <mat-card-subtitle>
+                    {{ funcionario.admin ? 'Administrador' : 'Funcionário' }}
+                  </mat-card-subtitle>
+
+                </mat-card-header>
+
+                <mat-card-content>
+                  Telefone: {{ funcionario.telefone }}
+                  email: {{ funcionario.email }}
+                </mat-card-content>
+
               </mat-card>
             </div>
           </div>

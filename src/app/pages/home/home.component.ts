@@ -8,6 +8,7 @@ import { AuthFirebaseService } from 'src/app/services/auth.firebase.service';
 import { FuncionarioFirebaseService } from 'src/app/services/funcionario.firebase.service';
 import { ProdutoFirebaseService } from 'src/app/services/produto.firebase.service';
 import { ENTER } from '@angular/cdk/keycodes';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -15,10 +16,10 @@ import { ENTER } from '@angular/cdk/keycodes';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  FormBusca!: FormGroup;
+
   produtos: Produto[] = [];
   categorias!: string[];
-
-  panelOpenState!: boolean[];
 
   isAdmin: boolean = false;
   userEmail!: string;
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
   constructor(
   private router: Router,
   private route: ActivatedRoute,
+  private formBuilder: FormBuilder,
   private produtoFs: ProdutoFirebaseService,
   private authFireService: AuthFirebaseService,
   private funcionarioFs: FuncionarioFirebaseService) { }
@@ -62,6 +64,8 @@ export class HomeComponent implements OnInit {
     this.categorias = Object.keys(Categoria).filter((res) => isNaN(Number(res)));
 
     this.carregarProdutos()
+
+    this.FormBusca = this.formBuilder.group({busca: ['']})
   }
 
   carregarProdutos() {

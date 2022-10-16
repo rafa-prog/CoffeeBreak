@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
   FormLogin!: FormGroup;
   isSubmitted!: boolean;
 
+  diameter: number = 10;
+
   constructor(
   private router: Router,
   private formBuilder: FormBuilder,
@@ -33,28 +35,35 @@ export class LoginComponent implements OnInit {
     return this.FormLogin.controls[control].hasError(error)
   }
 
-  onSubmit(): boolean {
+  async onSubmit() {
     this.isSubmitted = true
+
     if(!this.FormLogin.valid) {
-      alert("Todos os campos são obrigatórios!")
+      this.isSubmitted = false
+      alert('Login ou senha inválidos')
       return false
     }
+
+    this.diameter = 100
 
     this.login()
     return true
   }
 
-  private login() {
-    this.authFireService.signIn(this.FormLogin.value)
+  private async login() {
+    await this.authFireService.signIn(this.FormLogin.value)
     .then((userCredential) => {
+      this.diameter = 10
       const user = userCredential.user;
       alert('Autenticado com sucesso!')
+
       this.irParaHome()
     })
     .catch((error) => {
       this.FormLogin.reset()
       alert(error)
     });
+
   }
 
   irParaHome() {

@@ -45,6 +45,7 @@ import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 import { EditarProdutoComponent } from './pages/editar-produto/editar-produto.component';
 import { EditarFuncionarioComponent } from './pages/editar-funcionario/editar-funcionario.component';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -87,6 +88,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     MatCheckboxModule,
     MatChipsModule,
     MatExpansionModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     MatDatepickerModule,
