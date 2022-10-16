@@ -11,12 +11,21 @@ mat-sidenav {
 #btn-actions {
   margin-top: 2rem;
 }
-mat-card {
-  background: #744c24;
+mat-card{
   margin-top: 0.5rem;
   margin-right: 24rem;
-  width: 280.2px;
-  height: 240px;
+  background:#744c24 ;
+  width: 335.43px;
+  height: auto;
+  max-height: calc(200px + 66px);
+
+}
+
+.a{
+margin-left: 0.1rem;
+width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+height: 55%;
+max-height: 200px;
 }
 #logo-title {
   color: #463623;
@@ -44,9 +53,7 @@ mat-sidenav-container {
   padding: 2.064516129032258vh;
 }
 
-.content > mat-card {
-  width: 25.806451612903224vh;
-}
+
 button.botao-classe {
   margin-top: 2.129032258064516vh;
   height: 8.258064516129032vh;

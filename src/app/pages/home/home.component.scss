@@ -26,15 +26,16 @@ mat-card{
     margin-right: 24rem;
     background:#744c24 ;
     width: 335.43px;
-    height: 266px;
+    height: auto;
+    max-height: calc(200px + 66px);
 
 }
 
 .a{
   margin-left: 0.1rem;
   width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
-  height: 75%;
-  max-height: 250px;
+  height: 55%;
+  max-height: 200px;
 }
 
 #gerenciar {
@@ -47,7 +48,7 @@ mat-card {
   margin-right: 24rem;
   background: #744c24;
   width: 245.43px;
-  height: 96px;
+  height: 250px;
 }
 
 #logo-title {
@@ -74,9 +75,6 @@ mat-sidenav-container {
   padding: 2.064516129032258vh;
 }
 
-.content > mat-card {
-  width: 25.806451612903224vh;
-}
 
 button.botao-classe {
     margin-top: 2.929032258064516vh;
