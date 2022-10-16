@@ -21,7 +21,7 @@
 
         <mat-card-actions id="conteudo" fxLayoutAlign="center center" fxLayout="column" >
           Informe a mesa
-          <input #buscaMesa matInput type="number" value="">
+          <input id="mesa" #buscaMesa matInput type="number" value="">
           <button id="btn-card" [disabled]="!(buscaMesa.value !== '' && buscaMesa.valueAsNumber > 0)"
             mat-button (click)="checkComanda(buscaMesa.valueAsNumber)"></button>
 
