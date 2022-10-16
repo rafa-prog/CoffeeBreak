@@ -8,86 +8,104 @@ import { Categoria } from 'src/app/models/categoria';
 import { Medida } from 'src/app/models/medida';
 import { AuthFirebaseService } from 'src/app/services/auth.firebase.service';
 import { ProdutoFirebaseService } from 'src/app/services/produto.firebase.service';
+import { Produto } from 'src/app/models/produto';
 
 @Component({
   selector: 'app-editar-produto',
   templateUrl: './editar-produto.component.html',
   styleUrls: ['./editar-produto.component.scss']
 })
+
 export class EditarProdutoComponent implements OnInit {
-  FormCadProd: FormGroup = this.formBuilder.group({})
+  // Formulários
+  FormEditProd: FormGroup = this.formBuilder.group({})
   isSubmitted: boolean = false
 
+  // Produto
+  produto: Produto;
+
+  // Adicionais
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   adicionais: Adicional[] = [];
   addOnBlur = true;
 
+  // Enums + imagens
   categorias!: string[]
 
   medida: string = '';
   medidas!: string[]
 
-  image:any;
+  imagem: any;
+
   constructor(
   private router: Router,
   private formBuilder: FormBuilder,
   private produtoFs: ProdutoFirebaseService,
-  private authFireService: AuthFirebaseService) { }
+  private authFireService: AuthFirebaseService) {
+    this.produto = this.router.getCurrentNavigation()!.extras.state as Produto;
 
+    console.log(this.produto)
+    if(this.produto === undefined) {
+      this.irParaHome()
+    }
+  }
 
   ngOnInit(): void {
+    /*
+    let user = this.authFireService.userLogged()
+    if(user !== null) {
+      user.providerData.forEach((profile: any) => {
+        alert(profile.email)
+      })
+    }else {
+      this.irParaLogin()
+    }
+    */
+
     this.categorias = Object.keys(Categoria).filter((res) => isNaN(Number(res)));
     this.medidas = Object.keys(Medida).filter((res) => isNaN(Number(res)))
     this.formInit()
   }
 
   formInit() {
-    this.FormCadProd = this.formBuilder.group({
-      nome: ['', [Validators.required, Validators.minLength(3)]],
-      descricao: ['', [Validators.required]],
-      categoria: ['', [Validators.required]],
-      tamanho: ['', [Validators.required, Validators.min(0.1)]],
-      medida: ['', [Validators.required]],
+    this.FormEditProd = this.formBuilder.group({
+      nome: [this.produto.nome, [Validators.required, Validators.minLength(3)]],
+      descricao: [this.produto.nome, [Validators.required]],
+      categoria: [this.produto.categoria, [Validators.required]],
+      tamanho: [this.produto.tamanho, [Validators.required, Validators.min(0.1)]],
+      medida: [this.produto.medida, [Validators.required]],
       adicionais: [null, []],
       foto: [null, [Validators.required]],
-      preco: ['', [Validators.required, Validators.min(0)]],
+      preco: [this.produto.preco, [Validators.required, Validators.min(0)]],
     })
   }
 
   getErrorControl(control: string, error: string): boolean {
-    return (this.FormCadProd.controls[control].touched && this.FormCadProd.controls[control].hasError(error))
+    return (this.FormEditProd.controls[control].touched && this.FormEditProd.controls[control].hasError(error))
   }
 
   onSubmit(): boolean {
     this.isSubmitted = true
-    if(!this.FormCadProd.valid) {
+    if(!this.FormEditProd.valid) {
       alert("Todos os campos são obrigatórios!")
       return false
     }
 
-    this.cadastrar()
+    this.editar()
     return true
   }
 
-  private cadastrar() {
-    this.FormCadProd.controls['adicionais'].setValue(this.adicionais)
-    this.produtoFs.createProduto(this.FormCadProd.value)
-    .then(() => {
-      alert("Produto cadastrado")
-      this.irParaHome()
-    })
-    .catch((err) => {
-      alert("Erro no cadastro!")
-      console.log(err)
-    })
+  private async editar() {
+    this.FormEditProd.controls['adicionais'].setValue(this.adicionais)
+    this.produtoFs.updateImg(this.imagem, this.FormEditProd.value)
   }
 
   salvaMedida(medida: string) {
     this.medida = medida
   }
 
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
+  add(evento: MatChipInputEvent): void {
+    const value = (evento.value || '').trim();
 
     // Add our fruit
     if (value) {
@@ -95,7 +113,7 @@ export class EditarProdutoComponent implements OnInit {
     }
 
     // Clear the input value
-    event.chipInput!.clear();
+    evento.chipInput!.clear();
   }
 
   remove(adicional: Adicional): void {
@@ -106,8 +124,8 @@ export class EditarProdutoComponent implements OnInit {
     }
   }
 
-  uploadFile(image:any){
-    this.image = image.files;
+  uploadFile(evento: any){
+    this.imagem = evento.target.files[0];
   }
 
   irParaLogin() {
@@ -117,9 +135,10 @@ export class EditarProdutoComponent implements OnInit {
   irParaHome() {
     this.router.navigate(['/home'])
   }
+
   irParaCadastro(){
     this.router.navigate(['/cadastro'])
   }
-  }
+}
 
 

@@ -13,13 +13,10 @@
         </mat-card-content>
 
         <mat-card-actions fxLayoutAlign="center center" fxLayout="column" >
-          <form [formGroup]="FormComanda" >
+          <input #buscaMesa matInput type="number" value="">
+          <button id="btn-card" [disabled]="!(buscaMesa.value !== '' && buscaMesa.valueAsNumber > 0)"
+            mat-button (click)="checkComanda(buscaMesa.valueAsNumber)">Buscar comanda</button>
 
-            <mat-form-field>
-              <input matInput placeholder="Mesa" id="mesa" type="number" formControlName="mesa">
- 
-            </mat-form-field>
-          </form>
 
           <div  fxLayoutAlign="center center" fxLayout="row">
             <button  id="btn-decrementador" mat-button [disabled]="quantidadeProduto > 1 ? false : true" (click)="sub()">-</button>

@@ -20,7 +20,7 @@
           Produto
         </div>
           <div>
-            <button class="botao-classe" (click)="irParaCadastro()">Incluir</button>
+            <button class="botao-classe" (click)="irParaCadastroProduto()">Incluir</button>
 
             <button class="botao-classe">Consultar</button>
 
@@ -38,7 +38,7 @@
           <div id="search">
                 <input id="search-text" type="text">
                 <button id="btn-search" >
-                  <mat-icon >search</mat-icon>
+                  buscar
                 </button>
           </div>
           <div id="conteudo">
@@ -64,7 +64,7 @@
                               </p>
                             </mat-card-content>
                             <mat-card-actions id="btn-actions">
-                              <button mat-button id="btn-card" (click)="irParaEditarProduto()"><mat-icon>edit</mat-icon></button>
+                              <button mat-button id="btn-card" (click)="irParaEditarProduto(produto)"><mat-icon>edit</mat-icon></button>
                               <button mat-button id="btn-card"><mat-icon>delete</mat-icon></button>
                             </mat-card-actions>
                           </mat-card>

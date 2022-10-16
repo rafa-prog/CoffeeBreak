@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Produto } from '../models/produto';
 
-import { FirebaseApp } from '@angular/fire/app';
 import {
   doc,
   query,
@@ -17,7 +16,7 @@ import {
   collectionData
 } from '@angular/fire/firestore'
 
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from '@angular/fire/storage';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from '@angular/fire/storage';
 
 
 @Injectable({
@@ -32,6 +31,8 @@ export class ProdutoFirebaseService {
   createProduto(produto: Produto) {
     produto.id = doc(collection(this.afs, 'id')).id
     return addDoc(collection(this.afs, this.PATH), produto)
+    .then(() =>{alert('Produto cadastrado com sucesso!')})
+    .catch(() => {alert('Erro ao cadastrar o produto, tente novamente!')})
   }
 
   readProdutos(): Observable<Produto[]> {
@@ -55,9 +56,9 @@ export class ProdutoFirebaseService {
     return docData(prodRef) as Observable<Produto>
   }
 
-  updateProduto(produto: Produto, produtos: any) {
+  updateProduto(produto: Produto, id: any) {
     let docRef = doc(this.afs, this.PATH + '/${produto.id}')
-    return updateDoc(docRef, produtos)
+    return updateDoc(docRef, id)
   }
 
   deleteProduto(produto: Produto) {
@@ -65,7 +66,7 @@ export class ProdutoFirebaseService {
     return deleteDoc(docRef)
   }
 
-  async enviarImg(imagem: any, produto: Produto) {
+  enviarImg(imagem: any, produto: Produto) {
 
     const storage = getStorage()
 
@@ -95,26 +96,84 @@ export class ProdutoFirebaseService {
         // https://firebase.google.com/docs/storage/web/handle-errors
         switch (error.code) {
           case 'storage/unauthorized':
-            // User doesn't have permission to access the object
+            alert("Você não possui permissão para isso!")
             break;
           case 'storage/canceled':
-            // User canceled the upload
+            alert('Download cancelado!')
             break;
-
-          // ...
-
           case 'storage/unknown':
-            // Unknown error occurred, inspect error.serverResponse
+            alert('Um erro inesperado aconteceu!')
             break;
         }
       },
       () => {
         // Upload completed successfully, now we can get the download URL
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log('File available at', downloadURL);
           produto.foto = downloadURL;
-          console.log('teste ' + produto.foto)
-          //this.createProduto(produto)
+          this.createProduto(produto)
+        });
+      })
+  }
+
+  updateImg(imagem: any, produto: Produto) {
+    // Primeiro excluir a imagem
+    const storage = getStorage();
+
+    const firePath = 'https://firebasestorage.googleapis.com/v0/b/appproduto-5be2b.appspot.com/o/';
+
+    const link = produto.foto;
+
+    let imagePath:string = link.replace(firePath,"");
+
+    const indexOfEndPath = imagePath.indexOf("?");
+
+    imagePath = imagePath.substring(0, indexOfEndPath);
+
+    imagePath = imagePath.replace("%2F","/");
+
+    const imageRef = ref(storage, imagePath);
+
+    deleteObject(imageRef).catch((err) => {alert(err);})
+
+    // Envio da imagem
+    const path = `imagens/${new Date().getTime()}_${imagem.name}`
+
+    // Upload file and metadata to the object 'images/mountains.jpg'
+    const storageRef = ref(storage, path);
+    const uploadTask = uploadBytesResumable(storageRef, imagem);
+
+    // Listen for state changes, errors, and completion of the upload.
+    uploadTask.on('state_changed',
+      (snapshot) => {
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            break;
+        }
+      },
+      (error) => {
+        switch (error.code) {
+          case 'storage/unauthorized':
+            alert("Você não possui permissão para isso!")
+            break;
+          case 'storage/canceled':
+            alert('Download cancelado!')
+            break;
+          case 'storage/unknown':
+            alert('Um erro inesperado aconteceu!')
+            break;
+        }
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          produto.foto = downloadURL;
+          this.updateProduto(produto, produto.id)
         });
       })
   }

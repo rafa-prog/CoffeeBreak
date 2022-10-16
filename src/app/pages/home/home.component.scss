@@ -10,18 +10,26 @@ mat-sidenav{
 
 }
 
-
 mat-card{
     margin-top: 0.5rem;
     margin-right: 24rem;
     background:#744c24 ;
-    width: 245.43px;
-    height: 96px;
+    width: 335.43px;
+    height: 266px;
+
+}
+
+.a{
+  margin-left: 0.1rem;
+  width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+  height: 75%;
+  max-height: 250px;
 }
 
 #logo-title{
     color:  #463623;
 }
+
 #conteudo{
 
     height: 100%;
@@ -33,6 +41,7 @@ mat-card{
     color: black;
     border-width: 1.2903225806451613vh;
 }
+
 mat-sidenav-container{
     height: 100%;
     background-color: #E2D1BB;
@@ -45,6 +54,7 @@ mat-sidenav-container{
 .content > mat-card {
     width: 25.806451612903224vh;
 }
+
 button.botao-classe {
     margin-top: 2.929032258064516vh;
     height:8.258064516129032vh ;
@@ -54,12 +64,14 @@ button.botao-classe {
     transition: all 0.75s;
     z-index: 1;
     overflow: hidden;
-  }
-  button.botao-classe:hover {
+}
+
+button.botao-classe:hover {
     animation-fill-mode: forwards;
     color: #3498db;
     background-color: #E2D1BB;
-  }
+}
+
 #search{
     background-color: #D2B590;
     color: black;
@@ -70,14 +82,13 @@ button.botao-classe {
     border-radius: 37.16129032258065vh;
 
 
-input[type=text] {
+  input[type=text] {
     margin:  0.6193548387096774vh;
     width:  157.93548387096774vh;
     border-radius: 37.16129032258065vh;
     }
-
-
 }
+
 #btn-search{
     border-radius: 37.16129032258065vh;
 }

@@ -88,14 +88,6 @@ export class CadastroProdutoComponent implements OnInit {
   private cadastrar() {
     this.FormCadProd.controls['adicionais'].setValue(this.adicionais)
     this.produtoFs.enviarImg(this.imagem, this.FormCadProd.value)
-    .then(() => {
-      alert("Produto cadastrado")
-      this.irParaHome()
-    })
-    .catch((err) => {
-      alert("Erro no cadastro!")
-      console.log(err)
-    })
   }
 
   salvaMedida(medida: string) {
@@ -133,8 +125,8 @@ export class CadastroProdutoComponent implements OnInit {
   irParaHome() {
     this.router.navigate(['/home'])
   }
+
   irParaCadastro(){
     this.router.navigate(['/cadastro'])
   }
-
 }

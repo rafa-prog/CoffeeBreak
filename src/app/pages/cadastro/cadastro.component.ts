@@ -24,16 +24,16 @@ export class CadastroComponent implements OnInit {
     this.produtoFs.readProdutos().subscribe((data: Produto[]) => {this.produtos = data})
   }
 
-  irParaCadastro() {
+  irParaCadastroProduto() {
     this.router.navigate(['/cadastro-produto'])
   }
-
 
   irParaCadastroFuncionario(){
     this.router.navigateByUrl('/cadastro-funcionario')
   }
-  irParaEditarProduto(){
-    this.router.navigateByUrl('/editar-produto')
+
+  irParaEditarProduto(produto: Produto){
+    this.router.navigateByUrl('/editar-produto', { state: produto})
   }
   irParaHome() {
     this.router.navigate(['/home'])

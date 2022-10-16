@@ -1,24 +1,24 @@
 <div class="conteudo-de-fora" fxLayoutAlign="center center" fxFlexFill>
 
     <mat-card >
-      <form [formGroup]="FormCadProd" (ngSubmit)="onSubmit()" fxLayout="column">
+      <form [formGroup]="FormEditProd" (ngSubmit)="onSubmit()" fxLayout="column">
         <button mat-button id="btn-voltar" (click)="irParaCadastro()">Voltar</button>
-  
+
         <mat-toolbar color="primary" fxLayoutAlign="center center">Editar Produto</mat-toolbar>
-  
+
         <mat-form-field>
           <input matInput placeholder="Nome" id="nome" type="text" formControlName="nome">
           <mat-error *ngIf="getErrorControl('nome', 'required')">nome obrigatório!</mat-error>
           <mat-error *ngIf="getErrorControl('nome', 'minlength')">nome inválido!</mat-error>
         </mat-form-field>
-  
+
         <mat-form-field>
           <mat-select placeholder="Categoria" id="categoria" formControlName="categoria">
             <mat-option *ngFor="let categoria of categorias" value="{{ categoria }}">{{ categoria }}</mat-option>
           </mat-select>
           <mat-error *ngIf="getErrorControl('categoria', 'required')">categoria obrigatória!</mat-error>
         </mat-form-field>
-  
+
         <mat-form-field>
           <mat-label>Medida</mat-label>
           <mat-select id="medida" formControlName="medida" (selectionChange)="salvaMedida($event.value)">
@@ -26,20 +26,20 @@
           </mat-select>
           <mat-error *ngIf="getErrorControl('medida', 'required')">medida obrigatória!</mat-error>
        </mat-form-field>
-  
+
         <mat-form-field>
           <mat-label>Tamanho</mat-label>
           <span matPrefix>{{ medida }}&nbsp;</span>
           <input matInput placeholder="250" class="example-right-align" id="tamanho" type="number" formControlName="tamanho">
           <mat-error *ngIf="getErrorControl('tamanho', 'required')">tamanho obrigatório!</mat-error>
         </mat-form-field>
-  
+
         <mat-form-field>
           <mat-label>Descrição</mat-label>
           <input matInput placeholder="Ótimo acompanhamento..." id="descricao" type="text" formControlName="descricao">
           <mat-error *ngIf="getErrorControl('descricao', 'required')">descrição obrigatória!</mat-error>
         </mat-form-field>
-  
+
         <mat-form-field>
           <mat-label>Preço</mat-label>
           <span matPrefix>R$&nbsp;</span>
@@ -47,14 +47,14 @@
           <mat-error *ngIf="getErrorControl('preco', 'required')">preço obrigatório!</mat-error>
           <mat-error *ngIf="getErrorControl('preco', 'minlength')">preço inválido!</mat-error>
         </mat-form-field>
-  
+
         <mat-form-field>
-  
+
           <input placeholder="foto" id="upload-file-container" formControlName="foto" type="file">
           <mat-error *ngIf="getErrorControl('foto', 'required')">foto obrigatória!</mat-error>
           <input matInput [hidden]="true">
         </mat-form-field>
-  
+
         <mat-form-field>
           <mat-label>Adicionais</mat-label>
           <mat-chip-list #chipList>
@@ -70,12 +70,11 @@
               [matChipInputAddOnBlur]="addOnBlur"
               (matChipInputTokenEnd)="add($event)">
           </mat-chip-list>
-  
+
         </mat-form-field>
-  
+
         <button id="btn-card" mat-button type="submit">Editar produto</button>
-  
+
       </form>
     </mat-card>
   </div>
-  
