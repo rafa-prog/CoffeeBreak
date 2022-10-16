@@ -1,3 +1,4 @@
+import { ENTER } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Funcionario } from 'src/app/models/funcionario';
@@ -11,7 +12,18 @@ import { ProdutoFirebaseService } from 'src/app/services/produto.firebase.servic
   styleUrls: ['./cadastro.component.scss']
 })
 export class CadastroComponent implements OnInit {
+  categorias!: string[];
 
+  panelOpenState!: boolean[];
+
+  isAdmin: boolean = false;
+  userEmail!: string;
+
+  readonly separatorKeysCodes = [ENTER] as const
+  addOnBlur = true;
+
+  categoria: string = '';
+  busca: string = '';
   produtos: Produto[] = [];
   funcionarios: Funcionario[] = [];
 
@@ -46,5 +58,18 @@ export class CadastroComponent implements OnInit {
   }
   irParaHome() {
     this.router.navigate(['/home'])
+  }
+  addCategory(categoria:string){
+    this.categoria = categoria;
+  }
+  searchByText(busca:string){
+    this.busca = busca;
+    return '';
+  }
+  removeCategory(){
+    this.categoria='';
+  }
+  removeSearch(){
+    this.busca='';
   }
 }
