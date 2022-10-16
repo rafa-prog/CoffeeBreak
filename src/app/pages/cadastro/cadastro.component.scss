@@ -1,120 +1,136 @@
-mat-sidenav{
-    width:  25.806451612903224vh;
-    height: 100%;
-    border-right: none;
-    background: #bb8e5d;///#9b6b43;
-    color: white;
+mat-sidenav {
+  width: 25.806451612903224vh;
+  height: 100%;
+  border-right: none;
+  background: #bb8e5d; ///#9b6b43;
+  color: white;
 
-    padding: 2.064516129032258vh;
-    text-align: center;
-    
+  padding: 2.064516129032258vh;
+  text-align: center;
 }
-#btn-actions{
-    margin-top: 2rem;
+#btn-actions {
+  margin-top: 2rem;
 }
-mat-card{
-    background:#744c24 ;
-    margin-top: 0.5rem;
-    margin-right: 24rem;
-    width: 280.2px;
-    height: 240px;
+mat-card {
+  background: #744c24;
+  margin-top: 0.5rem;
+  margin-right: 24rem;
+  width: 280.2px;
+  height: 240px;
 }
-#logo-title{
-    color:  #463623;
+#logo-title {
+  color: #463623;
 }
-#conteudo{
-    
-    height: 100%;
-    border-radius: 1.2903225806451613vh;
-    margin-top: 0.2064516129032258vh;
-    margin-right: 0.2064516129032258vh;
-    display: flex;
-    font-size: 4.129032258064516vh;
-    color: black;
-    border-width: 1.2903225806451613vh;
+#conteudo {
+  height: 100%;
+  border-radius: 1.2903225806451613vh;
+  margin-top: 0.2064516129032258vh;
+  margin-right: 0.2064516129032258vh;
+  display: flex;
+  font-size: 4.129032258064516vh;
+  color: black;
+  border-width: 1.2903225806451613vh;
 }
-mat-sidenav-container{
-    height: 100%;
-    background-color: #E2D1BB;
+mat-sidenav-container {
+  height: 100%;
+  background-color: #e2d1bb;
 }
 
-#botoes-side-bar{
-    margin-top: 25%;
+#botoes-side-bar {
+  margin-top: 25%;
 }
 
 .content {
-    padding: 2.064516129032258vh;
+  padding: 2.064516129032258vh;
 }
 
 .content > mat-card {
-    width: 25.806451612903224vh;
+  width: 25.806451612903224vh;
 }
 button.botao-classe {
-    margin-top: 2.129032258064516vh;
-    height:8.258064516129032vh ;
-    width: 20.64516129032258vh;
-    border-radius:1.2903225806451613vh;
-    background-color: #D2B590;
-    transition: all 0.75s;
-    z-index: 1;
-    overflow: hidden;
-  }
-  button.botao-classe:hover {
-    animation-fill-mode: forwards;
-    color: #3498db;
-    background-color: #E2D1BB;
-  }
+  margin-top: 2.129032258064516vh;
+  height: 8.258064516129032vh;
+  width: 20.64516129032258vh;
+  border-radius: 1.2903225806451613vh;
+  background-color: #d2b590;
+  transition: all 0.75s;
+  z-index: 1;
+  overflow: hidden;
+}
+button.botao-classe:hover {
+  animation-fill-mode: forwards;
+  color: #3498db;
+  background-color: #e2d1bb;
+}
+#editar {
+  height: 20px;
+  width: 20px;
+}
+#excluir {
+  height: 20px;
+  width: 20px;
+}
+#home{
+    height: 25px;
+    width: 25px;
+}
+#incluir-u{
+    height: 25px;
+    width: 25px;
+}
+#incluir-p{
+    height: 25px;
+    width: 25px;
+}
+#search {
+  background-color: #d2b590;
+  color: black;
+  height: 5.5%;
+  margin-top: 1.064516129032258vh;
+  margin-right: 2.064516129032258vh;
+  margin-left: 0.2064516129032258vh;
+  border-radius: 37.16129032258065vh;
+}
 
-#search{
-    background-color: #D2B590;
-    color: black;
-    height: 5.5%;
-    margin-top: 1.064516129032258vh;
-    margin-right: 2.064516129032258vh;
-    margin-left: 0.2064516129032258vh;
-    border-radius: 37.16129032258065vh;
-}
-#search-text{
-    
-   
-    width:  157.93548387096774vh;
-    border-radius: 17.16129032258065vh;
-    height: 1.8em;
+#search-text {
+  margin-left: 1.2064516129032258vh;
+  width: 157.93548387096774vh;
+  border-radius: 17.16129032258065vh;
+  height: 1.8em;
 }
 
-#btn-search{
-    margin:  0.6183548387096774vh;
-    border-radius: 37.16129032258065vh;
-    height: 2.4em;
-    padding: 1px 9px;
+#btn-search {
+  margin: 0.6183548387096774vh;
+  border-radius: 37.16129032258065vh;
+  height: 2.4em;
+  padding: 1px 9px;
 }
 
-
-#btn-card{ 
-    margin-left: 20px;
-    width: 40%;
-    background-color: white;
-    color:black;
+#btn-card {
+  margin-left: 20px;
+  width: 40%;
+  background-color: white;
+  color: black;
 }
-#funcionario-tag{
-    border-radius: 1em;
-    background-color: black;
-    width: 100%;
+#funcionario-tag {
+  border-radius: 1em;
+  background-color: black;
+  width: 100%;
 }
-#produto-tag{
-    border-radius: 2em;
-    margin-top: 1em;
-    background-color: black;
-    width: 100%;
+#produto-tag {
+  border-radius: 2em;
+  margin-top: 1em;
+  background-color: black;
+  width: 100%;
 }
-#row{
-    margin-top: 1em;
-    background-color: black;
-    width: 100%;
-    height: 0.1em;
+#row {
+  margin-top: 1em;
+  background-color: black;
+  width: 100%;
+  height: 0.1em;
 }
-#botão-voltar-home{
-    margin-top: 12rem;
+#botão-voltar-home {
+  margin-top: 12rem;
 }
 //<button mat-button color="primary" (click)="irParaCadastro()">Cadastro</button>
 //<button mat-button color="primary" (click)="irParaDetalhar()">Detalhes</button>

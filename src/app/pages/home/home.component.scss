@@ -1,89 +1,104 @@
-mat-sidenav{
-    width:  25.806451612903224vh;
-    height: 100%;
-    border-right: none;
-    background: #bb8e5d;///#9b6b43;
-    color: white;
+mat-sidenav {
+  width: 25.806451612903224vh;
+  height: 100%;
+  border-right: none;
+  background: #bb8e5d; ///#9b6b43;
+  color: white;
 
-    padding: 2.0645162re129032258vh;
-    text-align: center;
-
+  padding: 2.0645162re129032258vh;
+  text-align: center;
+}
+#comanda {
+  height: 20px;
+  width: 20px;
+}
+#pagamento {
+  height: 20px;
+  width: 20px;
+}
+#desconectar {
+  height: 20px;
+  width: 20px;
 }
 
-
-mat-card{
-    margin-top: 0.5rem;
-    margin-right: 24rem;
-    background:#744c24 ;
-    width: 245.43px;
-    height: 96px;
+#gerenciar {
+  height: 20px;
+  width: 20px;
 }
 
-#logo-title{
-    color:  #463623;
+mat-card {
+  margin-top: 0.5rem;
+  margin-right: 24rem;
+  background: #744c24;
+  width: 245.43px;
+  height: 96px;
 }
-#conteudo{
 
-    height: 100%;
-    border-radius: 1.2903225806451613vh;
-    margin-top: 0.2064516129032258vh;
-    margin-right: 0.2064516129032258vh;
-    display: flex;
-    font-size: 4.129032258064516vh;
-    color: black;
-    border-width: 1.2903225806451613vh;
+#logo-title {
+  color: #463623;
 }
-mat-sidenav-container{
-    height: 100%;
-    background-color: #E2D1BB;
+#conteudo {
+  height: 100%;
+  border-radius: 1.2903225806451613vh;
+  margin-top: 0.2064516129032258vh;
+  margin-right: 0.2064516129032258vh;
+  display: flex;
+  font-size: 4.129032258064516vh;
+  color: black;
+  border-width: 1.2903225806451613vh;
+}
+mat-sidenav-container {
+  height: 100%;
+  background-color: #e2d1bb;
 }
 
 .content {
-    padding: 2.064516129032258vh;
+  padding: 2.064516129032258vh;
 }
 
 .content > mat-card {
-    width: 25.806451612903224vh;
+  width: 25.806451612903224vh;
 }
 button.botao-classe {
-    margin-top: 2.929032258064516vh;
-    height:8.258064516129032vh ;
-    width: 19.64516129032258vh;
-    border-radius:1.2903225806451613vh;
-    background-color: #D2B590;
-    transition: all 0.75s;
-    z-index: 1;
-    overflow: hidden;
-  }
-  button.botao-classe:hover {
-    animation-fill-mode: forwards;
-    color: #3498db;
-    background-color: #E2D1BB;
-  }
-#search{
-    background-color: #D2B590;
-    color: black;
-    height: 4%;
-    margin-top: 2.064516129032258vh;
-    margin-right: 2.064516129032258vh;
-    margin-left: 0.2064516129032258vh;
-    border-radius: 37.16129032258065vh;
-
-
-input[type=text] {
-    margin:  0.6193548387096774vh;
-    width:  157.93548387096774vh;
-    border-radius: 37.16129032258065vh;
-    }
-
-
+  margin-top: 2.929032258064516vh;
+  height: 8.258064516129032vh;
+  width: 19.64516129032258vh;
+  border-radius: 1.2903225806451613vh;
+  background-color: #d2b590;
+  transition: all 0.75s;
+  z-index: 1;
+  overflow: hidden;
 }
-#btn-search{
-    border-radius: 37.16129032258065vh;
+button.botao-classe:hover {
+  animation-fill-mode: forwards;
+  color: #3498db;
+  background-color: #e2d1bb;
+}
+#search {
+  background-color: #d2b590;
+  color: black;
+  height: 5.5%;
+  margin-top: 1.064516129032258vh;
+  margin-right: 2.064516129032258vh;
+  margin-left: 0.2064516129032258vh;
+  border-radius: 37.16129032258065vh;
 }
 
-#btn-card{
-    margin-left:    15.483870967741936vh;
+#search-text {
+  margin-left: 1.2064516129032258vh;
+  width: 157.93548387096774vh;
+  border-radius: 17.16129032258065vh;
+  height: 1.8em;
+}
+
+#btn-search {
+    margin:  0.6183548387096774vh;
+    border-radius: 37.16129032258065vh;
+    height: 2.4em;
+    padding: 1px 9px;
+}
+#btn-card {
+  margin-left: 15.483870967741936vh;
 }
 //<button mat-button color="primary" (click)="irParaCadastro()">Cadastro</button>
 //<button mat-button color="primary" (click)="irParaDetalhar()">Detalhes</button>

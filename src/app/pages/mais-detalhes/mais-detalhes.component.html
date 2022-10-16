@@ -1,6 +1,10 @@
 <div id="conteudo-de-fora" fxLayoutAlign="center center" fxFlexFill>
     <mat-card fxLayout="column" id="card-item">
-        <button mat-button id="btn-voltar"   (click)="irParaHome()">Voltar</button>
+        <button mat-button id="btn-voltar"   (click)="irParaHome()">
+          <svg id="voltar" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+          </svg>
+        </button>
         <mat-toolbar color="primary" color="primary" fxLayoutAlign="center center">{{ produto.nome }} </mat-toolbar>
 
         <mat-card-content>
@@ -22,15 +26,28 @@
           </form>
 
           <div  fxLayoutAlign="center center" fxLayout="row">
-            <button  id="btn-decrementador" mat-button [disabled]="quantidadeProduto > 1 ? false : true" (click)="sub()">-</button>
+            <button  id="btn-decrementador" mat-button [disabled]="quantidadeProduto > 1 ? false : true" (click)="sub()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z"/>
+              </svg>
+            </button>
             <input id="input-valor" [disabled]="true" type="number" [value]="quantidadeProduto">
-            <button id="btn-incrementador" mat-button (click)="add()">+</button>
+            <button id="btn-incrementador" mat-button (click)="add()">
+              <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+              </svg>
+            </button>
           </div>
 
 
           <mat-label>Preço: {{ precoTotal * quantidadeProduto }}</mat-label>
 
-          <button id="btn-card" mat-button type="submit">Adicionar para a comanda</button>
+          <button id="btn-card" mat-button type="submit">
+            <svg id="adicionar" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+              <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+              <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+            </svg>
+          </button>
         </mat-card-actions>
     </mat-card>
 </div>
