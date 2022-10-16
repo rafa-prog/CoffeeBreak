@@ -95,34 +95,6 @@ button.botao-classe:hover {
     background-color: #E2D1BB;
 }
 
-#search{
-    background-color: #D2B590;
-    color: black;
-    height: 4%;
-    margin-top: 2.064516129032258vh;
-    margin-right: 2.064516129032258vh;
-    margin-left: 0.2064516129032258vh;
-    border-radius: 37.16129032258065vh;
-
-
-  input[type=text] {
-    margin:  0.6193548387096774vh;
-    width:  157.93548387096774vh;
-    border-radius: 37.16129032258065vh;
-    }
-}
-
-#btn-search{
-    border-radius: 37.16129032258065vh;
-  margin-top: 2.929032258064516vh;
-  height: 8.258064516129032vh;
-  width: 19.64516129032258vh;
-  border-radius: 1.2903225806451613vh;
-  background-color: #d2b590;
-  transition: all 0.75s;
-  z-index: 1;
-  overflow: hidden;
-}
 button.botao-classe:hover {
   animation-fill-mode: forwards;
   color: #3498db;
