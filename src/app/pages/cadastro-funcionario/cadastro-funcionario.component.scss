@@ -8,7 +8,9 @@ mat-card{
     width: 60%;
     height: 20%;
  }
- 
+ .insercao input {
+   caret-color: white;
+ }
  ::ng-deep .mat-focused .mat-form-field-label {
     /*change color of label*/
     color: #E2D1BB !important;

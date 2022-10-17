@@ -28,7 +28,9 @@ mat-card{
  input.example-right-align::-webkit-inner-spin-button {
    display: none;
  }
- 
+ .insercao input {
+   caret-color: white;
+ }
  
  ::ng-deep .mat-focused .mat-form-field-label {
     /*change color of label*/
