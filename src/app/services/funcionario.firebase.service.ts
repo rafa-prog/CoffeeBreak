@@ -64,7 +64,7 @@ export class FuncionarioFirebaseService {
   }
 
   deleteFuncionario(funcionario: Funcionario) {
-    let docRef = doc(this.afs, this.PATH + funcionario.id)
+    let docRef = doc(this.afs, this.PATH + '/' + funcionario.id)
     return deleteDoc(docRef)
   }
 }

@@ -36,7 +36,7 @@ export class MaisDetalhesComponent implements OnInit {
     this.produto = this.router.getCurrentNavigation()!.extras.state as Produto;
 
     console.log(this.produto)
-    if(this.produto === undefined) {
+    if(this.produto === null) {
       this.irParaHome()
     }
 
@@ -44,25 +44,11 @@ export class MaisDetalhesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*let user = this.authFireService.userLogged() // Verifica login
-    if(user !== null) {
-      user.providerData.forEach((profile: any) => {
-        this.userEmail = profile.email
-      })
-    }else {
+    let user = this.authFireService.userLogged() // Verifica login
+    if(user === null) {
       this.irParaLogin()
-    }*/
+    }
 
-    this.funcionarioFs.readFuncionarios() // Verifica se o usuário logado é administrador
-    .subscribe((data: Funcionario[]) => {
-      let funcionarios = data.filter(funcionario => funcionario.email === this.userEmail)
-
-      if(funcionarios.length > 0) {
-        this.isAdmin = funcionarios[0].admin
-      }
-    })
-
-    this.isAdmin = true // Remover DEPOS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     this.quantidadeProduto = 1
   }
 
@@ -102,5 +88,9 @@ export class MaisDetalhesComponent implements OnInit {
 
   irParaComanda(param: Comanda) {
     this.router.navigateByUrl('/comanda', {state : {comanda: param}})
+  }
+
+  irParaLogin() {
+    this.router.navigate(['/'])
   }
 }

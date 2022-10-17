@@ -45,8 +45,19 @@ import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 import { EditarProdutoComponent } from './pages/editar-produto/editar-produto.component';
 import { EditarFuncionarioComponent } from './pages/editar-funcionario/editar-funcionario.component';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
+import { CurrencyMaskModule, CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from "ng2-currency-mask";
+import { BrMaskerModule } from 'br-mask';
+
+export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
+  align: "left",
+  allowNegative: false,
+  decimal: ".",
+  precision: 2,
+  prefix: "",
+  suffix: "",
+  thousands: ""
+};
 
 @NgModule({
   declarations: [
@@ -88,11 +99,13 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatCheckboxModule,
     MatChipsModule,
     MatExpansionModule,
-    MatProgressSpinnerModule,
+    BrMaskerModule,
+    CurrencyMaskModule,
   ],
   providers: [
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    {provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig}
   ],
   bootstrap: [AppComponent]
 })

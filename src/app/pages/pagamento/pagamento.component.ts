@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Comanda } from 'src/app/models/comanda';
+import { AuthFirebaseService } from 'src/app/services/auth.firebase.service';
 import { ComandaFirebaseService } from 'src/app/services/comanda.firebase.service';
 
 @Component({
@@ -16,9 +17,14 @@ export class PagamentoComponent implements OnInit {
   constructor(
   private router: Router,
   private comandaFs: ComandaFirebaseService,
-  ) {}
+  private authFireService: AuthFirebaseService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let user = this.authFireService.userLogged()
+    if(user === null) {
+      this.irParaLogin()
+    }
+  }
 
   buscarMesa(mesa: number) {
     this.comandaFs.comandaQueryByMesa(mesa).then((data: Comanda) => {this.comanda = data})
@@ -29,5 +35,9 @@ export class PagamentoComponent implements OnInit {
 
   irParaHome() {
     this.router.navigate(['/home'])
+  }
+
+  irParaLogin() {
+    this.router.navigate(['/'])
   }
 }

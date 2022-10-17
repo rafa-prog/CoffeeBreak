@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Produto } from 'src/app/models/produto';
+import { AuthFirebaseService } from 'src/app/services/auth.firebase.service';
 
 @Component({
   selector: 'app-comanda',
@@ -12,9 +14,15 @@ export class ComandaComponent implements OnInit {
 
   quantidadeProduto: number = 1
 
-  constructor() { }
+  constructor(
+  private router: Router,
+  private authFireService: AuthFirebaseService) {}
 
   ngOnInit(): void {
+    let user = this.authFireService.userLogged()
+    if(user === null) {
+      this.irParaLogin()
+    }
   }
 
   add(quantidade: number) {
@@ -25,4 +33,7 @@ export class ComandaComponent implements OnInit {
     quantidade -= 1
   }
 
+  irParaLogin() {
+    this.router.navigate(['/'])
+  }
 }

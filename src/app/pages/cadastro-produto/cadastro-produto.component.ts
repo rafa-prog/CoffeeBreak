@@ -45,13 +45,13 @@ export class CadastroProdutoComponent implements OnInit {
   private funcionarioFs: FuncionarioFirebaseService) { }
 
   ngOnInit(): void {
-    let user = this.authFireService.userLogged() // Verifica login
+    let user = this.authFireService.userLogged()
     if(user !== null) {
       user.providerData.forEach((profile: any) => {
         this.userEmail = profile.email
       })
     }else {
-      // this.irParaLogin()
+      this.irParaLogin()
     }
 
     if(this.userEmail) {
@@ -60,11 +60,10 @@ export class CadastroProdutoComponent implements OnInit {
         this.isAdmin = data.admin
         }else {
           this.isAdmin = false
+          this.irParaHome()
         }
       })
     }
-
-    this.isAdmin = true // Remover DEPOS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
     this.categorias = Object.keys(Categoria).filter((res) => isNaN(Number(res)));
     this.medidas = Object.keys(Medida).filter((res) => isNaN(Number(res)))
@@ -76,7 +75,7 @@ export class CadastroProdutoComponent implements OnInit {
       nome: ['', [Validators.required, Validators.minLength(3)]],
       descricao: ['', [Validators.required]],
       categoria: ['', [Validators.required]],
-      tamanho: ['', [Validators.required, Validators.min(0.1)]],
+      tamanho: ['', [Validators.required, Validators.min(0.00)]],
       medida: ['', [Validators.required]],
       adicionais: [null],
       foto: [null, [Validators.required]],
@@ -99,9 +98,9 @@ export class CadastroProdutoComponent implements OnInit {
     return true
   }
 
-  private cadastrar() {
+  private async cadastrar() {
     this.FormCadProd.controls['adicionais'].setValue(this.adicionais)
-    this.produtoFs.enviarImg(this.imagem, this.FormCadProd.value)
+    await this.produtoFs.enviarImg(this.imagem, this.FormCadProd.value)
 
     this.irParaCadastro()
   }

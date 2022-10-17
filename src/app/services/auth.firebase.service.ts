@@ -16,15 +16,16 @@ export class AuthFirebaseService {
   private funcionarioFs: FuncionarioFirebaseService) {}
 
   authentication() {
-    this.auth = getAuth()
+    return this.auth = getAuth()
   }
 
   createUser(conta: Funcionario, senha: string) {
     this.authentication()
 
-    return createUserWithEmailAndPassword(this.auth, conta.email, senha)
+    createUserWithEmailAndPassword(this.auth, conta.email, senha)
     .then(() => {
       let funcionario = {id: '', nome: conta.nome, telefone: conta.telefone, email: conta.email, admin: conta.admin}
+
       this.funcionarioFs.createFuncionario(funcionario)
       .then(() => {alert("funcionário cadastrado com sucesso!")})
       .catch((error) => {
@@ -35,7 +36,7 @@ export class AuthFirebaseService {
     })
     .catch((error) => {
       console.log('vixi')
-      alert("Ocorreu um erro durante o cadastro, tente novamente!")
+      alert("Ocorreu um erro durante o cadastro, tente novamente! " + error)
       return error
     })
   }
@@ -45,12 +46,10 @@ export class AuthFirebaseService {
 
     return sendPasswordResetEmail(this.auth, email)
     .then(() => {
-      alert('Enviando recuperção de senha para: ' + email)
+      alert('Enviando recuperação de senha para: ' + email + ', verifique a caixa de spam/lixo também!')
     })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
+    .catch(() => {
+      alert('Ocorreu um erro durante o envio do email para redefinir a senha')
     });
   }
 
@@ -69,3 +68,4 @@ export class AuthFirebaseService {
     return this.auth.currentUser
   }
 }
+

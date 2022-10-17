@@ -9,6 +9,7 @@ import { Medida } from 'src/app/models/medida';
 import { AuthFirebaseService } from 'src/app/services/auth.firebase.service';
 import { ProdutoFirebaseService } from 'src/app/services/produto.firebase.service';
 import { Produto } from 'src/app/models/produto';
+import { FuncionarioFirebaseService } from 'src/app/services/funcionario.firebase.service';
 
 @Component({
   selector: 'app-editar-produto',
@@ -21,6 +22,8 @@ export class EditarProdutoComponent implements OnInit {
   FormEditProd: FormGroup = this.formBuilder.group({})
   isSubmitted: boolean = false
 
+  userEmail!: string;
+  isAdmin: boolean = false;
   // Produto
   produto: Produto;
 
@@ -41,7 +44,8 @@ export class EditarProdutoComponent implements OnInit {
   private router: Router,
   private formBuilder: FormBuilder,
   private produtoFs: ProdutoFirebaseService,
-  private authFireService: AuthFirebaseService) {
+  private authFireService: AuthFirebaseService,
+  private funcionarioFs: FuncionarioFirebaseService) {
     this.produto = this.router.getCurrentNavigation()!.extras.state as Produto;
 
     if(this.produto === undefined) {
@@ -52,16 +56,25 @@ export class EditarProdutoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*
     let user = this.authFireService.userLogged()
     if(user !== null) {
       user.providerData.forEach((profile: any) => {
-        alert(profile.email)
+        this.userEmail = profile.email
       })
     }else {
       this.irParaLogin()
     }
-    */
+
+    if(this.userEmail) {
+      this.funcionarioFs.produtoQueryByEmail(this.userEmail).then(data => {
+        if(data){
+        this.isAdmin = data.admin
+        }else {
+          this.isAdmin = false
+          this.irParaHome()
+        }
+      })
+    }
 
     this.categorias = Object.keys(Categoria).filter((res) => isNaN(Number(res)));
     this.medidas = Object.keys(Medida).filter((res) => isNaN(Number(res)))

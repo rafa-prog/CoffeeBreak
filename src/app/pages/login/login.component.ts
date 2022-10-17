@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
 
     if(!this.FormLogin.valid) {
       this.isSubmitted = false
+      this.FormLogin.reset()
       alert('Login ou senha inválidos')
       return false
     }
@@ -61,9 +62,9 @@ export class LoginComponent implements OnInit {
 
       this.irParaHome()
     })
-    .catch((error) => {
+    .catch(() => {
       this.FormLogin.reset()
-      alert(error)
+      alert('Credenciais incorretas ou usuário não cadastrado!')
     });
 
   }

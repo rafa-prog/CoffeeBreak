@@ -38,27 +38,6 @@ export class CadastroComponent implements OnInit {
   private funcionarioFs: FuncionarioFirebaseService) { }
 
   ngOnInit(): void {
-    let user = this.authFireService.userLogged() // Verifica login
-    if(user !== null) {
-      user.providerData.forEach((profile: any) => {
-        this.userEmail = profile.email
-      })
-    }else {
-      // this.irParaLogin()
-    }
-
-    if(this.userEmail) {
-      this.funcionarioFs.produtoQueryByEmail(this.userEmail).then(data => {
-        if(data){
-        this.isAdmin = data.admin
-        }else {
-          this.isAdmin = false
-        }
-      })
-    }
-
-    this.isAdmin = true // Remover DEPOS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
     this.route.paramMap.subscribe(params => {
       this.tipo = params.get('tipo');
     });
@@ -67,6 +46,26 @@ export class CadastroComponent implements OnInit {
       this.searchByCategory('Produtos');
     }else {
       this.searchByCategory('Funcionários');
+    }
+
+    let user = this.authFireService.userLogged()
+    if(user !== null) {
+      user.providerData.forEach((profile: any) => {
+        this.userEmail = profile.email
+      })
+    }else {
+      this.irParaLogin()
+    }
+
+    if(this.userEmail) {
+      this.funcionarioFs.produtoQueryByEmail(this.userEmail).then(data => {
+        if(data){
+        this.isAdmin = data.admin
+        }else {
+          this.isAdmin = false
+          this.irParaHome()
+        }
+      })
     }
 
     this.FormBusca = this.formBuilder.group({busca: ['']})
@@ -172,6 +171,10 @@ export class CadastroComponent implements OnInit {
 
   irParaEditarFuncionario(funcionario: Funcionario){
     this.router.navigateByUrl('/editar-funcionario', { state: funcionario})
+  }
+
+  irParaLogin() {
+    this.router.navigate(['/'])
   }
 
   irParaHome() {

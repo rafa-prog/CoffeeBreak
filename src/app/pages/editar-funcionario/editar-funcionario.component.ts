@@ -12,7 +12,10 @@ import { FuncionarioFirebaseService } from 'src/app/services/funcionario.firebas
 })
 export class EditarFuncionarioComponent implements OnInit {
   funcionario: Funcionario;
-  isAdmin!: boolean;
+
+  isAdmin: boolean = false;
+  userEmail!: string;
+
   isSubmitted!: boolean;
   FormEditFunc!: FormGroup;
 
@@ -31,18 +34,29 @@ export class EditarFuncionarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*
     let user = this.authFireService.userLogged()
     if(user !== null) {
       user.providerData.forEach((profile: any) => {
-        alert(profile.email)
+        this.userEmail = profile.email
       })
     }else {
       this.irParaLogin()
     }
-    */
+
+    if(this.userEmail) {
+      this.funcionarioFs.produtoQueryByEmail(this.userEmail).then(data => {
+        if(data){
+        this.isAdmin = data.admin
+        }else {
+          this.isAdmin = false
+          this.irParaHome()
+        }
+      })
+    }
+
     this.formInit();
   }
+
 
   formInit() {
     this.FormEditFunc = this.formBuilder.group({

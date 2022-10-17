@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
         this.userEmail = profile.email
       })
     }else {
-      // this.irParaLogin()
+      this.irParaLogin()
     }
 
     if(this.userEmail) {
@@ -57,8 +57,6 @@ export class HomeComponent implements OnInit {
         }
       })
     }
-
-    this.isAdmin = true // Remover DEPOS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
     this.categorias = Object.keys(Categoria).filter((res) => isNaN(Number(res)));
 
