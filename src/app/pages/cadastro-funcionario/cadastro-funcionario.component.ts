@@ -63,11 +63,11 @@ export class CadastroFuncionarioComponent implements OnInit {
   }
 
   private createConta() {
-    let conta: Funcionario = {id: '', nome: this.FormCadFunc.controls['nome'].value, telefone: this.FormCadFunc.controls['telefone'].value,
+    let funcionario: Funcionario = {id: '', nome: this.FormCadFunc.controls['nome'].value, telefone: this.FormCadFunc.controls['telefone'].value,
     email: this.FormCadFunc.controls['email'].value, admin: this.isAdmin}
 
-    this.authFireService.createUser(conta, this.FormCadFunc.controls['senha'].value)
-    this.irParaHome()
+    this.authFireService.createUser(funcionario, this.FormCadFunc.controls['senha'].value)
+    this.irParaCadastro()
   }
 
   irParaHome() {
@@ -78,6 +78,6 @@ export class CadastroFuncionarioComponent implements OnInit {
     this.router.navigate(['/'])
   }
   irParaCadastro(){
-    this.router.navigate(['/cadastro'])
+    this.router.navigate(['/gerenciar/funcionarios'])
   }
 }

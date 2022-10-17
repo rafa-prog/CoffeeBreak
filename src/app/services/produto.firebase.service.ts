@@ -56,13 +56,23 @@ export class ProdutoFirebaseService {
     return docData(prodRef) as Observable<Produto>
   }
 
-  updateProduto(produto: Produto, id: any) {
-    let docRef = doc(this.afs, this.PATH + '/${produto.id}')
-    return updateDoc(docRef, id)
+  updateProduto(produto: Produto) {
+    let docRef = doc(this.afs, this.PATH + '/' + produto.id)
+    return updateDoc(docRef, {
+      nome: produto.nome,
+      categoria: produto.categoria,
+      medida: produto.medida,
+      tamanho: produto.tamanho,
+      descricao: produto.descricao,
+      preco: produto.preco,
+      foto: produto.foto,
+      adicionais: produto.adicionais
+    })
+    .then(() => {alert('Produto editado com sucesso!')})
   }
 
   deleteProduto(produto: Produto) {
-    let docRef = doc(this.afs, this.PATH + '/${produto.id}')
+    let docRef = doc(this.afs, this.PATH + '/' + produto.id)
     return deleteDoc(docRef)
   }
 
@@ -173,7 +183,7 @@ export class ProdutoFirebaseService {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           produto.foto = downloadURL;
-          this.updateProduto(produto, produto.id)
+          this.updateProduto(produto)
         });
       })
   }

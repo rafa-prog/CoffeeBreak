@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { MatChipInput, MatChipInputEvent } from '@angular/material/chips';
 import { Router } from '@angular/router';
 import { Adicional } from 'src/app/models/adicional';
 import { Categoria } from 'src/app/models/categoria';
@@ -44,10 +44,11 @@ export class EditarProdutoComponent implements OnInit {
   private authFireService: AuthFirebaseService) {
     this.produto = this.router.getCurrentNavigation()!.extras.state as Produto;
 
-    console.log(this.produto)
     if(this.produto === undefined) {
       this.irParaHome()
     }
+
+    this.adicionais = this.produto.adicionais
   }
 
   ngOnInit(): void {
@@ -70,12 +71,12 @@ export class EditarProdutoComponent implements OnInit {
   formInit() {
     this.FormEditProd = this.formBuilder.group({
       nome: [this.produto.nome, [Validators.required, Validators.minLength(3)]],
-      descricao: [this.produto.nome, [Validators.required]],
+      descricao: [this.produto.descricao, [Validators.required]],
       categoria: [this.produto.categoria, [Validators.required]],
       tamanho: [this.produto.tamanho, [Validators.required, Validators.min(0.1)]],
       medida: [this.produto.medida, [Validators.required]],
-      adicionais: [null, []],
-      foto: [null, [Validators.required]],
+      adicionais: [this.produto.adicionais],
+      foto: [null],
       preco: [this.produto.preco, [Validators.required, Validators.min(0)]],
     })
   }
@@ -96,8 +97,20 @@ export class EditarProdutoComponent implements OnInit {
   }
 
   private async editar() {
-    this.FormEditProd.controls['adicionais'].setValue(this.adicionais)
-    this.produtoFs.updateImg(this.imagem, this.FormEditProd.value)
+    //this.FormEditProd.controls['adicionais'].setValue(this.adicionais)
+
+    let produto = {id: this.produto.id, nome: this.FormEditProd.controls['nome'].value, categoria: this.FormEditProd.controls['categoria'].value,
+    medida: this.FormEditProd.controls['medida'].value, tamanho: this.FormEditProd.controls['tamanho'].value, descricao: this.FormEditProd.controls['descricao'].value,
+    preco: this.FormEditProd.controls['preco'].value, foto: this.produto.foto, adicionais: this.FormEditProd.controls['adicionais'].value}
+
+    if(this.FormEditProd.controls['foto'].value) {
+      await this.produtoFs.updateImg(this.imagem, produto);
+    }else {
+      await this.produtoFs.updateProduto(produto);
+    }
+
+
+    this.irParaCadastro();
   }
 
   salvaMedida(medida: string) {
@@ -126,6 +139,7 @@ export class EditarProdutoComponent implements OnInit {
 
   uploadFile(evento: any){
     this.imagem = evento.target.files[0];
+    console.log(this.imagem.name)
   }
 
   irParaLogin() {
@@ -137,7 +151,7 @@ export class EditarProdutoComponent implements OnInit {
   }
 
   irParaCadastro(){
-    this.router.navigate(['/cadastro'])
+    this.router.navigate(['/gerenciar/produtos'])
   }
 }
 

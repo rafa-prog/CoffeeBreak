@@ -39,14 +39,13 @@ export class HomeComponent implements OnInit {
   private funcionarioFs: FuncionarioFirebaseService) { }
 
   ngOnInit(): void {
-    /*
     let user = this.authFireService.userLogged() // Verifica login
     if(user !== null) {
       user.providerData.forEach((profile: any) => {
         this.userEmail = profile.email
       })
     }else {
-      this.irParaLogin()
+      // this.irParaLogin()
     }
 
     if(this.userEmail) {
@@ -58,7 +57,7 @@ export class HomeComponent implements OnInit {
         }
       })
     }
-  */
+
     this.isAdmin = true // Remover DEPOS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
     this.categorias = Object.keys(Categoria).filter((res) => isNaN(Number(res)));
@@ -141,7 +140,7 @@ export class HomeComponent implements OnInit {
   }
 
   irParaCadastro() {
-    this.router.navigate(['/cadastro'])
+    this.router.navigate(['/gerenciar/funcionarios'])
   }
 
   irParaPagamento() {

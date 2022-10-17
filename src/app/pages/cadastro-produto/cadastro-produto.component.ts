@@ -8,6 +8,7 @@ import { Categoria } from 'src/app/models/categoria';
 import { Medida } from 'src/app/models/medida';
 import { AuthFirebaseService } from 'src/app/services/auth.firebase.service';
 import { ProdutoFirebaseService } from 'src/app/services/produto.firebase.service';
+import { FuncionarioFirebaseService } from 'src/app/services/funcionario.firebase.service';
 
 
 @Component({
@@ -21,6 +22,8 @@ export class CadastroProdutoComponent implements OnInit {
   FormCadProd: FormGroup = this.formBuilder.group({})
   isSubmitted: boolean = false
 
+  userEmail!: string;
+  isAdmin: boolean = false;
   // Adicionais
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   adicionais: Adicional[] = [];
@@ -38,19 +41,30 @@ export class CadastroProdutoComponent implements OnInit {
   private router: Router,
   private formBuilder: FormBuilder,
   private produtoFs: ProdutoFirebaseService,
-  private authFireService: AuthFirebaseService) { }
+  private authFireService: AuthFirebaseService,
+  private funcionarioFs: FuncionarioFirebaseService) { }
 
   ngOnInit(): void {
-    /*
-    let user = this.authFireService.userLogged()
+    let user = this.authFireService.userLogged() // Verifica login
     if(user !== null) {
       user.providerData.forEach((profile: any) => {
-        alert(profile.email)
+        this.userEmail = profile.email
       })
     }else {
-      this.irParaLogin()
+      // this.irParaLogin()
     }
-    */
+
+    if(this.userEmail) {
+      this.funcionarioFs.produtoQueryByEmail(this.userEmail).then(data => {
+        if(data){
+        this.isAdmin = data.admin
+        }else {
+          this.isAdmin = false
+        }
+      })
+    }
+
+    this.isAdmin = true // Remover DEPOS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
     this.categorias = Object.keys(Categoria).filter((res) => isNaN(Number(res)));
     this.medidas = Object.keys(Medida).filter((res) => isNaN(Number(res)))
@@ -64,7 +78,7 @@ export class CadastroProdutoComponent implements OnInit {
       categoria: ['', [Validators.required]],
       tamanho: ['', [Validators.required, Validators.min(0.1)]],
       medida: ['', [Validators.required]],
-      adicionais: [null, []],
+      adicionais: [null],
       foto: [null, [Validators.required]],
       preco: ['', [Validators.required, Validators.min(0)]],
     })
@@ -88,6 +102,8 @@ export class CadastroProdutoComponent implements OnInit {
   private cadastrar() {
     this.FormCadProd.controls['adicionais'].setValue(this.adicionais)
     this.produtoFs.enviarImg(this.imagem, this.FormCadProd.value)
+
+    this.irParaCadastro()
   }
 
   salvaMedida(medida: string) {
@@ -127,6 +143,6 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   irParaCadastro(){
-    this.router.navigate(['/cadastro'])
+    this.router.navigate(['/gerenciar/produtos'])
   }
 }

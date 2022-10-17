@@ -1,9 +1,10 @@
 import { ENTER } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Funcionario } from 'src/app/models/funcionario';
 import { Produto } from 'src/app/models/produto';
+import { AuthFirebaseService } from 'src/app/services/auth.firebase.service';
 import { FuncionarioFirebaseService } from 'src/app/services/funcionario.firebase.service';
 import { ProdutoFirebaseService } from 'src/app/services/produto.firebase.service';
 
@@ -24,19 +25,50 @@ export class CadastroComponent implements OnInit {
   readonly separatorKeysCodes = [ENTER] as const
   addOnBlur = true;
 
+  tipo!: (string | null);
   categoria: string = '';
   busca: string = '';
 
   constructor(
   private router: Router,
+  private route: ActivatedRoute,
   private formBuilder: FormBuilder,
   private produtoFs: ProdutoFirebaseService,
+  private authFireService: AuthFirebaseService,
   private funcionarioFs: FuncionarioFirebaseService) { }
 
   ngOnInit(): void {
+    let user = this.authFireService.userLogged() // Verifica login
+    if(user !== null) {
+      user.providerData.forEach((profile: any) => {
+        this.userEmail = profile.email
+      })
+    }else {
+      // this.irParaLogin()
+    }
 
+    if(this.userEmail) {
+      this.funcionarioFs.produtoQueryByEmail(this.userEmail).then(data => {
+        if(data){
+        this.isAdmin = data.admin
+        }else {
+          this.isAdmin = false
+        }
+      })
+    }
+
+    this.isAdmin = true // Remover DEPOS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     this.carregarFuncionarios();
-    this.searchByCategory('Funcionários');
+
+    this.route.paramMap.subscribe(params => {
+      this.tipo = params.get('tipo');
+    });
+
+    if(this.tipo === 'produtos') {
+      this.searchByCategory('Produtos');
+    }else {
+      this.searchByCategory('Funcionários');
+    }
 
     this.FormBusca = this.formBuilder.group({busca: ['']})
   }
@@ -93,9 +125,11 @@ export class CadastroComponent implements OnInit {
     this.addCategory(categoria);
 
     if(categoria === 'Funcionários') {
+      this.router.navigate(['/gerenciar/funcionarios'])
       this.produtos = [];
       this.carregarFuncionarios();
     }else {
+      this.router.navigate(['/gerenciar/produtos'])
       this.funcionarios = [];
       this.carregarProdutos();
     }
@@ -117,6 +151,14 @@ export class CadastroComponent implements OnInit {
     }
   }
 
+  excluirFuncionario(funcionario: Funcionario) {
+    this.funcionarioFs.deleteFuncionario(funcionario);
+  }
+
+  excluirProduto(produto: Produto) {
+    this.produtoFs.deleteProduto(produto)
+  }
+
   irParaCadastroProduto() {
     this.router.navigate(['/cadastro-produto'])
   }
@@ -127,6 +169,10 @@ export class CadastroComponent implements OnInit {
 
   irParaEditarProduto(produto: Produto){
     this.router.navigateByUrl('/editar-produto', { state: produto})
+  }
+
+  irParaEditarFuncionario(funcionario: Funcionario){
+    this.router.navigateByUrl('/editar-funcionario', { state: funcionario})
   }
 
   irParaHome() {

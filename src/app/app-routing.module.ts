@@ -23,7 +23,7 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'cadastro',
+    path: 'gerenciar/:tipo',
     component: CadastroComponent,
   },
   {

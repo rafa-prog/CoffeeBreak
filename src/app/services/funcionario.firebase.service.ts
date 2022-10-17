@@ -51,13 +51,20 @@ export class FuncionarioFirebaseService {
     return produtos[0] as Funcionario
   }
 
-  updateFuncionario(funcionario: Funcionario, funcionarios: any) {
-    let docRef = doc(this.afs, this.PATH + '/${funcionario.id}')
-    return updateDoc(docRef, funcionarios)
+  updateFuncionario(funcionario: Funcionario) {
+    let docRef = doc(this.afs, this.PATH + '/' + funcionario.id);
+    return updateDoc(docRef, {
+      nome: funcionario.nome,
+      telefone: funcionario.telefone,
+      email: funcionario.email,
+      admin: funcionario.admin
+    })
+    .then(() => {alert('Funcionário atualizado com sucesso!')})
+    .catch(() => {alert('Erro ao atualizar funcionário!')})
   }
 
   deleteFuncionario(funcionario: Funcionario) {
-    let docRef = doc(this.afs, this.PATH + '/${funcionario.id}')
+    let docRef = doc(this.afs, this.PATH + funcionario.id)
     return deleteDoc(docRef)
   }
 }
