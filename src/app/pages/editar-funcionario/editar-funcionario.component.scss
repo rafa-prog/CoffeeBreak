@@ -1,0 +1,45 @@
+mat-card{
+    width: 70%;
+    background-color: #744c24;
+ 
+ }
+ button{
+    margin-left: 15em;
+    width: 60%;
+    height: 20%;
+ }
+ 
+ ::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: #E2D1BB !important;
+   }
+  
+   ::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: #E2D1BB!important;
+  } 
+  
+  ::ng-deep.mat-form-field-ripple {
+   /*change color of underline when focused*/
+   background-color: #E2D1BB!important;
+  }
+ #voltar{
+   height: 30px;
+   width: 30px;
+ }
+ mat-toolbar.mat-primary{
+    background-color: #D2B590;
+ }
+ .conteudo-de-fora{
+    background-color: #E2D1BB;
+ }
+ #btn-card{
+    background-color: #D2B590;
+    margin-top: 0.2rem;
+ }
+ #btn-voltar{
+   width: 1%;
+   height: 1%;
+   margin-left: 60rem;
+   margin-top: -9px;
+}

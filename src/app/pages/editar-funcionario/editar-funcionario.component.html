@@ -8,7 +8,7 @@
     </button>
 
     <form fxLayout="column" [formGroup]="FormEditFunc">
-      <mat-toolbar color="primary" fxLayoutAlign="center center">Cadastrar Usuário</mat-toolbar>
+      <mat-toolbar color="primary" fxLayoutAlign="center center">Editar Usuário</mat-toolbar>
 
         <mat-form-field>
           <svg matPrefix xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
@@ -44,7 +44,7 @@
           <input matInput [hidden]="true">
         </mat-form-field>
 
-        <button (click)="trocarSenha()">Enviar email para redefinir senha</button>
+        <button  id="btn-card" mat-button (click)="trocarSenha()">Enviar email para redefinir senha</button>
 
         <button id="btn-card" mat-button type="submit" (click)="onSubmit()">Editar usuário</button>
 
