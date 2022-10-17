@@ -11,7 +11,7 @@ import { AuthFirebaseService } from 'src/app/services/auth.firebase.service';
 export class LoginComponent implements OnInit {
   FormLogin!: FormGroup;
   isSubmitted!: boolean;
-
+  calldiameter: boolean =false;
   diameter: number = 10;
 
   constructor(
@@ -53,7 +53,9 @@ export class LoginComponent implements OnInit {
   private async login() {
     await this.authFireService.signIn(this.FormLogin.value)
     .then((userCredential) => {
+      this.calldiameter = true;
       this.diameter = 10
+      this.calldiameter=false;
       const user = userCredential.user;
       alert('Autenticado com sucesso!')
 
