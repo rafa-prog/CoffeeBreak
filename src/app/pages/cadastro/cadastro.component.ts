@@ -58,7 +58,6 @@ export class CadastroComponent implements OnInit {
     }
 
     this.isAdmin = true // Remover DEPOS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-    this.carregarFuncionarios();
 
     this.route.paramMap.subscribe(params => {
       this.tipo = params.get('tipo');
