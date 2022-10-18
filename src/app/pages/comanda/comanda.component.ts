@@ -33,12 +33,10 @@ export class ComandaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*
     let user = this.authFireService.userLogged()
     if(user === null) {
     this.irParaLogin()
     }
-    */
    this.atualizaPrecoTotal()
   }
 

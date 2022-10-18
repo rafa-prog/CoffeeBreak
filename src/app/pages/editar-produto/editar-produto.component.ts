@@ -110,7 +110,7 @@ export class EditarProdutoComponent implements OnInit {
   }
 
   private async editar() {
-    //this.FormEditProd.controls['adicionais'].setValue(this.adicionais)
+    this.FormEditProd.controls['adicionais'].setValue(this.adicionais)
 
     let produto = {id: this.produto.id, nome: this.FormEditProd.controls['nome'].value, categoria: this.FormEditProd.controls['categoria'].value,
     medida: this.FormEditProd.controls['medida'].value, tamanho: this.FormEditProd.controls['tamanho'].value, descricao: this.FormEditProd.controls['descricao'].value,

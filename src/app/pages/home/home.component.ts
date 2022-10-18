@@ -45,7 +45,6 @@ export class HomeComponent implements OnInit {
   private funcionarioFs: FuncionarioFirebaseService) { }
 
   ngOnInit(): void {
-    /*
     let user = this.authFireService.userLogged() // Verifica login
     if(user !== null) {
       user.providerData.forEach((profile: any) => {
@@ -64,7 +63,6 @@ export class HomeComponent implements OnInit {
         }
       })
     }
-    */
 
     this.categorias = Object.keys(Categoria).filter((res) => isNaN(Number(res)));
 

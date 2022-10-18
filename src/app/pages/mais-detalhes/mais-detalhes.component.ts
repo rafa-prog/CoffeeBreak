@@ -57,12 +57,11 @@ export class MaisDetalhesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*
     let user = this.authFireService.userLogged() // Verifica login
     if(user === null) {
       this.irParaLogin()
     }
-    */
+    
     this.carregaComandas()
   }
 

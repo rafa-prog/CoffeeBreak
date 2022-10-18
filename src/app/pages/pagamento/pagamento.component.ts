@@ -23,7 +23,7 @@ export class PagamentoComponent implements OnInit {
   ngOnInit(): void {
     let user = this.authFireService.userLogged()
     if(user === null) {
-      //this.irParaLogin()
+      this.irParaLogin()
     }
 
     this.comandaFs.readComandas().subscribe((data: Comanda[]) => {this.comandas = data; this.comandasFiltradas = this.comandas});
