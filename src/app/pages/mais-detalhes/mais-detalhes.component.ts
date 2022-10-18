@@ -34,8 +34,7 @@ export class MaisDetalhesComponent implements OnInit {
   private authFireService: AuthFirebaseService,
   private funcionarioFs: FuncionarioFirebaseService) {
     this.produto = this.router.getCurrentNavigation()!.extras.state as Produto;
-
-    console.log(this.produto)
+    
     if(this.produto === null) {
       this.irParaHome()
     }
@@ -44,11 +43,12 @@ export class MaisDetalhesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /*
     let user = this.authFireService.userLogged() // Verifica login
     if(user === null) {
       this.irParaLogin()
     }
-
+  */
     this.quantidadeProduto = 1
   }
 
@@ -57,17 +57,23 @@ export class MaisDetalhesComponent implements OnInit {
 
     if(this.comanda) {
 
-      this.comanda.produtos.push(this.produto)
-      this.comandaFs.updateComanda(this.comanda.id, this.comanda)
+      this.comanda.produtos.push(this.produto);
+      this.comanda.quantidade.push(this.quantidadeProduto);
+      this.comanda.dataRegistro = new Date();
 
+      await this.comandaFs.updateComanda(this.comanda.id, this.comanda)
+
+      alert('Adicionado a comanda!')
     } else {
 
       let produtos: Produto[] = [this.produto];
       let quantidade: number[] = [this.quantidadeProduto];
 
-      let comanda = {id: '', mesa: mesa, produtos: produtos, quantidade: quantidade}
+      let comanda = {id: '', mesa: mesa, produtos: produtos, quantidade: quantidade, pago: false, dataRegistro: new Date()}
 
-      this.comandaFs.createComanda(comanda)
+      await this.comandaFs.createComanda(comanda)
+
+      alert('Comanda criada!')
     }
 
     this.irParaComanda(this.comanda)

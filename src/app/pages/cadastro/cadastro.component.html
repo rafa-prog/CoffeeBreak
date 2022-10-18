@@ -56,7 +56,7 @@
     <mat-sidenav-content id="">
       <div id="search">
         <form [formGroup]="FormBusca" (ngSubmit)="searchByText(FormBusca.controls['busca'].value)">
-          <input formControlName="busca" id="search-text" type="text" placeholder="buscar produtos..." value=""> <!--Arrumar isso aq AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
+          <input formControlName="busca" id="search-text" type="text" placeholder="buscar produtos..." value="">
           <button id="btn-search" type="submit">
             <svg id="buscar" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -145,7 +145,7 @@
                 <mat-card-content id="u-content">
                   Telefone: {{ funcionario.telefone }}
                   <p></p>
-                  email: {{ funcionario.email }}
+                  Email: {{ funcionario.email }}
                 </mat-card-content>
 
                 <mat-card-actions id="btn-actions">

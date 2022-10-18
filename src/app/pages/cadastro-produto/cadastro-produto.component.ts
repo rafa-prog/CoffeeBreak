@@ -79,7 +79,7 @@ export class CadastroProdutoComponent implements OnInit {
       medida: ['', [Validators.required]],
       adicionais: [null],
       foto: [null, [Validators.required]],
-      preco: ['', [Validators.required, Validators.min(0)]],
+      preco: ['', [Validators.required, Validators.min(0.00)]],
     })
   }
 

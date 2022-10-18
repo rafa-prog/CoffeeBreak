@@ -5,4 +5,6 @@ export interface Comanda {
   mesa: number
   produtos: Produto[]
   quantidade: number[]
+  pago: boolean
+  dataRegistro: Date
 }

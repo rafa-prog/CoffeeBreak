@@ -48,6 +48,7 @@
         <span matPrefix>{{ medida }}&nbsp;</span>
         <input matInput placeholder="250" class="example-right-align" id="tamanho" type="number" formControlName="tamanho">
         <mat-error *ngIf="getErrorControl('tamanho', 'required')">tamanho obrigatório!</mat-error>
+        <mat-error *ngIf="getErrorControl('tamanho', 'min')">tamanho inválido!</mat-error>
       </mat-form-field>
 
       <mat-form-field class="insercao">
@@ -70,7 +71,7 @@
         <input currencyMask matInput type="number" class="example-right-align" id="preco" type="text" formControlName="preco"
         placeholder="2.34">
         <mat-error *ngIf="getErrorControl('preco', 'required')">preço obrigatório!</mat-error>
-        <mat-error *ngIf="getErrorControl('preco', 'minlength')">preço inválido!</mat-error>
+        <mat-error *ngIf="getErrorControl('preco', 'min')">preço inválido!</mat-error>
       </mat-form-field>
 
       <mat-form-field class="insercao">
