@@ -20,13 +20,14 @@ height: 90%;
 margin-top: 1em;
 }
 #btn-voltar{
-width: 1%;
-height: 4%;
-margin-top: -1rem;
-margin-left: 69rem;
-padding-bottom: 2rem;
 
+   width: 1%;
+   height: 4%;
+   margin-top: -1rem;
+   margin-left: 87rem;
+   padding-bottom: 2rem;
 }
+
 ::ng-deep .mat-focused .mat-form-field-label {
 /*change color of label*/
 color: #E2D1BB !important;
@@ -43,7 +44,7 @@ background-color: #E2D1BB!important;
 }
 
 mat-toolbar.mat-primary{
-width: 97%;
+width: 100%;
 background-color: #D2B590;
 }
 .conteudo-de-fora{
@@ -66,4 +67,21 @@ height: auto;
 }
 #botoes-card{
 margin-left: 42rem;
+}
+#content{
+  margin-right: 20%;
+  margin-left: 20%;
+}
+#mesaaa{
+  font-size:larger;
+}
+#quantidade{
+  margin-left: 5%;
+}
+#title-mesa{
+  margin-right: 1%;
+  margin-top: 1%;
+}
+#card-comanda{
+background-color:#D2B590 ;
 }

@@ -1,23 +1,30 @@
 <div id="conteudo-de-fora" fxLayoutAlign="center center" fxFlexFill>
   <mat-card fxLayout="column" id="card-pagamento">
-      <mat-toolbar color="primary">Pagamento</mat-toolbar>
+    <button id="btn-voltar"  mat-button (click)="irParaHome()">
+      <svg id="voltar" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+      </svg>
+    </button>
+      <mat-toolbar color="primary" fxLayoutAlign="center center">Pagamento</mat-toolbar>
 
-      <mat-card-content>
-        <h2>Mesa</h2>
-      </mat-card-content>
+      <mat-card-content fxLayout="row" fxLayoutAlign="center" id="content">
 
-      <mat-card-actions>
-        <input #buscaMesa matInput type="number" value="">
-        <button id="btn-card" [disabled]="!(buscaMesa.value !== '' && buscaMesa.valueAsNumber > 0)" mat-button (click)="buscaMesa.value = buscarMesa(buscaMesa.valueAsNumber)">Buscar comanda</button>
+        <h2 id="title-mesa">
+          Mesa: 
+        </h2>
+        <mat-card-actions>
+     
+          <input #buscaMesa matInput type="number" value="">
+          <button id="btn-card" [disabled]="!(buscaMesa.value !== '' && buscaMesa.valueAsNumber > 0)" mat-button (click)="buscaMesa.value = buscarMesa(buscaMesa.valueAsNumber)">Buscar comanda</button>
+<!-- 
+          <mat-label>Total a pagar: {{ valorTotal }}</mat-label> -->
 
-        <mat-label>Total a pagar: {{ valorTotal }}</mat-label>
-
-        <button (click)="irParaHome()">Voltar</button>
-      </mat-card-actions>
-
+          
+        </mat-card-actions>
+    </mat-card-content>
       <div *ngFor="let comanda of comandasFiltradas">
-        <mat-card-content>
-          <mat-card>
+        <mat-card-content >
+          <mat-card id="card-comanda">
             <div  *ngFor="let quantidade of comanda.quantidade; let i = index">
               
               <mat-card-header>
@@ -26,8 +33,20 @@
                 </mat-card-title>
               </mat-card-header>
 
-              <mat-card-content>
+              <mat-card-content id="quantidade">
+                Quantidade: 
                 {{ quantidade }}
+              </mat-card-content>
+
+              <mat-card-content id="quantidade">
+                Estado da comanda: 
+                <div *ngIf="comanda.pago">
+                  Pago
+                </div>
+                <div *ngIf="!comanda.pago">
+                  Em espera de pagamento
+                </div>
+                
               </mat-card-content>
             </div>
 
