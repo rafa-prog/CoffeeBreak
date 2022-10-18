@@ -9,6 +9,8 @@ import { FuncionarioFirebaseService } from 'src/app/services/funcionario.firebas
 import { ProdutoFirebaseService } from 'src/app/services/produto.firebase.service';
 import { ENTER } from '@angular/cdk/keycodes';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ComandaFirebaseService } from 'src/app/services/comanda.firebase.service';
+import { Comanda } from 'src/app/models/comanda';
 
 @Component({
   selector: 'app-home',
@@ -18,10 +20,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class HomeComponent implements OnInit {
   FormBusca!: FormGroup;
 
+  comandas: Comanda[] = [];
+  comanda!: Comanda;
+
   produtos: Produto[] = [];
   categorias!: string[];
 
-  isAdmin: boolean = false;
+  isAdmin: boolean = true; // aAAAAAA
   userEmail!: string;
 
   readonly separatorKeysCodes = [ENTER] as const
@@ -35,6 +40,7 @@ export class HomeComponent implements OnInit {
   private route: ActivatedRoute,
   private formBuilder: FormBuilder,
   private produtoFs: ProdutoFirebaseService,
+  private comandaFs: ComandaFirebaseService,
   private authFireService: AuthFirebaseService,
   private funcionarioFs: FuncionarioFirebaseService) { }
 
@@ -63,12 +69,19 @@ export class HomeComponent implements OnInit {
     this.categorias = Object.keys(Categoria).filter((res) => isNaN(Number(res)));
 
     this.carregarProdutos()
+    this.carregarComandas()
+
+    setTimeout(() => {this.comandas = this.comandas.filter(comanda => !comanda.pago); this.comanda = this.comandas[0]}, 3000);
 
     this.FormBusca = this.formBuilder.group({busca: ['']})
   }
 
   carregarProdutos() {
     return this.produtoFs.readProdutos().subscribe((data: Produto[]) => {this.carregarParametros(data)})
+  }
+
+  async carregarComandas() {
+    return await this.comandaFs.readComandas().subscribe((data: Comanda[]) => {this.comandas = data;})
   }
 
   carregarParametros(data: any) {
@@ -122,6 +135,7 @@ export class HomeComponent implements OnInit {
     }else {
       this.carregarProdutos()
     }
+
     return ''
   }
 
@@ -148,10 +162,10 @@ export class HomeComponent implements OnInit {
   }
 
   irParaComanda() {
-    this.router.navigate(['/comanda'])
+    this.router.navigateByUrl('/comanda', {state : this.comanda})
   }
 
-  irParaMaisDetalhes(produto: Produto) {
-    this.router.navigateByUrl('/mais-detalhes', { state: produto})
+  irParaMaisDetalhes(produto: Produto, quantidade: number) {
+    this.router.navigateByUrl('/mais-detalhes', { state: {produto: produto, quantidade: quantidade}})
   }
 }

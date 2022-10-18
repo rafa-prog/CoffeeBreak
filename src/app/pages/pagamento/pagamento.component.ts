@@ -10,9 +10,10 @@ import { ComandaFirebaseService } from 'src/app/services/comanda.firebase.servic
   styleUrls: ['./pagamento.component.scss']
 })
 export class PagamentoComponent implements OnInit {
-  quantidade!: number[]
   valorTotal!: number
-  comanda!: Comanda
+
+  comandasFiltradas: Comanda[] = [];
+  comandas: Comanda[] = [];
 
   constructor(
   private router: Router,
@@ -22,22 +23,31 @@ export class PagamentoComponent implements OnInit {
   ngOnInit(): void {
     let user = this.authFireService.userLogged()
     if(user === null) {
-      this.irParaLogin()
+      //this.irParaLogin()
     }
+
+    this.comandaFs.readComandas().subscribe((data: Comanda[]) => {this.comandas = data; this.comandasFiltradas = this.comandas});
   }
 
   buscarMesa(mesa: number) {
-    this.comandaFs.comandaQueryByMesa(mesa).then((data: Comanda) => {this.comanda = data})
-    console.log(this.comanda)
-    this.quantidade = this.comanda.quantidade
+    this.comandasFiltradas = this.comandas.filter(comanda => comanda.mesa === mesa);
+
+    if(this.comandasFiltradas.length > 0) {
+
+    }
+
     return ''
   }
 
+  async deletarComanda(comanda: Comanda) {
+    return await this.comandaFs.deleteComanda(comanda);
+  }
+
   irParaHome() {
-    this.router.navigate(['/home'])
+    this.router.navigate(['/home']);
   }
 
   irParaLogin() {
-    this.router.navigate(['/'])
+    this.router.navigate(['/']);
   }
 }

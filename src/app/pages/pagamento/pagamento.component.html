@@ -15,20 +15,25 @@
         <button (click)="irParaHome()">Voltar</button>
       </mat-card-actions>
 
-      <mat-card-content *ngIf="comanda">
-          <mat-card *ngFor="let quantidade of quantidade; let i = index">
-
-          <mat-card-header>
-            <mat-card-title>
-              {{ comanda.produtos[i].nome }}
-            </mat-card-title>
-          </mat-card-header>
-
+      <div *ngFor="let comanda of comandasFiltradas">
         <mat-card-content>
-          {{ quantidade }}
-        </mat-card-content>
+          <mat-card>
+            <div  *ngFor="let quantidade of comanda.quantidade; let i = index">
+              
+              <mat-card-header>
+                <mat-card-title>
+                  {{ comanda.produtos[i].nome }}
+                </mat-card-title>
+              </mat-card-header>
 
-        </mat-card>
+              <mat-card-content>
+                {{ quantidade }}
+              </mat-card-content>
+            </div>
+
+          </mat-card>
+
       </mat-card-content>
+      </div>
   </mat-card>
 </div>

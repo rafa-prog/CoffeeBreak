@@ -18,7 +18,11 @@ export class MaisDetalhesComponent implements OnInit {
   FormComanda!: FormGroup
   isSubmitted: boolean = false;
 
+  comandas: Comanda[] = [];
   comanda!: Comanda
+
+  mesaValida: boolean = false;
+  mesa!: number;
 
   precoTotal: number
 
@@ -33,10 +37,20 @@ export class MaisDetalhesComponent implements OnInit {
   private comandaFs: ComandaFirebaseService,
   private authFireService: AuthFirebaseService,
   private funcionarioFs: FuncionarioFirebaseService) {
-    this.produto = this.router.getCurrentNavigation()!.extras.state as Produto;
-    
+    this.produto = this.router.getCurrentNavigation()!.extras.state!['produto'] as Produto;
+    this.quantidadeProduto = this.router.getCurrentNavigation()!.extras.state!['quantidadeProduto'] as number;
+    this.mesa = this.router.getCurrentNavigation()!.extras.state!['mesa'] as number;
+
     if(this.produto === null) {
       this.irParaHome()
+    }
+
+    if(!this.quantidadeProduto) {
+      this.quantidadeProduto = 1
+    }
+
+    if(this.mesa) {
+      this.mesaValida = true;
     }
 
     this.precoTotal = this.produto.preco
@@ -48,12 +62,18 @@ export class MaisDetalhesComponent implements OnInit {
     if(user === null) {
       this.irParaLogin()
     }
-  */
-    this.quantidadeProduto = 1
+    */
+    this.carregaComandas()
   }
 
-  async checkComanda(mesa: number) {
-    await this.comandaFs.comandaQueryByMesa(mesa).then((data: Comanda) => this.comanda = data)
+  async salvaStatusComanda(mesa: number) {
+    if(this.mesa) {
+      mesa = this.mesa
+    }
+
+    let comandasFitraldas = this.comandas.filter(comanda => comanda.mesa === mesa && !comanda.pago)
+
+    this.comanda = comandasFitraldas[0];
 
     if(this.comanda) {
 
@@ -61,9 +81,11 @@ export class MaisDetalhesComponent implements OnInit {
       this.comanda.quantidade.push(this.quantidadeProduto);
       this.comanda.dataRegistro = new Date();
 
-      await this.comandaFs.updateComanda(this.comanda.id, this.comanda)
+      await this.comandaFs.updateComanda(this.comanda)
+      .then(() => alert('Comanda atualizada!'))
 
-      alert('Adicionado a comanda!')
+      this.irParaComanda(this.comanda)
+
     } else {
 
       let produtos: Produto[] = [this.produto];
@@ -73,11 +95,14 @@ export class MaisDetalhesComponent implements OnInit {
 
       await this.comandaFs.createComanda(comanda)
 
-      alert('Comanda criada!')
+      this.irParaComanda(comanda)
     }
 
-    this.irParaComanda(this.comanda)
     return ''
+  }
+
+  async carregaComandas() {
+    return await this.comandaFs.readComandas().subscribe((data: Comanda[]) => {this.comandas = data;})
   }
 
   add() {
@@ -92,8 +117,8 @@ export class MaisDetalhesComponent implements OnInit {
     this.router.navigate(['/home'])
   }
 
-  irParaComanda(param: Comanda) {
-    this.router.navigateByUrl('/comanda', {state : {comanda: param}})
+  irParaComanda(comanda: Comanda) {
+    this.router.navigateByUrl('/comanda', {state : comanda})
   }
 
   irParaLogin() {
